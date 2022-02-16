@@ -1,0 +1,14 @@
+button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+button.activation {
+    background-color: #f00;
+    color: #fff;
+}
+
+button.selected {
+    background-color: #0f0;
+    color: #000;
+}

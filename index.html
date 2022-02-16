@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Simon Says</title>
+</head>
+
+<body>
+
+    <!-- Title -->
+    <header>
+        <h1>Simon Says</h1>
+    </header>
+
+    <!-- Game -->
+    <main>
+        <section>
+            <div id="difficulty-selection">
+                <button id="btn-easy" type="button">Easy</button>
+                <button id="btn-normal" type="button">Normal</button>
+                <button id="btn-custom" type="button">Custom</button>
+            </div>
+            <div id="assisting-controls">
+                <button id="btn-settings" type="button">Settings</button>
+                <div id="menu-settings">
+                    <h2>Settings</h2>
+                    <fieldset>
+                        <legend>Game Buttons</legend>
+                        <input type="radio" id="setting-buttons-2" name="setting-buttons" value="2">
+                        <label for="setting-buttons-2">2</label>
+                        <input type="radio" id="setting-buttons-4" name="setting-buttons" value="4" checked="checked">
+                        <label for="setting-buttons-4">4</label>
+                        <input type="radio" id="setting-buttons-6" name="setting-buttons" value="6">
+                        <label for="setting-buttons-6">6</label>
+                        <input type="radio" id="setting-buttons-8" name="setting-buttons" value="8">
+                        <label for="setting-buttons-8">8</label>
+                        <span>(Score: -15/0/+15/+30%)</span>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Sequence Speed</legend>
+                        <input type="radio" id="setting-speed-normal" name="setting-speed" value="speed-normal" checked="checked">
+                        <label for="setting-speed-normal">Normal</label>
+                        <input type="radio" id="setting-speed-fast" name="setting-speed" value="speed-fast">
+                        <label for="setting-speed-fast">Fast</label>
+                        <input type="radio" id="setting-speed-super" name="setting-speed" value="speed-super">
+                        <label for="setting-speed-super">Very fast</label>
+                        <span>(Score: 0/+15/+30%)</span>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Other Settings</legend>
+                        <label for="setting-sound">Sound On/Off:</label>
+                        <input type="checkbox" id="setting-sound" name="setting-sound"><span>(No Effect on Score)</span><br>
+                        <label for="setting-strict">Strict Mode On/Off:</label>
+                        <input type="checkbox" id="setting-strict" name="setting-strict"><span>(Score: +50%)</span><br>
+                        <label for="setting-markings">Markings On/Off:</label>
+                        <input type="checkbox" id="setting-markings" name="setting-markings"><span>(Score: +25%)</span><br>
+                    </fieldset>
+                </div>
+                <button id="btn-help" type="button">Help</button>
+                <div id="menu-help">
+                    <h2>Help</h2>
+                    <p>Description</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div id="game-area">
+                <p id="status-display">Status</p>
+                <button id="game-control" type="button">Start</button>
+                <button id="btn-1" type="button">1</button>
+                <button id="btn-2" type="button">2</button>
+                <button id="btn-3" type="button">3</button>
+                <button id="btn-4" type="button">4</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Credits -->
+    <footer>
+        Credits
+    </footer>
+
+</body>
+
+</html>
