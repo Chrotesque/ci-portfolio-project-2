@@ -24,12 +24,13 @@
     <main>
         <section>
             <div id="difficulty-selection">
-                <button id="btn-easy" type="button">Easy</button>
-                <button id="btn-normal" type="button">Normal</button>
-                <button id="btn-custom" type="button">Custom</button>
+                <button data-type="difficulty" data-value="easy" type="button">Easy</button>
+                <button data-type="difficulty" data-value="normal" class="selected" type="button">Normal</button>
+                <button data-type="difficulty" data-value="custom" type="button">Custom</button>
             </div>
             <div id="assisting-controls">
-                <button data-menu="settings" id="btn-settings" type="button">Settings</button>
+                <button data-type="menu" data-value="settings" id="btn-settings" type="button">Settings</button>
+                <button data-type="menu" data-value="help" id="btn-help" type="button">Help</button>
                 <div id="menu-settings" class="hide-element">
                     <h2>Settings</h2>
                     <fieldset>
@@ -46,11 +47,11 @@
                     </fieldset>
                     <fieldset>
                         <legend>Sequence Speed</legend>
-                        <input type="radio" id="setting-speed-normal" name="setting-speed" value="speed-normal" checked="checked">
+                        <input type="radio" data-type="speed" data-value="normal" id="setting-speed-normal" name="setting-speed" value="speed-normal" checked>
                         <label for="setting-speed-normal">Normal</label>
-                        <input type="radio" id="setting-speed-fast" name="setting-speed" value="speed-fast">
+                        <input type="radio" data-type="speed" data-value="fast" id="setting-speed-fast" name="setting-speed" value="speed-fast">
                         <label for="setting-speed-fast">Fast</label>
-                        <input type="radio" id="setting-speed-super" name="setting-speed" value="speed-super">
+                        <input type="radio" data-type="speed" data-value="super" id="setting-speed-super" name="setting-speed" value="speed-super">
                         <label for="setting-speed-super">Very fast</label>
                         <span>(Score: 0/+15/+30%)</span>
                     </fieldset>
@@ -64,7 +65,6 @@
                         <input type="checkbox" id="setting-markings" name="setting-markings"><span>(Score: +25%)</span><br>
                     </fieldset>
                 </div>
-                <button data-menu="help" id="btn-help" type="button">Help</button>
                 <div id="menu-help" class="hide-element">
                     <h2>Help</h2>
                     <p>Description</p>
@@ -74,11 +74,11 @@
         <section>
             <div id="game-area">
                 <p id="status-display">Status</p>
-                <button id="game-control" type="button">Start</button>
-                <button id="btn-1" type="button">1</button>
-                <button id="btn-2" type="button">2</button>
-                <button id="btn-3" type="button">3</button>
-                <button id="btn-4" type="button">4</button>
+                <button data-type="game-control" data-value="status" type="button" id="btn-status">Start</button>
+                <button data-type="game-control" data-value="1" type="button">1</button>
+                <button data-type="game-control" data-value="2" type="button">2</button>
+                <button data-type="game-control" data-value="3" type="button">3</button>
+                <button data-type="game-control" data-value="4" type="button">4</button>
             </div>
         </section>
 
