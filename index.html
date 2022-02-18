@@ -32,37 +32,44 @@
                 <button data-type="menu" data-value="settings" id="btn-settings" type="button">Settings</button>
                 <button data-type="menu" data-value="help" id="btn-help" type="button">Help</button>
                 <div id="menu-settings" class="hide-element">
-                    <h2>Settings</h2>
+                    <h2>Settings <i class="fa-solid fa-rotate-left"></i></h2>
                     <fieldset>
-                        <legend>Game Buttons</legend>
-                        <input type="radio" id="setting-buttons-2" name="setting-buttons" value="2">
-                        <label for="setting-buttons-2">2</label>
-                        <input type="radio" id="setting-buttons-4" name="setting-buttons" value="4" checked="checked">
-                        <label for="setting-buttons-4">4</label>
-                        <input type="radio" id="setting-buttons-6" name="setting-buttons" value="6">
-                        <label for="setting-buttons-6">6</label>
-                        <input type="radio" id="setting-buttons-8" name="setting-buttons" value="8">
-                        <label for="setting-buttons-8">8</label>
-                        <span>(Score: -15/0/+15/+30%)</span>
+                        <legend>Settings</legend>
+                        <h3>Sound</h3><button data-type="setting" data-name="sound-off" type="button" class="settings es">Off</button>
+                        </h3><button data-type="setting" data-name="sound-on" type="button" class="settings se">On</button>
+                        <h3>Markings</h3><button data-type="setting" data-name="markings-num" type="button" class="settings es">12</button>
+                        <button data-type="setting" data-name="markings-sym" type="button" class="settings se">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-square"></i>
+                        </button>
+                        <h3>Order</h3><button data-type="setting" data-name="ord-ccw" type="button" class="settings es">
+                            <i class="fas fa-caret-square-left"></i>
+                        </button>
+                        <button data-type="setting" data-name="ord-cw" type="button" class="settings se">
+                            <i class="fas fa-caret-square-right"></i>
+                        </button>
                     </fieldset>
                     <fieldset>
-                        <legend>Sequence Speed</legend>
-                        <input type="radio" data-type="speed" data-value="normal" id="setting-speed-normal" name="setting-speed" value="speed-normal" checked>
-                        <label for="setting-speed-normal">Normal</label>
-                        <input type="radio" data-type="speed" data-value="fast" id="setting-speed-fast" name="setting-speed" value="speed-fast">
-                        <label for="setting-speed-fast">Fast</label>
-                        <input type="radio" data-type="speed" data-value="super" id="setting-speed-super" name="setting-speed" value="speed-super">
-                        <label for="setting-speed-super">Very fast</label>
-                        <span>(Score: 0/+15/+30%)</span>
+                        <legend>Custom Mode</legend>
+                        <h3>Buttons</h3>
+                        <button data-type="custom" data-name="buttons-2" type="button" class="settings es">2</button>
+                        <button data-type="custom" data-name="buttons-4" type="button" class="settings ss">4</button>
+                        <button data-type="custom" data-name="buttons-6" type="button" class="settings ss">6</button>
+                        <button data-type="custom" data-name="buttons-8" type="button" class="settings se">8</button>
+                        <h3>Speed</h3>
+                        <button data-type="custom" data-name="speed-normal" type="button" class="settings es">Normal</button>
+                        <button data-type="custom" data-name="speed-fast" type="button" class="settings ss">Fast</button>
+                        <button data-type="custom" data-name="speed-super" type="button" class="settings se">Super</button>
+                        <h3>Strict</h3>
+                        <button data-type="custom" data-name="strict-off" type="button" class="settings es">Off</button>
+                        <button data-type="custom" data-name="strict-on" type="button" class="settings se">On</button>
+                        <h3>Markings</h3>
+                        <button data-type="custom" data-name="markings-off" type="button" class="settings es">Off</button>
+                        <button data-type="custom" data-name="markings-on" type="button" class="settings se">On</button>
                     </fieldset>
                     <fieldset>
-                        <legend>Other Settings</legend>
-                        <label for="setting-sound">Sound On/Off:</label>
-                        <input type="checkbox" id="setting-sound" name="setting-sound"><span>(No Effect on Score)</span><br>
-                        <label for="setting-strict">Strict Mode On/Off:</label>
-                        <input type="checkbox" id="setting-strict" name="setting-strict"><span>(Score: +50%)</span><br>
-                        <label for="setting-markings">Markings On/Off:</label>
-                        <input type="checkbox" id="setting-markings" name="setting-markings"><span>(Score: +25%)</span><br>
+                        <legend>Score</legend>
+                        <h3>100%</h3>
                     </fieldset>
                 </div>
                 <div id="menu-help" class="hide-element">
@@ -89,6 +96,7 @@
         Credits
     </footer>
 
+    <script src="https://kit.fontawesome.com/e7deff2959.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>
 
