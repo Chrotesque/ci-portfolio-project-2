@@ -13,7 +13,7 @@ button.activation {
     color: #fff;
 }
 
-button.selected {
+button.active {
     background-color: #0f0;
     color: #000;
 }

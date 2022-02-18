@@ -1,13 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    let buttonsAll = document.getElementsByTagName("button");
-    for (let button of buttonsAll) {
+    let buttons = document.getElementsByTagName("button");
+
+    for (let button of buttons) {
         button.addEventListener("click", function () {
-            if (this.getAttribute("data-type") === "menu") {
-                toggleMenu(this, this.getAttribute("data-value"));
-            } else if (this.getAttribute("data-type") === "difficulty") {
-                changeDifficulty(buttonsAll, this.getAttribute("data-value"));
-            } else if (this.getAttribute("data-type") === "game-control") {
+            if (this.getAttribute("data-cat") === "menu") {
+                toggleMenu(this);
+            } else if (this.getAttribute("data-cat") === "setting") {
+                changeSetting(buttons, this);
+            } else if (this.getAttribute("data-cat") === "game-control") {
                 controlGame(this);
             }
         })
@@ -16,37 +17,82 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /**
- * Showing | Hiding menus through adding &| removing css class
- * @param {object} button 
- * @param {string} selection 
+ * Showing | Hiding menus through adding &| removing css class 
+ * @param {object} button menu-button clicked
  */
-function toggleMenu(button, selection) {
+function toggleMenu(clicked) {
 
+    let selection = clicked.getAttribute("data-value");
     let div = document.getElementById("menu-" + selection);
     if (div.className === "hide-element") {
-        button.className = "selected";
+        clicked.className = "active";
         div.className = "show-element";
     } else {
         div.className = "hide-element";
-        button.removeAttribute("class");
+        clicked.removeAttribute("class");
     }
 
 }
 
 /**
- * Change game difficulty for next game through adding &| removing css class
- * @param {object} buttons 
- * @param {string} selection 
+ * Change game setting for next game through adding &| removing css class
+ * @param {object} buttons all (DOM wide)
+ * @param {object} clicked setting-button clicked
  */
-function changeDifficulty(buttons, selection) {
+function changeSetting(buttons, clicked) {
 
-    console.log(typeof (selection));
+    let type = clicked.getAttribute("data-type");
+    let value = clicked.getAttribute("data-value")
+
     for (let button of buttons) {
-        if (button.getAttribute("data-type") === "difficulty" && button.getAttribute("data-value") === selection) {
-            button.className = "selected";
-        } else {
-            button.removeAttribute("class");
+        if (button.getAttribute("data-type") === type) {
+            if (button.getAttribute("data-value") === value) {
+                button.className = "active";
+            } else {
+                button.classList.remove("active");
+            }
         }
+    }
+
+}
+
+/**
+ * Sets and gets game settings for global use
+ * @param {string} request "get" or "set"
+ * @returns 
+ */
+function gameSettings(request) {
+    let settings = {};
+
+    // code
+
+    return settings;
+}
+
+
+function controlGame(button) {
+
+    let buttonSetting = document.getElementsByTagName("input");
+    for (let element of buttonSetting) {
+        if (element.checked && element.getAttribute("data-type") === "speed") {
+            console.log(element.getAttribute("data-value"));
+            break;
+        }
+    }
+
+    let status;
+    let gameButton;
+    let type = button.getAttribute("data-value");
+    switch (type) {
+        case "status":
+            console.log("status");
+            status = document.getElementById("btn-status").innerHTML; // Start / Pause / Stop
+            break;
+        case "1":
+            console.log(1);
+            break;
+        default:
+            console.log("default");
     }
 
 }
