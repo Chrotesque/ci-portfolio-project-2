@@ -1,10 +1,24 @@
 // Global variables
+
+
 let settings = {
     "locked": false,
-    "difficulty": "normal",
+    "easy": {
+        "buttons": "2",
+        "speed": "slow",
+        "strict": "off",
+        "markingsc": "on"
+    },
+    "normal": {
+        "buttons": "4",
+        "speed": "normal",
+        "strict": "on",
+        "markingsc": "on"
+    },
     "sound": "off",
     "markings": "num",
     "order": "cw",
+    "difficulty": "normal",
     "buttons": "4",
     "speed": "normal",
     "strict": "off",
@@ -32,8 +46,8 @@ document.addEventListener("DOMContentLoaded", function () {
 /**
  * Returns a random number between 1 and 4
  */
-function getRandom() {
-    return Math.floor(Math.random() * 4) + 1;
+function getRandom(max) {
+    return Math.floor(Math.random() * max) + 1;
 }
 
 /**
@@ -62,7 +76,7 @@ function setSettings(buttons) {
     let values = Object.values(settings);
     for (let button of buttons) {
         if (button.getAttribute("data-cat") === "setting") {
-            for (let i = 1; i < keys.length; i++) {
+            for (let i = 3; i < keys.length; i++) {
                 if (button.getAttribute("data-type") === keys[i]) {
                     if (button.getAttribute("data-value") === values[i]) {
                         button.classList.add("active");
@@ -129,7 +143,7 @@ function runGame(difficulty, settings) {
     }
 
     if (difficulty == "normal") {
-        executeGame(getRandom());
+        executeGame(getRandom(parseInt(settings.buttons)));
     }
 
 }
