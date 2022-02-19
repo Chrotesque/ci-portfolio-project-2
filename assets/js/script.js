@@ -1,6 +1,20 @@
+// Global variables
+let settings = {
+    "locked": false,
+    "difficulty": "normal",
+    "sound": "off",
+    "markings": "num",
+    "order": "cw",
+    "buttons": "4",
+    "speed": "normal",
+    "strict": "off",
+    "markingsc": "off"
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 
-    let buttons = document.getElementsByTagName("button");
+    const buttons = document.getElementsByTagName("button");
+    setSettings(buttons);
 
     for (let button of buttons) {
         button.addEventListener("click", function () {
@@ -9,16 +23,21 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (this.getAttribute("data-cat") === "setting") {
                 changeSetting(buttons, this);
             } else if (this.getAttribute("data-cat") === "game-control") {
-                controlGame(this);
+                controlGame(buttons, this);
             }
         })
     }
 })
 
+/**
+ * Returns a random number between 1 and 4
+ */
+function getRandom() {
+    return Math.floor(Math.random() * 4) + 1;
+}
 
 /**
  * Showing | Hiding menus through adding &| removing css class 
- * @param {object} button menu-button clicked
  */
 function toggleMenu(clicked) {
 
@@ -35,9 +54,28 @@ function toggleMenu(clicked) {
 }
 
 /**
- * Change game setting for next game through adding &| removing css class
- * @param {object} buttons all (DOM wide)
- * @param {object} clicked setting-button clicked
+ * Populates html with class based on global settings variable
+ */
+function setSettings(buttons) {
+
+    let keys = Object.keys(settings);
+    let values = Object.values(settings);
+    for (let button of buttons) {
+        if (button.getAttribute("data-cat") === "setting") {
+            for (let i = 1; i < keys.length; i++) {
+                if (button.getAttribute("data-type") === keys[i]) {
+                    if (button.getAttribute("data-value") === values[i]) {
+                        button.classList.add("active");
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+/**
+ * Change game setting for next game through adding &| removing css class as well as changing global settings variable
  */
 function changeSetting(buttons, clicked) {
 
@@ -47,7 +85,8 @@ function changeSetting(buttons, clicked) {
     for (let button of buttons) {
         if (button.getAttribute("data-type") === type) {
             if (button.getAttribute("data-value") === value) {
-                button.className = "active";
+                button.classList.add("active");
+                settings[button.getAttribute("data-type")] = button.getAttribute("data-value");
             } else {
                 button.classList.remove("active");
             }
@@ -56,43 +95,47 @@ function changeSetting(buttons, clicked) {
 
 }
 
-/**
- * Sets and gets game settings for global use
- * @param {string} request "get" or "set"
- * @returns 
- */
-function gameSettings(request) {
-    let settings = {};
 
-    // code
+function controlGame(buttons, button) {
 
-    return settings;
+    let curStatus = button.innerHTML; // start, pause, etc.
+    let difficulty = gameSettings(buttons, "difficulty");
+
+    switch (curStatus) {
+        case "Start":
+            if (difficulty === "custom") {
+                let settings = gameSettings(buttons, true);
+                runGame(difficulty, settings);
+            } else {
+                runGame(difficulty);
+            }
+            break;
+        case "Pause":
+            pauseGame();
+            break;
+        case "Stop":
+            stopGame();
+            break;
+    }
+
 }
 
-
-function controlGame(button) {
-
-    let buttonSetting = document.getElementsByTagName("input");
-    for (let element of buttonSetting) {
-        if (element.checked && element.getAttribute("data-type") === "speed") {
-            console.log(element.getAttribute("data-value"));
-            break;
-        }
+function runGame(difficulty, settings) {
+    console.log("running game");
+    console.log(`difficulty: ${difficulty}`);
+    if (settings !== undefined) {
+        console.log("settings: ");
+        console.log(settings);
     }
 
-    let status;
-    let gameButton;
-    let type = button.getAttribute("data-value");
-    switch (type) {
-        case "status":
-            console.log("status");
-            status = document.getElementById("btn-status").innerHTML; // Start / Pause / Stop
-            break;
-        case "1":
-            console.log(1);
-            break;
-        default:
-            console.log("default");
+    if (difficulty == "normal") {
+        executeGame(getRandom());
     }
 
+}
+
+function executeGame(push) {
+    let sequence = [];
+    sequence.push(push);
+    console.log(sequence);
 }
