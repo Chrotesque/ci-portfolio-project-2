@@ -94,7 +94,7 @@ function setSettings(buttons) {
  */
 function setButtons(buttons) {
 
-    let i = 0;
+    let i = 1;
     for (let button of buttons) {
         if (button.getAttribute("data-cat") === "game-control" && button.getAttribute("data-value") !== "status") {
             gameButtons[i] = button;
@@ -150,25 +150,6 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function runGame2(difficulty, settings) {
-    let sequence = [];
-    for (let i = 0; i < 10; i++) {
-        sequence[i] = getRandom(4);
-        gameButtons[sequence[i] - 1].classList.add("active");
-        console.log(sequence[i]);
-        await sleep(1150);
-        gameButtons[sequence[i] - 1].classList.remove("active");
-        await sleep(350);
-    }
-    console.log("full: " + sequence);
-}
-
-
-
-
-
-
-
 
 
 
@@ -178,37 +159,41 @@ function runGame(round) {
     round = (typeof round === 'undefined') ? 0 : ++round;
     for (i = 0; i < 10; i++) {
         sequence[i] = getRandom(4);
-        console.log(sequence[i]);
+        console.log(sequence[i]); // remove me
     }
     if (round < roundLimit) { // to avoid an endless loop during testing
-        console.log(`round ${round+1}`);
+        console.log(`round ${round+1}`); // remove me
         computerTurn(sequence, round, true);
     } else {
-        console.log("end of game");
+        console.log("end of game"); // remove me
     }
 }
 
-function computerTurn(sequence, round, reset) {
-    if (reset === true) {
-        step = 1;
-    } else {
-        ++step;
-    }
-    //step = (typeof step === 'undefined' || typeof step === NaN) ? 1 : ++step;
-    console.log(`sequence ${sequence}`);
+async function computerTurn(sequence, round, reset) {
+    // reset happens at the start of each round, as per initiation through runGame()
+    step = (reset === true) ? 1 : ++step;
+
+    console.log(`sequence ${sequence}`); // remove me
     for (let i = 0; i < step; i++) {
-        console.log(`computerTurn - step ${step} (${sequence[step-1]})`);
+        //console.log(`computerTurn - step ${step} (${sequence[step-1]})`); // remove me
+
+        gameButtons[sequence[i]].classList.add("active");
+        await sleep(1250);
+        gameButtons[sequence[i]].classList.remove("active");
+        await sleep(500);
+
     }
     playerTurn(sequence, round, step)
 }
 
 async function playerTurn(sequence, round, step) {
+    let playerInput; // reset each step, storing players button presses
     if (step === 0) {
         ++step;
     }
     let curSeq = sequence.slice(0, step);
-    console.log(`playerTurn - step ${step} of sequence ${sequence} | current: ${curSeq}`);
-    await sleep(2500);
+    console.log(`playerTurn - step ${step} of sequence ${sequence} | current: ${curSeq}`); // remove me
+    await sleep(1500);
     if (curSeq.length === sequence.length) {
         runGame(round);
     } else {
