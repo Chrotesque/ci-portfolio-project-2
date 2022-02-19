@@ -1,6 +1,4 @@
 // Global variables
-
-
 let settings = {
     "locked": false,
     "easy": {
@@ -25,10 +23,13 @@ let settings = {
     "markingsc": "off"
 }
 
+let gameButtons = [];
+
 document.addEventListener("DOMContentLoaded", function () {
 
     const buttons = document.getElementsByTagName("button");
     setSettings(buttons);
+    setButtons(buttons);
 
     for (let button of buttons) {
         button.addEventListener("click", function () {
@@ -44,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 /**
- * Returns a random number between 1 and 4
+ * Returns a random number between 1 and (max)
  */
 function getRandom(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -89,6 +90,21 @@ function setSettings(buttons) {
 }
 
 /**
+ * Saves all available game buttons in global array 
+ */
+function setButtons(buttons) {
+
+    let i = 0;
+    for (let button of buttons) {
+        if (button.getAttribute("data-cat") === "game-control" && button.getAttribute("data-value") !== "status") {
+            gameButtons[i] = button;
+            i++;
+        }
+    }
+
+}
+
+/**
  * Change game setting for next game through adding &| removing css class as well as changing global settings variable
  */
 function changeSetting(buttons, clicked) {
@@ -110,19 +126,14 @@ function changeSetting(buttons, clicked) {
 }
 
 
+
 function controlGame(buttons, button) {
 
     let curStatus = button.innerHTML; // start, pause, etc.
-    let difficulty = gameSettings(buttons, "difficulty");
 
     switch (curStatus) {
         case "Start":
-            if (difficulty === "custom") {
-                let settings = gameSettings(buttons, true);
-                runGame(difficulty, settings);
-            } else {
-                runGame(difficulty);
-            }
+            runGame();
             break;
         case "Pause":
             pauseGame();
@@ -134,22 +145,20 @@ function controlGame(buttons, button) {
 
 }
 
-function runGame(difficulty, settings) {
-    console.log("running game");
-    console.log(`difficulty: ${difficulty}`);
-    if (settings !== undefined) {
-        console.log("settings: ");
-        console.log(settings);
-    }
-
-    if (difficulty == "normal") {
-        executeGame(getRandom(parseInt(settings.buttons)));
-    }
-
+// https://www.sitepoint.com/delay-sleep-pause-wait/
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function executeGame(push) {
+async function runGame(difficulty, settings) {
     let sequence = [];
-    sequence.push(push);
-    console.log(sequence);
+    for (let i = 0; i < 10; i++) {
+        sequence[i] = getRandom(4);
+        gameButtons[sequence[i] - 1].classList.add("active");
+        console.log(sequence[i]);
+        await sleep(1150);
+        gameButtons[sequence[i] - 1].classList.remove("active");
+        await sleep(350);
+    }
+    console.log("full: " + sequence);
 }
