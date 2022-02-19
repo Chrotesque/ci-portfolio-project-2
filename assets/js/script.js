@@ -150,7 +150,7 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function runGame(difficulty, settings) {
+async function runGame2(difficulty, settings) {
     let sequence = [];
     for (let i = 0; i < 10; i++) {
         sequence[i] = getRandom(4);
@@ -161,4 +161,57 @@ async function runGame(difficulty, settings) {
         await sleep(350);
     }
     console.log("full: " + sequence);
+}
+
+
+
+
+
+
+
+
+
+
+function runGame(round) {
+    let roundLimit = 4; // to avoid an endless loop during testing
+    let sequence = [];
+    round = (typeof round === 'undefined') ? 0 : ++round;
+    for (i = 0; i < 10; i++) {
+        sequence[i] = getRandom(4);
+        console.log(sequence[i]);
+    }
+    if (round < roundLimit) { // to avoid an endless loop during testing
+        console.log(`round ${round+1}`);
+        computerTurn(sequence, round, true);
+    } else {
+        console.log("end of game");
+    }
+}
+
+function computerTurn(sequence, round, reset) {
+    if (reset === true) {
+        step = 1;
+    } else {
+        ++step;
+    }
+    //step = (typeof step === 'undefined' || typeof step === NaN) ? 1 : ++step;
+    console.log(`sequence ${sequence}`);
+    for (let i = 0; i < step; i++) {
+        console.log(`computerTurn - step ${step} (${sequence[step-1]})`);
+    }
+    playerTurn(sequence, round, step)
+}
+
+async function playerTurn(sequence, round, step) {
+    if (step === 0) {
+        ++step;
+    }
+    let curSeq = sequence.slice(0, step);
+    console.log(`playerTurn - step ${step} of sequence ${sequence} | current: ${curSeq}`);
+    await sleep(2500);
+    if (curSeq.length === sequence.length) {
+        runGame(round);
+    } else {
+        computerTurn(sequence, round);
+    }
 }
