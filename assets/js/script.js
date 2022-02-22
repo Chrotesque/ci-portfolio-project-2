@@ -24,6 +24,7 @@ let settings = {
 }
 
 let gameButtons = [];
+let playerInput = [];
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         })
     }
+
 })
 
 /**
@@ -126,12 +128,11 @@ function changeSetting(buttons, clicked) {
 }
 
 
-
 function controlGame(buttons, button) {
 
-    let curStatus = button.innerHTML; // start, pause, etc.
+    let curButton = button.innerHTML; // start, pause, etc.
 
-    switch (curStatus) {
+    switch (curButton) {
         case "Start":
             runGame();
             break;
@@ -143,6 +144,17 @@ function controlGame(buttons, button) {
             break;
     }
 
+    if (curButton === "1" || curButton === "2" || curButton === "3" || curButton === "4") { // find a more elegant solution
+        playerInput.push(curButton);
+        playButton(curButton);
+    }
+
+}
+
+async function playButton(button) {
+    gameButtons[button].classList.add("active");
+    await sleep(200);
+    gameButtons[button].classList.remove("active");
 }
 
 // https://www.sitepoint.com/delay-sleep-pause-wait/
@@ -150,14 +162,11 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-
-
-
 function runGame(round) {
     let roundLimit = 4; // to avoid an endless loop during testing
     let sequence = [];
     round = (typeof round === 'undefined') ? 0 : ++round;
-    for (i = 0; i < 10; i++) {
+    for (i = 0; i < 3; i++) {
         sequence[i] = getRandom(4);
         console.log(sequence[i]); // remove me
     }
@@ -169,34 +178,96 @@ function runGame(round) {
     }
 }
 
-async function computerTurn(sequence, round, reset) {
-    // reset happens at the start of each round, as per initiation through runGame()
-    step = (reset === true) ? 1 : ++step;
-
-    console.log(`sequence ${sequence}`); // remove me
-    for (let i = 0; i < step; i++) {
-        //console.log(`computerTurn - step ${step} (${sequence[step-1]})`); // remove me
-
-        gameButtons[sequence[i]].classList.add("active");
-        await sleep(1250);
-        gameButtons[sequence[i]].classList.remove("active");
-        await sleep(500);
-
-    }
-    playerTurn(sequence, round, step)
+function failHandler() {
+    console.log("game lost");
 }
 
-async function playerTurn(sequence, round, step) {
-    let playerInput; // reset each step, storing players button presses
-    if (step === 0) {
-        ++step;
-    }
-    let curSeq = sequence.slice(0, step);
-    console.log(`playerTurn - step ${step} of sequence ${sequence} | current: ${curSeq}`); // remove me
-    await sleep(1500);
-    if (curSeq.length === sequence.length) {
-        runGame(round);
+function winRound() {
+    console.log("round won");
+}
+
+/**
+ * Processes the computer turn and calls to playerTurn as well as winRound
+ */
+async function computerTurn(sequence, reset) {
+    // reset happens at the start of each round, as per initiation through runGame()
+    turn = (reset === true) ? 1 : ++turn;
+
+    // if the previous turn was the last, this round is won
+    if (turn > sequence.length) {
+        winRound();
+        // otherwise proceed to next turn
     } else {
-        computerTurn(sequence, round);
+        for (let i = 0; i < turn; i++) {
+            gameButtons[sequence[i]].classList.add("active");
+            await sleep(1250);
+            gameButtons[sequence[i]].classList.remove("active");
+            await sleep(500);
+        }
+
+        playerTurn(sequence, turn);
+
     }
+
+}
+
+/**
+ * Processes the players turn and calls to validatePlayerInput as well as failHandler
+ */
+async function playerTurn(sequence, turn) {
+
+    playerInput = [];
+    valid = true; // to check if the player input was valid
+    waiting = true; // to check when the last input was given, to stop the while loop
+    validation = []; // results from the validatePlayerInput fn
+
+    while (valid === true && waiting === true) {
+        let currentSequence = sequence.slice(0, turn);
+        validation = validatePlayerInput(currentSequence, turn);
+        if (validation[0] === false) {
+            valid = false;
+        }
+        if (validation[1] === false) {
+            waiting = false;
+        }
+        await sleep(100);
+    }
+
+    if (valid === true && waiting === false) {
+        computerTurn(sequence, turn);
+    } else if (valid === false) {
+        failHandler();
+    }
+
+}
+
+/**
+ * Validates player input compared to the sequence and returns input validity as well as
+ * whether or not the input was the last in this turn 
+ */
+function validatePlayerInput(sequence, turn) {
+
+    let length = playerInput.length;
+    let result = [];
+
+    // additional player input is still required
+    if (length !== turn) {
+        for (let i = 0; i < length; i++) {
+            if (parseInt(sequence[i]) !== parseInt(playerInput[i])) {
+                result = [false, false];
+            } else {
+                result = [true, true];
+            }
+        }
+        // last player input
+    } else {
+        if (sequence[turn] !== playerInput[turn]) {
+            result = [false, false];
+        } else {
+            result = [true, false];
+        }
+    }
+
+    return result;
+
 }
