@@ -1,5 +1,6 @@
 // Global variables
-let settings = {
+let settings2 = {
+    "stopRequest": false,
     "locked": false,
     "normal": {
         "buttons": "2",
@@ -21,6 +22,37 @@ let settings = {
     "speed": "normal",
     "strict": "off",
     "markingsc": "off"
+}
+
+let settings = {
+    "control": {
+        "stopRequest": false,
+        "locked": true
+    },
+    "setting": {
+        "difficulty": "normal",
+        "sound": "off",
+        "markings": "num",
+        "order": "cw",
+    },
+    "normal": {
+        "buttons": "4",
+        "speed": "normal",
+        "strict": "off",
+        "markingsc": "on"
+    },
+    "hard": {
+        "buttons": "6",
+        "speed": "fast",
+        "strict": "on",
+        "markingsc": "on"
+    },
+    "custom":{
+        "buttons": "4",
+        "speed": "normal",
+        "strict": "off",
+        "markingsc": "off"
+    }
 }
 
 let gameButtons = [];
@@ -80,11 +112,13 @@ function toggleMenu(clicked) {
  */
 function setSettings(buttons) {
 
-    let keys = Object.keys(settings);
-    let values = Object.values(settings);
+    let newArray = Object.assign(settings.custom, settings.setting);
+
+    let keys = Object.keys(newArray);
+    let values = Object.values(newArray);
     for (let button of buttons) {
-        if (button.getAttribute("data-cat") === "setting") {
-            for (let i = 3; i < keys.length; i++) {
+        if (button.getAttribute("data-cat") === "setting" || button.getAttribute("data-cat") === "custom") {
+            for (let i = 0; i < keys.length; i++) {
                 if (button.getAttribute("data-type") === keys[i]) {
                     if (button.getAttribute("data-value") === values[i]) {
                         button.classList.add("active");
@@ -136,6 +170,7 @@ function resetScore() {
  */
 function changeSetting(buttons, clicked) {
 
+    let cat = clicked.getAttribute("data-cat");
     let type = clicked.getAttribute("data-type");
     let value = clicked.getAttribute("data-value")
 
@@ -143,7 +178,7 @@ function changeSetting(buttons, clicked) {
         if (button.getAttribute("data-type") === type) {
             if (button.getAttribute("data-value") === value) {
                 button.classList.add("active");
-                settings[button.getAttribute("data-type")] = button.getAttribute("data-value");
+                settings[cat][type] = value;
             } else {
                 button.classList.remove("active");
             }
