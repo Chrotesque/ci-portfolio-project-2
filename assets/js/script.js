@@ -33,6 +33,8 @@ let settings = {
     }
 }
 
+
+
 let gameButtons = [];
 let playerInput = [];
 
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
         button.addEventListener("click", function () {
             if (this.getAttribute("data-cat") === "menu") {
                 toggleMenu(this);
-            } else if (this.getAttribute("data-cat") === "setting") {
+            } else if (this.getAttribute("data-cat") === "setting" || this.getAttribute("data-cat") === "custom") {
                 changeSetting(buttons, this);
             } else if (this.getAttribute("data-cat") === "game-control") {
                 controlGame(this);
@@ -109,7 +111,7 @@ function setSettings(buttons) {
 }
 
 /**
- * Saves all available game buttons in global array 
+ * Saves all available game buttons in global array for convenient access
  */
 function collectGameButtons(buttons) {
 
