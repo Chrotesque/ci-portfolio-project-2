@@ -30,13 +30,31 @@ let settings = {
         "speed": "normal",
         "strict": "off",
         "markingsc": "off"
+    },
+    "values": {
+        "speed": {
+            "slow":{
+                "press":1800,
+                "delay":350
+            },
+            "normal":{
+                "press":1200,
+                "delay":250
+            },
+            "fast":{
+                "press":200,
+                "delay":150
+            }
+        }
     }
 }
 
-
-
 let gameButtons = [];
 let playerInput = [];
+
+let highscore = [];
+
+let currentGame = {};
 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -125,25 +143,6 @@ function collectGameButtons(buttons) {
 
 }
 
-function resolveSpeed(request) {
-    let speed = {
-        "slow":{
-            "press":1750,
-            "release":400
-        },
-        "normal":{
-            "press":1250,
-            "release":250
-        },
-        "fast":{
-            "press":800,
-            "release":150
-        }
-    }
-
-    return speed[request];
-}
-
 function setStatus(update) {
     let status = document.getElementById("status-display");
     status.textContent = update;
@@ -155,13 +154,8 @@ function setScoreStatus(update) {
 }
 
 function addScore(update) {
-    let element = parseInt(document.getElementById("score-amount").innerHTML);
-    element += update;
-    document.getElementById("score-amount").innerHTML = element;
-}
-
-function resetScore() {
-    document.getElementById("score-amount").innerHTML = 0;
+    currentGame.score += update;
+    document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
 /**
@@ -195,7 +189,6 @@ function controlGame(button) {
     let curButton = button.innerHTML;
     switch (curButton) {
         case "Start":
-            resetScore();
             setStatus("Game in Progress");
             setScoreStatus("Score");
             runGame();
@@ -224,63 +217,71 @@ function stopGame() {
 
 }
 
+function createSequence(length,buttons) {
+    let sequence = [];
+    for (let i = 0; i < length; i++) {
+        sequence.push(getRandom(buttons));
+    }
+    return sequence;
+}
+
 /*
 has to be adapted to take a snap shot of settings, then start the game 
 to then also use them to increase difficulty incrementally
  */
-function runGame(round) {
-    let roundLimit = 4; // to avoid an endless loop during testing
-    let sequence = [];
-    round = (typeof round === 'undefined') ? 0 : ++round;
-    for (i = 0; i < 3; i++) {
-        sequence[i] = getRandom(4);
-        console.log(sequence[i]); // remove me
-    }
-    if (round < roundLimit) { // to avoid an endless loop during testing
-        console.log(`round ${round+1}`); // remove me
-        computerTurn(sequence, true);
-    } else {
-        console.log("end of game"); // remove me
-    }
+function runGame() {
+
+    // for ease of use during creation of a snapshot of the settings
+    let diffSettings = settings[settings.setting.difficulty];
+    let speedSettings = settings.values.speed;
+
+    // snapshot of settings to the currentGame var
+    currentGame.score = 0;
+    currentGame.round = 1;
+    currentGame.turn = 1;
+    currentGame.sequence = createSequence(10,diffSettings.buttons);
+    currentGame.speed = speedSettings[diffSettings.speed];
+    currentGame.strict = diffSettings.strict;
+    currentGame.markingsc = diffSettings.markingsc;
+
+    // start of the game
+    computerTurn();
+
 }
 
-function failHandler() {
+function gameOver() {
+
     setStatus("You lost!");
     setScoreStatus("Your Final Score");
-    console.log("game lost");
 }
 
 function winRound() {
     addScore(500);
     setStatus("You won!");
     setScoreStatus("Your Final Score");
-    console.log("round won");
 }
 
 /**
  * Processes the computer turn and calls to playerTurn as well as winRound
  */
-async function computerTurn(sequence, reset) {
-    let speed = resolveSpeed("fast");
-    // reset happens at the start of each round, as per initiation through runGame()
-    turn = (reset === true) ? 1 : ++turn;
+async function computerTurn() {
 
     // if the previous turn was the last, this round is won
-    if (turn > sequence.length) {
+    if (currentGame.turn > currentGame.sequence.length) {
         winRound();
         // otherwise proceed to next turn
     } else {
         setStatus("Prepare for Computer Turn");
         await sleep(2000);
-        for (let i = 0; i < turn; i++) {
+        for (let i = 0; i < currentGame.turn; i++) {
             setStatus("Computer Turn in progress");
-            gameButtons[sequence[i]].classList.add("active");
-            await sleep(speed.press);
-            gameButtons[sequence[i]].classList.remove("active");
-            await sleep(speed.release);
+            gameButtons[currentGame.sequence[i]].classList.add("active");
+            await sleep(currentGame.speed.press);
+            gameButtons[currentGame.sequence[i]].classList.remove("active");
+            await sleep(currentGame.speed.delay);
         }
 
-        playerTurn(sequence, turn);
+        playerTurn(currentGame.sequence, currentGame.turn);
 
     }
 
@@ -288,7 +289,7 @@ async function computerTurn(sequence, reset) {
 
 /**
  * Processes the players turn and validated playerInput through validatePlayerInput fn, also
- * calls failHandler in case of mistakes, otherwise hands over to computerTurn
+ * calls gameOver in case of mistakes, otherwise hands over to computerTurn
  */
 async function playerTurn(sequence, turn) {
 
@@ -313,10 +314,11 @@ async function playerTurn(sequence, turn) {
     }
 
     if (validity === true && counter <= 0) {
-        computerTurn(sequence, turn);
+        ++currentGame.turn;
         addScore(100);
+        computerTurn();
     } else if (validity === false) {
-        failHandler();
+        gameOver();
     } else {
         alert(`Unknown error! Please report this to the developer.`);
         throw `Unknown error! Please report this to the developer.`;
