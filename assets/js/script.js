@@ -32,6 +32,7 @@ let settings = {
         "markingsc": "off"
     }
 }
+
 let gameButtons = [];
 let playerInput = [];
 
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const buttons = document.getElementsByTagName("button");
     setSettings(buttons);
-    setButtons(buttons);
+    collectGameButtons(buttons);
 
     for (let button of buttons) {
         button.addEventListener("click", function () {
@@ -110,7 +111,7 @@ function setSettings(buttons) {
 /**
  * Saves all available game buttons in global array 
  */
-function setButtons(buttons) {
+function collectGameButtons(buttons) {
 
     let i = 1;
     for (let button of buttons) {
