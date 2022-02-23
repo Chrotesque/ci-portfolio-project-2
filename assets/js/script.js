@@ -1,29 +1,7 @@
-// Global variables
-let settings2 = {
-    "stopRequest": false,
-    "locked": false,
-    "normal": {
-        "buttons": "2",
-        "speed": "slow",
-        "strict": "off",
-        "markingsc": "on"
-    },
-    "hard": {
-        "buttons": "4",
-        "speed": "normal",
-        "strict": "on",
-        "markingsc": "on"
-    },
-    "sound": "off",
-    "markings": "num",
-    "order": "cw",
-    "difficulty": "normal",
-    "buttons": "4",
-    "speed": "normal",
-    "strict": "off",
-    "markingsc": "off"
-}
+// scope function start
+(function() {
 
+// Global variables
 let settings = {
     "control": {
         "stopRequest": false,
@@ -54,7 +32,6 @@ let settings = {
         "markingsc": "off"
     }
 }
-
 let gameButtons = [];
 let playerInput = [];
 
@@ -145,6 +122,25 @@ function setButtons(buttons) {
 
 }
 
+function resolveSpeed(request) {
+    let speed = {
+        "slow":{
+            "press":1750,
+            "release":400
+        },
+        "normal":{
+            "press":1250,
+            "release":250
+        },
+        "fast":{
+            "press":800,
+            "release":150
+        }
+    }
+
+    return speed[request];
+}
+
 function setStatus(update) {
     let status = document.getElementById("status-display");
     status.textContent = update;
@@ -188,9 +184,12 @@ function changeSetting(buttons, clicked) {
 }
 
 
+/**
+ * Controls the game depending on what button has been pressed, start, stop, send 1, etc.
+ */
 function controlGame(button) {
 
-    let curButton = button.innerHTML; // start, stop, 1, etc.
+    let curButton = button.innerHTML;
     switch (curButton) {
         case "Start":
             resetScore();
@@ -208,6 +207,9 @@ function controlGame(button) {
 
 }
 
+/**
+ * Lights up the button the player is activating through adding/removing a class
+ */
 async function playButton(button) {
     button = parseInt(button);
     gameButtons[button].classList.add("active");
@@ -219,6 +221,10 @@ function stopGame() {
 
 }
 
+/*
+has to be adapted to take a snap shot of settings, then start the game 
+to then also use them to increase difficulty incrementally
+ */
 function runGame(round) {
     let roundLimit = 4; // to avoid an endless loop during testing
     let sequence = [];
@@ -252,6 +258,7 @@ function winRound() {
  * Processes the computer turn and calls to playerTurn as well as winRound
  */
 async function computerTurn(sequence, reset) {
+    let speed = resolveSpeed("fast");
     // reset happens at the start of each round, as per initiation through runGame()
     turn = (reset === true) ? 1 : ++turn;
 
@@ -265,9 +272,9 @@ async function computerTurn(sequence, reset) {
         for (let i = 0; i < turn; i++) {
             setStatus("Computer Turn in progress");
             gameButtons[sequence[i]].classList.add("active");
-            await sleep(1250);
+            await sleep(speed.press);
             gameButtons[sequence[i]].classList.remove("active");
-            await sleep(500);
+            await sleep(speed.release);
         }
 
         playerTurn(sequence, turn);
@@ -326,3 +333,6 @@ function validatePlayerInput(num1, num2) {
     }
 
 }
+
+// scope function end
+})();
