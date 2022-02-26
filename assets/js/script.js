@@ -163,6 +163,13 @@
         document.getElementById("score-amount").innerHTML = currentGame.score;
     }
 
+    function handleHighscore() {
+        highscore.push(currentGame.score);
+        highscore.sort(function (a, b) {
+            return b - a
+        });
+    }
+
     /**
      * Change game setting for next game through adding &| removing css class as well as changing global settings variable
      */
@@ -267,6 +274,7 @@
     }
 
     function gameOver() {
+        handleHighscore();
         setStatus("You lost!");
         setScoreStatus("Your Final Score");
     }
