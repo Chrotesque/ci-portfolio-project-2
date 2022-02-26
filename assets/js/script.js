@@ -34,15 +34,15 @@ let settings = {
     "values": {
         "speed": {
             "slow": {
-                "press": 1800,
+                "press": 1300,
                 "delay": 350
             },
             "normal": {
-                "press": 1200,
+                "press": 800,
                 "delay": 250
             },
             "fast": {
-                "press": 200,
+                "press": 300,
                 "delay": 150
             }
         },
