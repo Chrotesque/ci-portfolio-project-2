@@ -13,23 +13,35 @@ let settings = {
         "markings": "num",
         "order": "cw",
     },
-    "normal": {
-        "buttons": "4",
-        "speed": "normal",
-        "strict": "off",
-        "markingsc": "on"
-    },
-    "hard": {
-        "buttons": "6",
-        "speed": "fast",
-        "strict": "on",
-        "markingsc": "on"
-    },
-    "custom": {
-        "buttons": "4",
-        "speed": "normal",
-        "strict": "off",
-        "markingsc": "on"
+    "difficulty": {
+        "easy": {
+            "multiplier": 0,
+            "buttons": "3",
+            "speed": "slow",
+            "strict": "off",
+            "markingsc": "on"
+        },
+        "normal": {
+            "multiplier": 0,
+            "buttons": "4",
+            "speed": "normal",
+            "strict": "off",
+            "markingsc": "on"
+        },
+        "hard": {
+            "multiplier": 0,
+            "buttons": "5",
+            "speed": "fast",
+            "strict": "on",
+            "markingsc": "on"
+        },
+        "custom": {
+            "multiplier": 0,
+            "buttons": "4",
+            "speed": "normal",
+            "strict": "off",
+            "markingsc": "on"
+        }
     },
     "values": {
         "speed": {
@@ -47,7 +59,6 @@ let settings = {
             }
         },
         "score": {
-            "multiplier": 1,
             "step": 10,
             "turn": 100,
             "round": 500
@@ -163,7 +174,7 @@ function removeGameButton() {
 }
 
 function updateGameButtons() {
-    let newButtonAmt = settings[settings.setting.difficulty].buttons;
+    let newButtonAmt = settings.difficulty[settings.setting.difficulty].buttons;
     let oldButtonAmt = gameButtons.length;
     let difference = newButtonAmt - oldButtonAmt;
     // remove buttons
@@ -211,7 +222,7 @@ function addScore(update) {
     document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
-function updateScoreMultiplier() {
+function updateScoreMultiplier2() {
     let typeArray = [];
     let multiplier = 0;
     for (let button of allButtons) {
@@ -236,17 +247,14 @@ function updateScoreMultiplier() {
     }
     document.getElementById("score").innerHTML = 100 + multiplier + "%";
     settings.values.score.multiplier = 1 + (multiplier / 100);
-    /*
-        if (button.getAttribute("data-cat") === "custom" && button.classList.contains("active")) {
-            typeArray.push(button);
-            console.log(button);
-            console.log(`${settings.values.multiplier[button.getAttribute("data-type")]} ${settings.values.multiplier[button.getAttribute("data-type")][index]}`);
-        }
-    }
-    */
-    // let score = parseInt(document.getElementById("score").innerHTML);
-    // document.getElementById("score").innerHTML = score+value;
 }
+
+
+function updateScoreMultiplier() {
+
+}
+
+
 
 function handleHighscore() {
     highscore.push(currentGame.score);
@@ -348,7 +356,7 @@ function createSequence(length, buttonAmt) {
 function runGame() {
 
     // for ease of use during creation of a snapshot of the settings
-    let diffSettings = settings[settings.setting.difficulty];
+    let diffSettings = settings.difficulty[settings.setting.difficulty];
     let speedSettings = settings.values.speed;
 
     // snapshot of settings to the currentGame var
