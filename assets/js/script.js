@@ -5,8 +5,7 @@
 let settings = {
     "control": {
         "stopRequest": false,
-        "locked": true,
-        "multiplier": 1
+        "locked": true
     },
     "setting": {
         "difficulty": "normal",
@@ -48,6 +47,7 @@ let settings = {
             }
         },
         "score": {
+            "multiplier": 1,
             "step": 10,
             "turn": 100,
             "round": 500
@@ -56,12 +56,12 @@ let settings = {
             "computerTurn": 2000,
             "playerTurnLoop": 100,
             "playerButtonPress": 300
-        }, 
+        },
         "multiplier": {
-            "buttons":[-15,0,15,40],
-            "speed":[-15,0,25],
-            "strict":[0,30],
-            "markingsc":[15,0]
+            "buttons": [-15, 0, 15, 40],
+            "speed": [-15, 0, 25],
+            "strict": [0, 30],
+            "markingsc": [15, 0]
         }
     }
 }
@@ -207,7 +207,7 @@ function setScoreStatus(update) {
 }
 
 function addScore(update) {
-    currentGame.score += update * settings.control.multiplier;
+    currentGame.score += update * settings.values.score.multiplier;
     document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
@@ -223,20 +223,20 @@ function updateScoreMultiplier() {
     for (let i = 0; i < typeArray.length; i++) {
         let j = 0;
         for (let button of allButtons) {
-            
+
             if (button.getAttribute("data-type") === typeArray[i]) {
-                
+
                 if (button.classList.contains("active")) {
                     multiplier += settings.values.multiplier[typeArray[i]][j];
                 }
                 ++j;
             }
-            
+
         }
     }
-    document.getElementById("score").innerHTML = 100+multiplier+"%";
-    settings.control.multiplier = 1+(multiplier/100);
-        /*
+    document.getElementById("score").innerHTML = 100 + multiplier + "%";
+    settings.values.score.multiplier = 1 + (multiplier / 100);
+    /*
         if (button.getAttribute("data-cat") === "custom" && button.classList.contains("active")) {
             typeArray.push(button);
             console.log(button);
@@ -244,8 +244,8 @@ function updateScoreMultiplier() {
         }
     }
     */
-   // let score = parseInt(document.getElementById("score").innerHTML);
-   // document.getElementById("score").innerHTML = score+value;
+    // let score = parseInt(document.getElementById("score").innerHTML);
+    // document.getElementById("score").innerHTML = score+value;
 }
 
 function handleHighscore() {
@@ -270,14 +270,14 @@ function changeSetting(clicked) {
                 ++customChanges;
             }
             button.classList.remove("active");
-            settings[cat][type] = value; 
+            settings[cat][type] = value;
         }
     }
 
     clicked.classList.add("active");
 
     // update the score multiplier only when changes were made to custom diff settings 
-    if(customChanges > 0) {
+    if (customChanges > 0) {
         updateScoreMultiplier();
     }
 }
