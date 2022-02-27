@@ -13,23 +13,35 @@ let settings = {
         "markings": "num",
         "order": "cw",
     },
-    "normal": {
-        "buttons": "4",
-        "speed": "normal",
-        "strict": "off",
-        "markingsc": "on"
-    },
-    "hard": {
-        "buttons": "6",
-        "speed": "fast",
-        "strict": "on",
-        "markingsc": "on"
-    },
-    "custom": {
-        "buttons": "4",
-        "speed": "normal",
-        "strict": "off",
-        "markingsc": "on"
+    "difficulty": {
+        "easy": {
+            "multiplier": 0,
+            "buttons": "3",
+            "speed": "slow",
+            "strict": "off",
+            "markingsc": "on"
+        },
+        "normal": {
+            "multiplier": 0,
+            "buttons": "4",
+            "speed": "normal",
+            "strict": "off",
+            "markingsc": "on"
+        },
+        "hard": {
+            "multiplier": 0,
+            "buttons": "5",
+            "speed": "fast",
+            "strict": "on",
+            "markingsc": "on"
+        },
+        "custom": {
+            "multiplier": 0,
+            "buttons": "4",
+            "speed": "normal",
+            "strict": "off",
+            "markingsc": "on"
+        }
     },
     "values": {
         "speed": {
@@ -47,7 +59,6 @@ let settings = {
             }
         },
         "score": {
-            "multiplier": 1,
             "step": 10,
             "turn": 100,
             "round": 500
@@ -57,11 +68,33 @@ let settings = {
             "playerTurnLoop": 100,
             "playerButtonPress": 300
         },
+        /*
+                "multiplier": {
+                    "buttons": [-15, 0, 15, 40],
+                    "speed": [-15, 0, 25],
+                    "strict": [0, 30],
+                    "markingsc": [15, 0]
+                },*/
         "multiplier": {
-            "buttons": [-15, 0, 15, 40],
-            "speed": [-15, 0, 25],
-            "strict": [0, 30],
-            "markingsc": [15, 0]
+            "buttons": {
+                3: -15,
+                4: 0,
+                5: 15,
+                6: 40
+            },
+            "speed": {
+                "slow": -15,
+                "normal": 0,
+                "fast": 25
+            },
+            "strict": {
+                "off": 0,
+                "on": 30
+            },
+            "markingsc": {
+                "off": 15,
+                "on": 0
+            }
         }
     }
 }
@@ -78,7 +111,8 @@ document.addEventListener("DOMContentLoaded", function () {
     allButtons = document.getElementsByTagName("button");
     setSettings();
     collectGameButtons();
-    updateScoreMultiplier();
+    updateScoreMultiplierInternal();
+    updateScoreMultiplierExternal();
 
     for (let button of allButtons) {
         button.addEventListener("click", function () {
@@ -123,7 +157,7 @@ function toggleMenu(clicked) {
  */
 function setSettings() {
 
-    let newArray = Object.assign(settings.custom, settings.setting);
+    let newArray = Object.assign({}, settings.difficulty.custom, settings.setting);
 
     let keys = Object.keys(newArray);
     let values = Object.values(newArray);
@@ -163,7 +197,7 @@ function removeGameButton() {
 }
 
 function updateGameButtons() {
-    let newButtonAmt = settings[settings.setting.difficulty].buttons;
+    let newButtonAmt = settings.difficulty[settings.setting.difficulty].buttons;
     let oldButtonAmt = gameButtons.length;
     let difference = newButtonAmt - oldButtonAmt;
     // remove buttons
@@ -211,7 +245,7 @@ function addScore(update) {
     document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
-function updateScoreMultiplier() {
+function updateScoreMultiplier2() {
     let typeArray = [];
     let multiplier = 0;
     for (let button of allButtons) {
@@ -236,17 +270,27 @@ function updateScoreMultiplier() {
     }
     document.getElementById("score").innerHTML = 100 + multiplier + "%";
     settings.values.score.multiplier = 1 + (multiplier / 100);
-    /*
-        if (button.getAttribute("data-cat") === "custom" && button.classList.contains("active")) {
-            typeArray.push(button);
-            console.log(button);
-            console.log(`${settings.values.multiplier[button.getAttribute("data-type")]} ${settings.values.multiplier[button.getAttribute("data-type")][index]}`);
+}
+
+
+function updateScoreMultiplierInternal() {
+    let diff = Object.keys(settings.difficulty);
+    let keys = Object.keys(settings.values.multiplier);
+    for (let i = 0; i < diff.length; i++) {
+        let multiplier = 0;
+        for (let j = 0; j < keys.length; j++) {
+            multiplier += settings.values.multiplier[keys[j]][settings.difficulty[diff[i]][keys[j]]];
+            settings.difficulty[diff[i]].multiplier = 1 + (multiplier / 100);
         }
     }
-    */
-    // let score = parseInt(document.getElementById("score").innerHTML);
-    // document.getElementById("score").innerHTML = score+value;
 }
+
+function updateScoreMultiplierExternal() {
+    let multiplier = Math.round(settings.difficulty.custom.multiplier * 100);
+    document.getElementById("score").innerHTML = multiplier + "%";
+}
+
+
 
 function handleHighscore() {
     highscore.push(currentGame.score);
@@ -270,7 +314,12 @@ function changeSetting(clicked) {
                 ++customChanges;
             }
             button.classList.remove("active");
-            settings[cat][type] = value;
+            if (cat === "setting") {
+                settings[cat][type] = value;
+            } else {
+                settings.difficulty[cat][type] = value;
+            }
+
         }
     }
 
@@ -278,7 +327,8 @@ function changeSetting(clicked) {
 
     // update the score multiplier only when changes were made to custom diff settings 
     if (customChanges > 0) {
-        updateScoreMultiplier();
+        updateScoreMultiplierInternal();
+        updateScoreMultiplierExternal();
     }
 }
 
@@ -348,7 +398,7 @@ function createSequence(length, buttonAmt) {
 function runGame() {
 
     // for ease of use during creation of a snapshot of the settings
-    let diffSettings = settings[settings.setting.difficulty];
+    let diffSettings = settings.difficulty[settings.setting.difficulty];
     let speedSettings = settings.values.speed;
 
     // snapshot of settings to the currentGame var
@@ -437,8 +487,12 @@ async function playerTurn(sequence, turn) {
     } else if (validity === false) {
         gameOver();
     } else {
-        alert(`Unknown error! Please report this to the developer.`);
-        throw `Unknown error! Please report this to the developer.`;
+        alert(`
+                    Unknown error!Please report this to the developer.
+                    `);
+        throw `
+                    Unknown error!Please report this to the developer.
+                    `;
     }
 
 }
