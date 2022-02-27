@@ -241,37 +241,11 @@ function setScoreStatus(update) {
 }
 
 function addScore(update) {
-    currentGame.score += update * settings.values.score.multiplier;
+    currentGame.score += update * currentGame.multiplier;
+    console.log(currentGame.multiplier);
+    console.log(update * currentGame.multiplier);
     document.getElementById("score-amount").innerHTML = currentGame.score;
 }
-
-function updateScoreMultiplier2() {
-    let typeArray = [];
-    let multiplier = 0;
-    for (let button of allButtons) {
-        if (button.getAttribute("data-cat") === "custom") {
-            typeArray.push(button.getAttribute("data-type"));
-            typeArray = [...new Set(typeArray)];
-        }
-    }
-    for (let i = 0; i < typeArray.length; i++) {
-        let j = 0;
-        for (let button of allButtons) {
-
-            if (button.getAttribute("data-type") === typeArray[i]) {
-
-                if (button.classList.contains("active")) {
-                    multiplier += settings.values.multiplier[typeArray[i]][j];
-                }
-                ++j;
-            }
-
-        }
-    }
-    document.getElementById("score").innerHTML = 100 + multiplier + "%";
-    settings.values.score.multiplier = 1 + (multiplier / 100);
-}
-
 
 function updateScoreMultiplierInternal() {
     let diff = Object.keys(settings.difficulty);
@@ -289,8 +263,6 @@ function updateScoreMultiplierExternal() {
     let multiplier = Math.round(settings.difficulty.custom.multiplier * 100);
     document.getElementById("score").innerHTML = multiplier + "%";
 }
-
-
 
 function handleHighscore() {
     highscore.push(currentGame.score);
@@ -403,10 +375,11 @@ function runGame() {
 
     // snapshot of settings to the currentGame var
     currentGame.score = 0;
-    currentGame.multiplier = 1;
+    currentGame.multiplier = diffSettings.multiplier;
     currentGame.round = 1;
     currentGame.turn = 1;
     currentGame.sequence = createSequence(10, diffSettings.buttons);
+    currentGame.buttons = diffSettings.buttons;
     currentGame.speed = speedSettings[diffSettings.speed];
     currentGame.strict = diffSettings.strict;
     currentGame.markingsc = diffSettings.markingsc;
