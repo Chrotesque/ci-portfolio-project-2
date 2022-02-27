@@ -24,52 +24,67 @@
     <main>
         <section>
             <div id="difficulty-selection">
-                <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button>
-                <button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button>
-                <button data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
+                <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button><button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button><button data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
             </div>
             <div id="assisting-controls">
-                <button data-cat="menu" data-value="settings" id="btn-settings" type="button">Settings</button>
+                <button data-cat="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog"></i></button>
                 <button data-cat="menu" data-value="help" id="btn-help" type="button">Help</button>
-                <div id="menu-settings" class="hide-element">
-                    <h2>Settings <i class="fa-solid fa-rotate-left"></i></h2>
+                <div id="menu-settings" class="show-element">
+                    <div class="menu-headline">
+                        <h2><i class="fas fa-cog"></i> Settings</h2>
+                        <button data-cat="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times"></i></button>
+                    </div>
                     <fieldset>
-                        <legend>Settings</legend>
-                        <h3>Sound</h3><button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button>
-                        </h3><button data-cat="setting" data-type="sound" data-value="on" type="button" class="settings se">On</button>
-                        <h3>Markings</h3><button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button>
-                        <button data-type="markings" data-cat="setting" data-value="sym" type="button" class="settings se">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-square"></i>
-                        </button>
-                        <h3>Order</h3><button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
-                            <i class="fas fa-caret-square-left"></i>
-                        </button>
-                        <button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
-                            <i class="fas fa-caret-square-right"></i>
-                        </button>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Custom Mode</legend>
-                        <h3>Buttons</h3>
-                        <button data-cat="custom" data-type="buttons" data-value="2" type="button" class="settings es">2</button>
-                        <button data-cat="custom" data-type="buttons" data-value="4" type="button" class="settings ss">4</button>
-                        <button data-cat="custom" data-type="buttons" data-value="6" type="button" class="settings ss">6</button>
-                        <button data-cat="custom" data-type="buttons" data-value="8" type="button" class="settings se">8</button>
-                        <h3>Speed</h3>
-                        <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button>
-                        <button data-cat="custom" data-type="speed" data-value="normal" type="button" class="settings ss">Normal</button>
-                        <button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
-                        <h3>Strict</h3>
-                        <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button>
-                        <button data-cat="custom" data-type="strict" data-value="on" type="button" class="settings se">On</button>
+                        <legend>Game Settings</legend>
+                        <div class="setting-row">
+                        <h3>Sound</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button" class="settings se">On</button>
+                        </div></div>
+                        <div class="setting-row">
                         <h3>Markings</h3>
-                        <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button>
-                        <button data-cat="custom" data-type="markingsc" data-value="on" type="button" class="settings se">On</button>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button" class="settings se">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-square"></i>
+                            </button>
+                        </div></div>
+                        <div class="setting-row">
+                        <h3>Order</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
+                                <i class="fas fa-caret-square-left"></i>
+                            </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
+                                <i class="fas fa-caret-square-right"></i>
+                            </button>
+                        </div></div>
                     </fieldset>
                     <fieldset>
-                        <legend>Score</legend>
-                        <h3>100%</h3>
+                        <legend>Custom Difficulty</legend>
+                        <div class="setting-row">
+                        <h3>Buttons</h3>
+                        <div class="button-container">
+                        <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings es"><img src="/assets/images/general/btn_3_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="4" type="button" class="settings ss"><img src="/assets/images/general/btn_4_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="5" type="button" class="settings ss"><img src="/assets/images/general/btn_5_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="6" type="button" class="settings se"><img src="/assets/images/general/btn_6_norm.png"></button>
+                    </div></div>
+                        <div class="setting-row">
+                        <h3>Speed</h3>
+                        <div class="button-container">
+                        <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button><button data-cat="custom" data-type="speed" data-value="normal" type="button" class="settings ss">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
+                    </div></div>
+                        <div class="setting-row">
+                        <h3>Strict</h3>
+                        <div class="button-container">
+                        <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button" class="settings se">On</button>
+                    </div></div>
+                        <div class="setting-row">
+                        <h3>Markings</h3>
+                        <div class="button-container">
+                        <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="markingsc" data-value="on" type="button" class="settings se">On</button>
+                    </div></div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Score Multiplier</legend>
+                        <h2 id="score">100%</h2>
                     </fieldset>
                 </div>
                 <div id="menu-help" class="hide-element">

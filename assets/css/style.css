@@ -1,6 +1,131 @@
+/* || GENERAL */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+:root {
+    --standard-bg: #272727;
+    --standard-text: #febf2e;
+    --standard-light: #c6c6be;
+    --standard-highlight: #f9f9f9;
+    --standard-shadow: #151515;
+    --standard-border: #d9d9d3;
+    /*--car-posters: url("../images/");*/
+}
+
 body {
-    background-color: #393939;
-    color: #AFAFAF;
+    font-family: Nunito;
+    font-size: 1.25rem;
+    background-color: var(--standard-bg);
+    color: var(--standard-text);
+}
+
+.hide-element {
+    display: none;
+}
+
+.show-element {
+    display: block;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h2#score {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    line-height: 3rem;
+    display: inline-block;
+}
+
+legend {
+    font-size: 1.5rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+    margin-left: -1rem;
+    background: #24aff9;
+    border-radius: 0.5rem;
+}
+
+/* || MENU */
+/* || MENU > SETTINGS */
+#menu-settings {
+    min-width: 25%;
+    max-width: 35%;
+    color: var(--standard-bg);
+    position: fixed;
+    padding: 2rem;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: var(--standard-light);
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
+    background-image: url('/assets/images/general/arrow_test.png');
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    background-position-y: 83.8%;
+}
+
+fieldset {
+    border: 1px solid #aaaa9d;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1rem 2rem;
+    margin-top: 2rem;
+    background-color: #BDBDB3;
+}
+
+.setting-row, .menu-headline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.fa-times {
+    font-size: 2rem;
+}
+
+
+
+.button-container {
+    padding-right: 1rem;
+}
+
+/* || ELEMENTS */
+/* || ELEMENTS > BUTTONS */
+button {
+    font-size: 1rem;
+    padding: 0.5rem;
+    color: var(--standard-light);
+    background-color: #3D3D3D;
+    font-weight: bold;
+}
+
+button.es {
+
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+button.se {
+
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
 
 button:hover {
@@ -14,14 +139,12 @@ button.activation {
 }
 
 button.active {
-    background-color: #0f0;
+    background-color: var(--standard-text);
     color: #000;
 }
 
-.hide-element {
-    display: none;
-}
-
-.show-element {
-    display: block;
+button.closer {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
 }
