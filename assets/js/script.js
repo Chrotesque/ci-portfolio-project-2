@@ -4,7 +4,7 @@
 // Global variables
 let settings = {
     "control": {
-        "stopRequest": false,
+        "stopRequest": true,
         "locked": true
     },
     "setting": {
@@ -130,7 +130,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // https://www.sitepoint.com/delay-sleep-pause-wait/
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    let promise = new Promise(resolve => setTimeout(resolve, ms));
+    if (settings.control.stopRequest === false) {
+        return promise;
+    }
 }
 
 
@@ -313,12 +316,14 @@ function controlGame(button) {
     let curButton = button.innerHTML;
     switch (curButton) {
         case "Start":
+            settings.control.stopRequest = false;
             setStatus("Game in Progress");
             setScoreStatus("Score");
             updateGameButtons();
             runGame();
             break;
         case "Stop":
+            settings.control.stopRequest = true;
             stopGame();
             break;
         default:
@@ -337,10 +342,6 @@ async function playButton(button) {
     gameButtons[button].classList.add("active");
     await sleep(settings.values.sleep.playerButtonPress);
     gameButtons[button].classList.remove("active");
-}
-
-function stopGame() {
-
 }
 
 /**
@@ -385,6 +386,7 @@ function runGame() {
     currentGame.markingsc = diffSettings.markingsc;
 
     // start of the game
+    document.getElementById("btn-status").innerHTML = "Stop";
     computerTurn();
 
 }
@@ -393,6 +395,14 @@ function gameOver() {
     handleHighscore();
     setStatus("You lost!");
     setScoreStatus("Your Final Score");
+    document.getElementById("btn-status").innerHTML = "Start";
+}
+
+function stopGame() {
+    handleHighscore();
+    setStatus("You stopped the game!");
+    setScoreStatus("Your Final Score");
+    document.getElementById("btn-status").innerHTML = "Start";
 }
 
 function winRound() {
@@ -414,14 +424,14 @@ async function computerTurn() {
         setStatus("Prepare for Computer Turn");
         await sleep(settings.values.sleep.computerTurn);
         for (let i = 0; i < currentGame.turn; i++) {
-            setStatus("Computer Turn in progress");
-            gameButtons[currentGame.sequence[i]].classList.add("active");
+            (settings.control.stopRequest === false) ? setStatus("Computer Turn in progress"): stopGame();
+            (settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add("active"): stopGame();
             await sleep(currentGame.speed.press);
             gameButtons[currentGame.sequence[i]].classList.remove("active");
             await sleep(currentGame.speed.delay);
         }
 
-        playerTurn(currentGame.sequence, currentGame.turn);
+        (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame();
 
     }
 
