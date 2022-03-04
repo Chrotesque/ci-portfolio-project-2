@@ -14,7 +14,29 @@
     --standard-highlight: #f9f9f9;
     --standard-shadow: #151515;
     --standard-border: #d9d9d3;
-    /*--car-posters: url("../images/");*/
+    /* testing */
+    --circle-bg: #d2d2cb;
+
+    --btn-red: rgba(184, 0, 0, 1);
+    --btn-yellow: rgba(184, 184, 0, 1);
+    --btn-blue: rgba(0, 0, 184, 1);
+    --btn-green: rgba(0, 184, 0, 1);
+    --btn-purple: rgba(184, 0, 184, 1);
+    --btn-orange: rgba(184, 125, 0, 1);
+    --btn-inactive: #626262;
+
+    --btn-red-active: rgba(241, 57, 57, 1);
+    --btn-yellow-active: rgba(244, 244, 0, 1);
+    --btn-blue-active: rgba(0, 90, 224, 1);
+    --btn-green-active: rgba(0, 224, 0, 1);
+    --btn-purple-active: rgba(224, 0, 224, 1);
+    --btn-orange-active: rgba(224, 153, 0, 1);
+
+    --btn-setting-inactive: #1785c0;
+    --btn-setting-active: #febf2e;
+    --btn-text-inactive: #fff;
+    --btn-text-active: #000;
+    /* testing */
 }
 
 body {
@@ -89,7 +111,8 @@ fieldset {
     background-color: #BDBDB3;
 }
 
-.setting-row, .menu-headline {
+.setting-row,
+.menu-headline {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -148,3 +171,115 @@ button.closer {
     width: 3rem;
     height: 3rem;
 }
+
+/* testing */
+#game-area {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    width: 640px;
+    height: 640px;
+}
+
+
+
+#middle {
+    font-size: 2rem;
+    box-sizing: border-box;
+    justify-content: center;
+    width: 256px;
+    height: 256px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.4);
+    padding-top: 2rem;
+}
+
+button {}
+
+.game-circle-outer {
+    fill: var(--circle-bg);
+}
+
+.svg-btn {
+    position: absolute;
+}
+
+.one {
+    fill: var(--btn-green);
+    filter: drop-shadow(0 0 5px var(--btn-green));
+}
+
+.one:hover {
+    fill: var(--btn-green-active);
+    filter: drop-shadow(0 0 20px var(--btn-green-active));
+}
+
+.two {
+    fill: var(--btn-red);
+    filter: drop-shadow(0 0 5px var(--btn-red));
+}
+
+.two:hover {
+    fill: var(--btn-red-active);
+    filter: drop-shadow(0 0 20px var(--btn-red-active));
+}
+
+.three {
+    fill: var(--btn-blue);
+    filter: drop-shadow(0 0 5px var(--btn-blue));
+}
+
+.three:hover {
+    fill: var(--btn-blue-active);
+    filter: drop-shadow(0 0 20px var(--btn-blue-active));
+}
+
+.four {
+    fill: var(--btn-orange);
+    filter: drop-shadow(0 0 5px var(--btn-orange));
+}
+
+.four:hover {
+    fill: var(--btn-orange-active);
+    filter: drop-shadow(0 0 20px var(--btn-orange-active));
+}
+
+.five {
+    fill: var(--btn-purple);
+    filter: drop-shadow(0 0 5px var(--btn-purple));
+}
+
+.five:hover {
+    fill: var(--btn-purple-active);
+    filter: drop-shadow(0 0 20px var(--btn-purple-active));
+}
+
+.six {
+    fill: var(--btn-yellow);
+    filter: drop-shadow(0 0 5px var(--btn-yellow));
+}
+
+.six:hover {
+    fill: var(--btn-yellow-active);
+    filter: drop-shadow(0 0 20px var(--btn-yellow-active));
+}
+
+.inactive {
+    fill: var(--btn-inactive);
+    filter: drop-shadow(0 0 3px var(--btn-inactive));
+}
+
+.inactive:hover {
+    fill: var(--btn-inactive);
+    filter: drop-shadow(0 0 3px var(--btn-inactive));
+}
+
+/* ////////////////////////////// */

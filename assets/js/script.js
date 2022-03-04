@@ -245,8 +245,6 @@ function setScoreStatus(update) {
 
 function addScore(update) {
     currentGame.score += update * currentGame.multiplier;
-    console.log(currentGame.multiplier);
-    console.log(update * currentGame.multiplier);
     document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
