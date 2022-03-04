@@ -172,6 +172,14 @@ button.closer {
     height: 3rem;
 }
 
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 2rem;
+    width: 100%;
+    text-align: center;
+}
+
 /* testing */
 #game-area {
     position: fixed;
