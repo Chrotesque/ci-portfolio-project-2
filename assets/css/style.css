@@ -92,7 +92,8 @@ legend {
 
 /* || MENU */
 /* || MENU > SETTINGS */
-#menu-settings {
+#menu-settings,
+#menu-help {
     min-width: 25%;
     max-width: 35%;
     color: var(--standard-bg);
@@ -110,6 +111,15 @@ legend {
     background-position-x: 80%;
     background-position-y: 83.8%;
     z-index: 2;
+}
+
+#menu-help p {
+    margin-top: 1rem;
+}
+
+#menu-help li {
+    list-style-type: circle;
+    list-style-position: inside;
 }
 
 fieldset {
@@ -193,7 +203,7 @@ footer {
 }
 
 
-li {
+footer li {
     display: inline-block;
 }
 
