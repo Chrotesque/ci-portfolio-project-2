@@ -12,121 +12,37 @@
 
 <body>
 
-    <!-- Title -->
-    <header>
-        <h1>Simon Says</h1>
-    </header>
 
-    <!-- Game -->
     <noscript>
         <p>Your Javascript is NOT enabled. Unfortunately enough JavaScript is required to play this game.</p>
     </noscript>
     <main>
         <section>
+            <!--
             <div id="difficulty-selection">
                 <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button><button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button><button
                     data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
             </div>
             <div id="assisting-controls">
-                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog"></i></button>
-                <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button"><i class="fas fa-question-circle"></i></button>
-                <div id="menu-settings" class="hide-element">
-                    <div class="menu-headline">
-                        <h2><i class="fas fa-cog"></i> Settings</h2>
-                        <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times"></i></button>
-                    </div>
-                    <fieldset>
-                        <legend>Game Settings</legend>
-                        <div class="setting-row">
-                            <h3>Sound</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Markings</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button"
-                                    class="settings se">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-square"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Order</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
-                                    <i class="fas fa-caret-square-left"></i>
-                                </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
-                                    <i class="fas fa-caret-square-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Custom Difficulty</legend>
-                        <div class="setting-row">
-                            <h3>Buttons</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings es"><img src="/assets/images/general/btn_3_norm.png"></button><button data-cat="custom"
-                                    data-type="buttons" data-value="4" type="button" class="settings ss"><img src="/assets/images/general/btn_4_norm.png"></button><button data-cat="custom" data-type="buttons"
-                                    data-value="5" type="button" class="settings ss"><img src="/assets/images/general/btn_5_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="6" type="button"
-                                    class="settings se"><img src="/assets/images/general/btn_6_norm.png"></button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Speed</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button><button data-cat="custom" data-type="speed" data-value="normal" type="button"
-                                    class="settings ss">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Strict</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Markings</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="markingsc" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Score Multiplier</legend>
-                        <h2 id="score">1</h2>
-                    </fieldset>
-                </div>
-                <div id="menu-help" class="hide-element">
-                    <h2>Help</h2>
-                    <p>Simon Says is a simple game of memorizing the order of buttons pressed by the computer, then repeating the order yourself.</p>
-                    <p>The game consists of turns, sequences and rounds.</p>
-                    <p>Both you and the computer take turns to press the game buttons.</p>
-                    <p>The order in which the buttons are pressed is the sequence which grows with each turn but remains the same until the end of the round.</p>
-                    <p>Once the player has replicated the entire sequence correctly, the round ends and a new one starts.</p>
-                    <p>Should the player make a mistake, the game is either over OR the previous computer turn is repeated - depending on the difficulty.</p>
-                    <p>There are 3 difficulty levels:
-                        <ul>
-                            <li>Normal - The sequences are played at the standard speed, you have to deal with 4 buttons and can repeat a turn upon making a mistake.</li>
-                            <li>Hard - The sequences are played faster, you have 6 buttons and a single mistake will end the game.</li>
-                            <li>Custom - This is where we leave the phrase "simple game" behind and the settings menu comes into full play, allowing for incremental changes to suit your needs and wants.</li>
-                        </ul>
-                    </p>
-                    </p>
-                </div>
-            </div>
+                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
+                <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                -->
         </section>
+        <!-- GAME SECTION -->
+        <!-- Title -->
+        <header>
+
+        </header>
         <section>
             <div id="game-area">
+                <div id="title">
+                    <h1 class="glow">Simon Game</h1>
+                </div>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640px" height="640px">
                     <path class="game-circle-outer"
-                        d="M320.0,639.999 C143.268,639.999 0.0,496.731 0.0,320.0 C0.0,143.268 143.268,0.0 320.0,0.0 C496.731,0.0 639.999,143.268 639.999,320.0 C639.999,496.731 496.731,639.999 320.0,639.999 ZM320.0,14.0 C151.0,14.0 14.0,151.0 14.0,320.0 C14.0,488.999 151.0,625.999 320.0,625.999 C488.999,625.999 625.999,488.999 625.999,320.0 C625.999,151.0 488.999,14.0 320.0,14.0 Z" />
+                        d="M319.999,639.999 C143.268,639.999 0.0,496.731 0.0,320.0 C0.0,143.268 143.268,0.0 319.999,0.0 C496.730,0.0 639.999,143.268 639.999,320.0 C639.999,496.731 496.730,639.999 319.999,639.999 ZM319.999,13.999 C151.0,13.999 13.999,151.0 13.999,320.0 C13.999,488.999 151.0,625.999 319.999,625.999 C488.999,625.999 625.999,488.999 625.999,320.0 C625.999,151.0 488.999,13.999 319.999,13.999 Z" />
+                    <path class="game-circle-bg"
+                        d="M319.999,13.999 C488.999,13.999 625.999,151.0 625.999,319.999 C625.999,488.999 488.999,625.999 319.999,625.999 C151.0,625.999 13.999,488.999 13.999,319.999 C13.999,151.0 151.0,13.999 319.999,13.999 Z" />
                 </svg>
                 <div class="svg-btn show-element">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640px" height="640px">
@@ -170,13 +86,115 @@
                         <path class="four" d="M219.10,241.352 L107.617,177.39 C150.814,113.2 222.210,69.557 303.999,64.512 L303.999,192.993 C269.542,197.290 239.341,215.283 219.10,241.352 Z" />
                     </svg>
                 </div>
+                <!-- GAME SECTION: MIDDLE CONTROLS -->
                 <div id="middle">
-                    <button><i class="fas fa-play"></i></button>
-                    <button data-cat="setting" data-type="difficulty" data-value="easy" type="button">Easy</button>
-                    <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button>
-                    <button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button>
-                    <button data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
+                    <button data-cat="setting" data-type="difficulty" data-value="easy" type="button" class="difficulty">Easy</button>
+                    <button data-cat="setting" data-type="difficulty" data-value="normal" type="button" class="difficulty">Normal</button>
+                    <button class="status"><i class="fas fa-play" aria-hidden="true"></i></button><br>
+                    <button data-cat="setting" data-type="difficulty" data-value="hard" type="button" class="difficulty">Hard</button>
+                    <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
                 </div>
+                <!-- GAME SECTION:  -->
+                <div id="outer">
+                    <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
+                    <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </section>
+        <!-- MENU SECTION -->
+        <section>
+            <!-- MENU SECTION: SETTINGS -->
+            <div id="menu-settings" class="hide-element">
+                <div class="menu-headline">
+                    <h2><i class="fas fa-cog" aria-hidden="true"></i> Settings</h2>
+                    <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times" aria-hidden="true"></i></button>
+                </div>
+                <fieldset>
+                    <legend>Game Settings</legend>
+                    <div class="setting-row">
+                        <h3>Sound</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button"
+                                class="settings se">On</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Markings</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button"
+                                class="settings se">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                                <i class="fas fa-square" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Order</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
+                                <i class="fas fa-caret-square-left" aria-hidden="true"></i>
+                            </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
+                                <i class="fas fa-caret-square-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Custom Difficulty</legend>
+                    <div class="setting-row">
+                        <h3>Buttons</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings es"><img src="/assets/images/general/btn_3_norm.png"></button><button data-cat="custom"
+                                data-type="buttons" data-value="4" type="button" class="settings ss"><img src="/assets/images/general/btn_4_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="5"
+                                type="button" class="settings ss"><img src="/assets/images/general/btn_5_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="6" type="button"
+                                class="settings se"><img src="/assets/images/general/btn_6_norm.png"></button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Speed</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button><button data-cat="custom" data-type="speed" data-value="normal" type="button"
+                                class="settings ss">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Strict</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
+                                class="settings se">On</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Markings</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="markingsc" data-value="on" type="button"
+                                class="settings se">On</button>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Score Multiplier</legend>
+                    <h2 id="score">1</h2>
+                </fieldset>
+            </div>
+            <!-- MENU SECTION: HELP -->
+            <div id="menu-help" class="hide-element">
+                <h2>Help</h2>
+                <p>Simon Game is a simple game of memorizing the order of buttons pressed by the computer, then correctly repeating the order yourself.</p>
+                <p>The game consists of turns, sequences and rounds.</p>
+                <p>Both you and the computer take turns to press the game buttons.</p>
+                <p>The order in which the buttons are pressed is the sequence which grows with each turn but remains the same until the end of the round.</p>
+                <p>Once the player has replicated the entire sequence correctly, the round ends and a new one starts.</p>
+                <p>Should the player make a mistake, the game is either over OR the previous computer turn is repeated - depending on the difficulty.</p>
+                <p>There are 4 difficulty levels:
+                    <ul>
+                        <li>Easy - TBD</li>
+                        <li>Normal - The sequences are played at the standard speed, you have to deal with 4 buttons and can repeat a turn upon making a mistake.</li>
+                        <li>Hard - The sequences are played faster, you have 6 buttons and a single mistake will end the game.</li>
+                        <li>Custom - This is where we leave the phrase "simple game" behind and the settings menu comes into full play, allowing for incremental changes to suit your needs and wants.</li>
+                    </ul>
+                </p>
+                </p>
             </div>
         </section>
 
@@ -190,12 +208,12 @@
                     data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
             </div>
             <div id="assisting-controls">
-                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog"></i></button>
+                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
                 <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button">Help</button>
                 <div id="menu-settings" class="show-element">
                     <div class="menu-headline">
-                        <h2><i class="fas fa-cog"></i> Settings</h2>
-                        <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times"></i></button>
+                        <h2><i class="fas fa-cog" aria-hidden="true"></i> Settings</h2>
+                        <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times" aria-hidden="true"></i></button>
                     </div>
                     <fieldset>
                         <legend>Game Settings</legend>
@@ -211,8 +229,8 @@
                             <div class="button-container">
                                 <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button"
                                     class="settings se">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-square"></i>
+                                    <i class="fas fa-star" aria-hidden="true"></i>
+                                    <i class="fas fa-square" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -220,9 +238,9 @@
                             <h3>Order</h3>
                             <div class="button-container">
                                 <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
-                                    <i class="fas fa-caret-square-left"></i>
+                                    <i class="fas fa-caret-square-left" aria-hidden="true"></i>
                                 </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
-                                    <i class="fas fa-caret-square-right"></i>
+                                    <i class="fas fa-caret-square-right" aria-hidden="true"></i>
                                 </button>
                             </div>
                         </div>
@@ -299,7 +317,15 @@
 
     <!-- Credits -->
     <footer>
-        Credits
+        <ul class="socials">
+            <li><a href="http://www.chrotesque.com" target="_blank" rel="noopener" aria-label="You can find more of my older visual work on my website (opens in a new tab)"><i class="fas fa-globe"
+                        aria-hidden="true"></i></a></li>
+            <li><a href="https://www.facebook.com/chrotesque" target="_blank" rel="noopener" aria-label="Visit me on Facebook and shoot me a message, if you want (opens in a new tab)"><i class="fab fa-facebook"
+                        aria-hidden="true"></i></a>
+            </li>
+            <li><a href="https://github.com/chrotesque" target="_blank" rel="noopener" aria-label="Have a look at my other coding projects on Github (opens in a new tab)"><i class="fab fa-github"
+                        aria-hidden="true"></i></a></li>
+        </ul>
     </footer>
 
     <script src="https://kit.fontawesome.com/e7deff2959.js" crossorigin="anonymous"></script>

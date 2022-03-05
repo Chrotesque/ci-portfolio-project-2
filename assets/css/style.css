@@ -54,8 +54,16 @@ body {
     display: block;
 }
 
-h1 {
-    font-size: 2rem;
+
+
+
+
+.glow {
+    text-shadow: 0 0 4px #000, 0 0 25px var(--standard-text);
+}
+
+.dimmed {
+    text-shadow: 0 0 4px #000, 0 0 10px var(--standard-text);
 }
 
 h2 {
@@ -101,6 +109,7 @@ legend {
     background-repeat: no-repeat;
     background-position-x: 80%;
     background-position-y: 83.8%;
+    z-index: 2;
 }
 
 fieldset {
@@ -139,6 +148,7 @@ button {
     font-weight: bold;
 }
 
+/* s stands for side, e stands for edge */
 button.es {
 
     border-top-left-radius: 0.5rem;
@@ -150,6 +160,7 @@ button.se {
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
 }
+
 
 button:hover {
     background-color: #000;
@@ -172,12 +183,31 @@ button.closer {
     height: 3rem;
 }
 
+/* FOOTER */
 footer {
     position: fixed;
     bottom: 0;
-    height: 2rem;
     width: 100%;
+    height: 2.75rem;
     text-align: center;
+}
+
+
+li {
+    display: inline-block;
+}
+
+.socials a {
+    padding: 0 1rem 0 1rem;
+    font-size: 2rem;
+    color: var(--btn-inactive);
+    display: block;
+    height: 3rem;
+}
+
+.socials a:hover {
+    color: var(--standard-light);
+    text-shadow: 0 0 1px var(--standard-light);
 }
 
 /* testing */
@@ -191,34 +221,86 @@ footer {
     transform: translate(-50%, -50%);
     width: 640px;
     height: 640px;
+    border-radius: 50%;
+    z-index: 0;
 }
 
+.difficulty {
+    width: 100%;
+    height: 2rem;
+}
 
+.status {
+    background: transparent;
+    width: 100%;
+    font-size: 3rem;
+}
+
+.status:hover {
+    background: transparent;
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
 
 #middle {
-    font-size: 2rem;
     box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     width: 256px;
     height: 256px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    text-align: center;
-    background-color: rgba(255, 0, 0, 0.4);
-    padding-top: 2rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 1rem solid transparent;
 }
-
-button {}
 
 .game-circle-outer {
     fill: var(--circle-bg);
 }
 
+.game-circle-bg {
+    fill: var(--standard-bg);
+}
+
 .svg-btn {
     position: absolute;
 }
+
+#outer {
+    width: 608px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 1rem;
+}
+
+#title {
+    position: absolute;
+    z-index: 1;
+}
+
+#title h1 {
+    font-size: 6rem;
+    display: inline-block;
+    margin-top: -4rem;
+}
+
+#outer button {
+    font-size: 4rem;
+    background-color: transparent;
+}
+
+#outer button:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+}
+
+/* BUTTON COLORS */
 
 .one {
     fill: var(--btn-green);
