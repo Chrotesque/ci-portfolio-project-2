@@ -197,27 +197,64 @@ function removeGameButton() {
     button.remove();
 }
 
+function numToString(input) {
+    let result;
+    // input is a number
+    if (typeof input === "number") {
+        switch (input) {
+            case 1:
+                result = "one";
+                break;
+            case 2:
+                result = "two";
+                break;
+            case 3:
+                result = "three";
+                break;
+            case 4:
+                result = "four";
+                break;
+            case 5:
+                result = "five";
+                break;
+            case 6:
+                result = "six";
+                break;
+        }
+        // input is a string
+    } else {
+        switch (input) {
+            case "one":
+                result = 1;
+                break;
+            case "two":
+                result = 2;
+                break;
+            case "three":
+                result = 3;
+                break;
+            case "four":
+                result = 4;
+                break;
+            case "five":
+                result = 5;
+                break;
+            case "six":
+                result = 6;
+                break;
+        }
+    }
+
+    return result;
+}
+
 /**
  * Updates the amount of game buttons being displayed through class add/rem
  */
 function updateGameButtons() {
 
     let newButtonAmt = parseInt(settings.difficulty[settings.setting.difficulty].buttons);
-    let identifier;
-    switch (newButtonAmt) {
-        case 3:
-            identifier = "three";
-            break;
-        case 4:
-            identifier = "four";
-            break;
-        case 5:
-            identifier = "five";
-            break;
-        case 6:
-            identifier = "six";
-            break;
-    }
+    let identifier = numToString(newButtonAmt);
     let allButtonSets = document.getElementsByClassName("svg-btn");
     for (let button of allButtonSets) {
         // first: hide them all
@@ -235,7 +272,7 @@ function updateGameButtons() {
 /**
  * Saves all available game buttons in global array for convenient access
  */
-function collectGameButtons() {
+function collectGameButtons2() {
 
     let i = 1;
     for (let button of allButtons) {
@@ -247,14 +284,26 @@ function collectGameButtons() {
 
 }
 
+function collectGameButtons() {
+
+    let i = 1;
+    let allButtons = document.getElementsByTagName("path");
+    for (let button of allButtons) {
+        if (!button.classList.contains("game-circle-outer") && !button.classList.contains("game-circle-bg")) {
+            console.log(button);
+        }
+    }
+
+}
+
 function setStatus(update) {
     let status = document.getElementById("status-display");
-    status.textContent = update;
+    //status.textContent = update;
 }
 
 function setScoreStatus(update) {
     let score = document.getElementById("score-display");
-    score.innerHTML = update;
+    //score.innerHTML = update;
 }
 
 function addScore(update) {
@@ -460,10 +509,11 @@ async function computerTurn() {
         winRound();
         // otherwise proceed to next turn
     } else {
-        setStatus("Prepare for Computer Turn");
+        //setStatus("Prepare for Computer Turn");
+
         await sleep(settings.values.sleep.computerTurn);
         for (let i = 0; i < currentGame.turn; i++) {
-            (settings.control.stopRequest === false) ? setStatus("Computer Turn in progress"): stopGame();
+            //(settings.control.stopRequest === false) ? setStatus("Computer Turn in progress"): stopGame();
             (settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add("active"): stopGame();
             await sleep(currentGame.speed.press);
             gameButtons[currentGame.sequence[i]].classList.remove("active");
@@ -486,7 +536,7 @@ async function playerTurn(sequence, turn) {
     let currentSequence = currentGame.sequence.slice(0, currentGame.turn);
     let validity = true;
     let counter = currentSequence.length;
-    setStatus("Your Turn");
+    //setStatus("Your Turn");
 
     while (validity === true && counter > 0) {
         if (playerInput.length > 0) {
