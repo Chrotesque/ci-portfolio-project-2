@@ -309,14 +309,30 @@ footer li {
     background-color: transparent;
 }
 
-/* BUTTON COLORS */
+/*
+R Y G P B O 
+R Y B P G + Y / P
+Y B R G + Y
+G B R
+*/
 
+
+/* BUTTON COLORS */
 .one {
     fill: var(--btn-green);
     filter: drop-shadow(0 0 5px var(--btn-green));
 }
 
-.one:hover {
+.one:hover,
+.two:hover,
+.three:hover,
+.four:hover,
+.five:hover,
+.six:hover {
+    fill: black;
+}
+
+.one-pressed {
     fill: var(--btn-green-active);
     filter: drop-shadow(0 0 20px var(--btn-green-active));
 }
@@ -326,7 +342,7 @@ footer li {
     filter: drop-shadow(0 0 5px var(--btn-red));
 }
 
-.two:hover {
+.two-pressed {
     fill: var(--btn-red-active);
     filter: drop-shadow(0 0 20px var(--btn-red-active));
 }
@@ -336,19 +352,19 @@ footer li {
     filter: drop-shadow(0 0 5px var(--btn-blue));
 }
 
-.three:hover {
+.three-pressed {
     fill: var(--btn-blue-active);
     filter: drop-shadow(0 0 20px var(--btn-blue-active));
 }
 
 .four {
-    fill: var(--btn-orange);
-    filter: drop-shadow(0 0 5px var(--btn-orange));
+    fill: var(--btn-yellow);
+    filter: drop-shadow(0 0 5px var(--btn-yellow));
 }
 
-.four:hover {
-    fill: var(--btn-orange-active);
-    filter: drop-shadow(0 0 20px var(--btn-orange-active));
+.four-pressed {
+    fill: var(--btn-yellow-active);
+    filter: drop-shadow(0 0 20px var(--btn-yellow-active));
 }
 
 .five {
@@ -356,19 +372,19 @@ footer li {
     filter: drop-shadow(0 0 5px var(--btn-purple));
 }
 
-.five:hover {
+.five-pressed {
     fill: var(--btn-purple-active);
     filter: drop-shadow(0 0 20px var(--btn-purple-active));
 }
 
 .six {
-    fill: var(--btn-yellow);
-    filter: drop-shadow(0 0 5px var(--btn-yellow));
+    fill: var(--btn-orange);
+    filter: drop-shadow(0 0 5px var(--btn-orange));
 }
 
-.six:hover {
-    fill: var(--btn-yellow-active);
-    filter: drop-shadow(0 0 20px var(--btn-yellow-active));
+.six-pressed {
+    fill: var(--btn-orange-active);
+    filter: drop-shadow(0 0 20px var(--btn-orange-active));
 }
 
 .inactive {

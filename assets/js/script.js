@@ -109,6 +109,7 @@ let currentGame = {};
 document.addEventListener("DOMContentLoaded", function () {
 
     allButtons = document.getElementsByTagName("button");
+    allPaths = document.getElementsByTagName("path");
     initiateSettings();
     updateScoreMultiplierInternal();
     updateScoreMultiplierExternal();
@@ -120,6 +121,14 @@ document.addEventListener("DOMContentLoaded", function () {
             } else if (this.getAttribute("data-cat") === "setting" || this.getAttribute("data-cat") === "custom") {
                 changeSetting(this);
             } else if (this.getAttribute("data-cat") === "game-control") {
+                controlGame(this);
+            }
+        });
+    }
+
+    for (let path of allPaths) {
+        path.addEventListener("click", function () {
+            if (!path.classList.contains("game-circle-outer") && !path.classList.contains("game-circle-bg")) {
                 controlGame(this);
             }
         });
@@ -396,7 +405,7 @@ function changeSetting(clicked) {
 
 /**
  * Controls the game depending on what button has been pressed, start, stop, send 1, etc.
- */
+
 function controlGame2(button) {
 
     let curButton = button.innerHTML;
@@ -418,7 +427,7 @@ function controlGame2(button) {
             playButton(curButton);
     }
 
-}
+} */
 
 function controlGame(button) {
 
@@ -431,6 +440,8 @@ function controlGame(button) {
         case "stop":
             settings.control.stopRequest = true;
             stopGame();
+        default:
+            playButton(curButton);
     }
 
 }
@@ -438,11 +449,22 @@ function controlGame(button) {
 /**
  * Lights up the button the player is activating through adding/removing a class
  */
-async function playButton(button) {
+async function playButton(input) {
+    /*
     button = parseInt(button);
     gameButtons[button].classList.add("active");
     await sleep(settings.values.sleep.playerButtonPress);
     gameButtons[button].classList.remove("active");
+    */
+    let curButton;
+    for (let button of gameButtons) {
+        if (input === button.getAttribute("data-value")) {
+            curButton = button;
+        }
+    }
+    curButton.classList.add(input + "-pressed");
+    await sleep(settings.values.sleep.playerButtonPress);
+    curButton.classList.remove(input + "-pressed");
 }
 
 /**
@@ -537,11 +559,19 @@ async function computerTurn() {
         for (let i = 0; i < currentGame.turn; i++) {
             //(settings.control.stopRequest === false) ? setStatus("Computer Turn in progress"): stopGame();
             console.log("computer turn in progress");
-            console.log(gameButtons[currentGame.sequence[i]]);
-            console.log(`currentSeq: ${currentGame.sequence[i]}`);
-            (settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add("active"): stopGame();
+            let index = numToString(currentGame.sequence[i] + 1);
+            let curButton;
+            for (let button of gameButtons) {
+                if (button.classList.contains(index)) {
+                    curButton = button;
+                }
+            }
+            console.log(currentGame.sequence);
+            (settings.control.stopRequest === false) ? curButton.classList.add(index + "-pressed"): stopGame();
+            //(settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add(index + "-pressed"): stopGame();
             await sleep(currentGame.speed.press);
-            gameButtons[currentGame.sequence[i]].classList.remove("active");
+            //gameButtons[currentGame.sequence[i]].classList.remove(index + "-pressed");
+            curButton.classList.remove(index + "-pressed");
             await sleep(currentGame.speed.delay);
         }
 
