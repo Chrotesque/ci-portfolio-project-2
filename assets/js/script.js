@@ -110,7 +110,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     allButtons = document.getElementsByTagName("button");
     initiateSettings();
-    collectGameButtons();
     updateScoreMultiplierInternal();
     updateScoreMultiplierExternal();
 
@@ -199,50 +198,54 @@ function removeGameButton() {
 
 function numToString(input) {
     let result;
-    // input is a number
-    if (typeof input === "number") {
-        switch (input) {
-            case 1:
-                result = "one";
-                break;
-            case 2:
-                result = "two";
-                break;
-            case 3:
-                result = "three";
-                break;
-            case 4:
-                result = "four";
-                break;
-            case 5:
-                result = "five";
-                break;
-            case 6:
-                result = "six";
-                break;
-        }
-        // input is a string
-    } else {
-        switch (input) {
-            case "one":
-                result = 1;
-                break;
-            case "two":
-                result = 2;
-                break;
-            case "three":
-                result = 3;
-                break;
-            case "four":
-                result = 4;
-                break;
-            case "five":
-                result = 5;
-                break;
-            case "six":
-                result = 6;
-                break;
-        }
+    input = parseInt(input);
+
+    switch (input) {
+        case 1:
+            result = "one";
+            break;
+        case 2:
+            result = "two";
+            break;
+        case 3:
+            result = "three";
+            break;
+        case 4:
+            result = "four";
+            break;
+        case 5:
+            result = "five";
+            break;
+        case 6:
+            result = "six";
+            break;
+    }
+
+    return result;
+}
+
+function stringToNum(input) {
+    let result;
+
+    switch (input) {
+        case "one":
+            result = 1;
+            break;
+        case "two":
+            result = 2;
+            break;
+        case "three":
+            result = 3;
+            break;
+        case "four":
+            result = 4;
+            break;
+        case "five":
+            result = 5;
+            break;
+        case "six":
+            result = 6;
+            break;
     }
 
     return result;
@@ -286,13 +289,25 @@ function collectGameButtons2() {
 
 function collectGameButtons() {
 
+    //currentGame.buttons = diffSettings.buttons;
+    /*
     let i = 1;
     let allButtons = document.getElementsByTagName("path");
     for (let button of allButtons) {
         if (!button.classList.contains("game-circle-outer") && !button.classList.contains("game-circle-bg")) {
-            console.log(button);
+            console.log(button.tagName);
+            let children = button.childNodes;
+            
+
         }
     }
+    */
+    let test = settings.difficulty[settings.setting.difficulty].buttons;
+    console.log(test);
+    let index = numToString(test);
+    console.log(index);
+    let parent = document.getElementById("btn-set-" + index);
+    console.log(parent);
 
 }
 
@@ -471,6 +486,7 @@ function runGame() {
     let statusBtn = document.getElementById("btn-status");
     statusBtn.innerHTML = '<i class="fas fa-stop-circle" aria-hidden="true"></i>';
     statusBtn.setAttribute("data-value", "stop");
+    collectGameButtons();
     computerTurn();
 
 }
