@@ -329,7 +329,7 @@ function changeSetting(clicked) {
 /**
  * Controls the game depending on what button has been pressed, start, stop, send 1, etc.
  */
-function controlGame(button) {
+function controlGame2(button) {
 
     let curButton = button.innerHTML;
     switch (curButton) {
@@ -348,6 +348,18 @@ function controlGame(button) {
             --curButton;
             playerInput.push(curButton);
             playButton(curButton);
+    }
+
+}
+
+function controlGame(button) {
+
+    let curButton = button.getAttribute("data-value");
+    switch (curButton) {
+        case "start":
+            settings.control.stopRequest = false;
+            runGame();
+            break;
     }
 
 }
@@ -404,7 +416,7 @@ function runGame() {
     currentGame.markingsc = diffSettings.markingsc;
 
     // start of the game
-    document.getElementById("btn-status").innerHTML = "Stop";
+    document.getElementById("btn-status").innerHTML = '<i class="fas fa-stop-circle" aria-hidden="true"></i>';
     computerTurn();
 
 }
@@ -413,7 +425,7 @@ function gameOver() {
     handleHighscore();
     setStatus("You lost!");
     setScoreStatus("Your Final Score");
-    document.getElementById("btn-status").innerHTML = "Start";
+    document.getElementById("btn-status").innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
 
 function stopGame() {
