@@ -360,6 +360,9 @@ function controlGame(button) {
             settings.control.stopRequest = false;
             runGame();
             break;
+        case "stop":
+            settings.control.stopRequest = true;
+            stopGame();
     }
 
 }
@@ -416,29 +419,35 @@ function runGame() {
     currentGame.markingsc = diffSettings.markingsc;
 
     // start of the game
-    document.getElementById("btn-status").innerHTML = '<i class="fas fa-stop-circle" aria-hidden="true"></i>';
+    let statusBtn = document.getElementById("btn-status");
+    statusBtn.innerHTML = '<i class="fas fa-stop-circle" aria-hidden="true"></i>';
+    statusBtn.setAttribute("data-value", "stop");
     computerTurn();
 
 }
 
 function gameOver() {
     handleHighscore();
-    setStatus("You lost!");
-    setScoreStatus("Your Final Score");
-    document.getElementById("btn-status").innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
+    //setStatus("You lost!");
+    //setScoreStatus("Your Final Score");
+    let statusBtn = document.getElementById("btn-status");
+    statusBtn.setAttribute("data-value", "start");
+    statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
 
 function stopGame() {
     handleHighscore();
-    setStatus("You stopped the game!");
-    setScoreStatus("Your Final Score");
-    document.getElementById("btn-status").innerHTML = "Start";
+    //setStatus("You stopped the game!");
+    //setScoreStatus("Your Final Score");
+    let statusBtn = document.getElementById("btn-status");
+    statusBtn.setAttribute("data-value", "start");
+    statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
 
 function winRound() {
     addScore(settings.values.score.round);
-    setStatus("You won!");
-    setScoreStatus("Your Final Score");
+    //setStatus("You won!");
+    //setScoreStatus("Your Final Score");
 }
 
 /**
