@@ -289,26 +289,30 @@ function collectGameButtons2() {
 
 function collectGameButtons() {
 
-    //currentGame.buttons = diffSettings.buttons;
-    /*
-    let i = 1;
-    let allButtons = document.getElementsByTagName("path");
-    for (let button of allButtons) {
-        if (!button.classList.contains("game-circle-outer") && !button.classList.contains("game-circle-bg")) {
-            console.log(button.tagName);
-            let children = button.childNodes;
-            
-
-        }
-    }
-    */
-    let test = settings.difficulty[settings.setting.difficulty].buttons;
-    console.log(test);
-    let index = numToString(test);
-    console.log(index);
+    gameButtons = [];
+    let curBtnAmt = settings.difficulty[settings.setting.difficulty].buttons;
+    let index = numToString(curBtnAmt);
     let parent = document.getElementById("btn-set-" + index);
-    console.log(parent);
+    let paths = parent.getElementsByTagName("path");
+    let i = 0;
+    for (let child of paths) {
+        gameButtons[i] = child;
+        i++;
+    }
+    activateButtonSet();
 
+}
+
+function activateButtonSet() {
+    for (let i = 0; i < gameButtons.length; i++) {
+        gameButtons[i].classList.remove("inactive");
+    }
+}
+
+function deactivateButtonSet() {
+    for (let i = 0; i < gameButtons.length; i++) {
+        gameButtons[i].classList.add("inactive");
+    }
 }
 
 function setStatus(update) {
@@ -493,6 +497,7 @@ function runGame() {
 
 function gameOver() {
     handleHighscore();
+    deactivateButtonSet
     //setStatus("You lost!");
     //setScoreStatus("Your Final Score");
     let statusBtn = document.getElementById("btn-status");
@@ -502,6 +507,7 @@ function gameOver() {
 
 function stopGame() {
     handleHighscore();
+    deactivateButtonSet
     //setStatus("You stopped the game!");
     //setScoreStatus("Your Final Score");
     let statusBtn = document.getElementById("btn-status");
@@ -530,6 +536,9 @@ async function computerTurn() {
         await sleep(settings.values.sleep.computerTurn);
         for (let i = 0; i < currentGame.turn; i++) {
             //(settings.control.stopRequest === false) ? setStatus("Computer Turn in progress"): stopGame();
+            console.log("computer turn in progress");
+            console.log(gameButtons[currentGame.sequence[i]]);
+            console.log(`currentSeq: ${currentGame.sequence[i]}`);
             (settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add("active"): stopGame();
             await sleep(currentGame.speed.press);
             gameButtons[currentGame.sequence[i]].classList.remove("active");
@@ -553,6 +562,7 @@ async function playerTurn(sequence, turn) {
     let validity = true;
     let counter = currentSequence.length;
     //setStatus("Your Turn");
+    console.log("player turn");
 
     while (validity === true && counter > 0) {
         if (playerInput.length > 0) {
