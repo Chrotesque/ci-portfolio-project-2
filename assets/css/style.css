@@ -334,6 +334,7 @@ path:hover {
 
 
 #in-game-info {
+    pointer-events: none;
     position: inherit;
     top: 50%;
     left: 50%;
@@ -376,6 +377,7 @@ path:hover {
 
 #end-of-game-status,
 #in-game-status {
+    pointer-events: none;
     text-transform: uppercase;
     top: 50%;
     left: 50%;
