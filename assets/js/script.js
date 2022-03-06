@@ -109,7 +109,7 @@ let currentGame = {};
 document.addEventListener("DOMContentLoaded", function () {
 
     allButtons = document.getElementsByTagName("button");
-    setSettings();
+    initiateSettings();
     collectGameButtons();
     updateScoreMultiplierInternal();
     updateScoreMultiplierExternal();
@@ -156,7 +156,7 @@ function toggleMenu(clicked) {
 /**
  * Populates html with class based on global settings variable
  */
-function setSettings() {
+function initiateSettings() {
 
     let newArray = Object.assign({}, settings.difficulty.custom, settings.setting);
 
