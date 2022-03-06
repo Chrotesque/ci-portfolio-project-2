@@ -197,23 +197,39 @@ function removeGameButton() {
     button.remove();
 }
 
+/**
+ * Updates the amount of game buttons being displayed through class add/rem
+ */
 function updateGameButtons() {
-    let newButtonAmt = settings.difficulty[settings.setting.difficulty].buttons;
-    let oldButtonAmt = gameButtons.length;
-    let difference = newButtonAmt - oldButtonAmt;
-    // remove buttons
-    if (difference !== 0) {
-        if (difference < 0) {
-            for (let i = 0; i < Math.abs(difference); i++) {
-                removeGameButton();
-            }
-            // add buttons
-        } else {
-            for (let i = 0; i < Math.abs(difference); i++) {
-                addGameButton();
-            }
+
+    let newButtonAmt = parseInt(settings.difficulty[settings.setting.difficulty].buttons);
+    let identifier;
+    switch (newButtonAmt) {
+        case 3:
+            identifier = "three";
+            break;
+        case 4:
+            identifier = "four";
+            break;
+        case 5:
+            identifier = "five";
+            break;
+        case 6:
+            identifier = "six";
+            break;
+    }
+    let allButtonSets = document.getElementsByClassName("svg-btn");
+    for (let button of allButtonSets) {
+        // first: hide them all
+        if (button.classList.contains("show-element")) {
+            button.classList.add("hide-element");
+            button.classList.remove("show-element");
         }
     }
+    let newSetToShow = document.getElementById("btn-set-" + identifier);
+    // second: show the correct one
+    newSetToShow.classList.add("show-element");
+
 }
 
 /**
@@ -275,6 +291,7 @@ function handleHighscore() {
  * Change game setting for next game through adding &| removing css class as well as changing global settings variable
  */
 function changeSetting(clicked) {
+
     let cat = clicked.getAttribute("data-cat");
     let type = clicked.getAttribute("data-type");
     let value = clicked.getAttribute("data-value");
@@ -287,20 +304,25 @@ function changeSetting(clicked) {
             button.classList.remove("active");
             if (cat === "setting") {
                 settings[cat][type] = value;
+
             } else {
                 settings.difficulty[cat][type] = value;
+
             }
 
         }
     }
 
+    updateGameButtons();
     clicked.classList.add("active");
 
     // update the score multiplier only when changes were made to custom diff settings 
     if (customChanges > 0) {
         updateScoreMultiplierInternal();
         updateScoreMultiplierExternal();
+        updateGameButtons();
     }
+
 }
 
 
