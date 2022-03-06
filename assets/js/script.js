@@ -184,6 +184,7 @@ function initiateSettings() {
 
 }
 
+/*
 function addGameButton() {
     let gameArea = document.getElementById("game-area");
     let newButton = document.createElement("button");
@@ -204,6 +205,7 @@ function removeGameButton() {
     let button = gameButtons.pop();
     button.remove();
 }
+*/
 
 function numToString(input) {
     let result;
@@ -336,7 +338,7 @@ function setScoreStatus(update) {
 
 function addScore(update) {
     currentGame.score += update * currentGame.multiplier;
-    document.getElementById("score-amount").innerHTML = currentGame.score;
+    //document.getElementById("score-amount").innerHTML = currentGame.score;
 }
 
 function updateScoreMultiplierInternal() {
@@ -440,7 +442,9 @@ function controlGame(button) {
         case "stop":
             settings.control.stopRequest = true;
             stopGame();
+            break;
         default:
+            playerInput.push(stringToNum(curButton) - 1);
             playButton(curButton);
     }
 
@@ -528,8 +532,8 @@ function gameOver() {
 }
 
 function stopGame() {
-    handleHighscore();
-    deactivateButtonSet
+    //handleHighscore();
+    deactivateButtonSet();
     //setStatus("You stopped the game!");
     //setScoreStatus("Your Final Score");
     let statusBtn = document.getElementById("btn-status");
@@ -595,15 +599,19 @@ async function playerTurn(sequence, turn) {
     console.log("player turn");
 
     while (validity === true && counter > 0) {
-        if (playerInput.length > 0) {
-            let playerInputToCheck = parseInt(playerInput.shift());
-            let currentSequenceToCheck = parseInt(currentSequence.shift());
-            if (validatePlayerInput(playerInputToCheck, currentSequenceToCheck)) {
-                addScore(settings.values.score.step);
-                --counter;
-            } else {
-                validity = false;
+        if (settings.control.stopRequest === false) {
+            if (playerInput.length > 0) {
+                let playerInputToCheck = parseInt(playerInput.shift());
+                let currentSequenceToCheck = parseInt(currentSequence.shift());
+                if (validatePlayerInput(playerInputToCheck, currentSequenceToCheck)) {
+                    addScore(settings.values.score.step);
+                    --counter;
+                } else {
+                    validity = false;
+                }
             }
+        } else {
+            break;
         }
         await sleep(settings.values.sleep.playerTurnLoop); // browser tab freezes without sleep
     }
@@ -615,12 +623,7 @@ async function playerTurn(sequence, turn) {
     } else if (validity === false) {
         gameOver();
     } else {
-        alert(`
-                    Unknown error!Please report this to the developer.
-                    `);
-        throw `
-                    Unknown error!Please report this to the developer.
-                    `;
+        stopGame();
     }
 
 }
