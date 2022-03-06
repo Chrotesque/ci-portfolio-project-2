@@ -37,7 +37,7 @@ let settings = {
         },
         "custom": {
             "multiplier": 0,
-            "buttons": "4",
+            "buttons": "6",
             "speed": "normal",
             "strict": "off",
             "markingsc": "on"

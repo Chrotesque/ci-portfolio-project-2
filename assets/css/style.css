@@ -23,28 +23,28 @@
     /* Game area & buttons */
     --circle-bg: #d2d2cb;
 
-    --btn-red: rgba(184, 0, 0, 1);
-    --btn-yellow: rgba(184, 184, 0, 1);
-    --btn-blue: rgba(0, 0, 184, 1);
+    --btn-red: rgba(195, 32, 32, 1);
+    --btn-yellow: rgba(210, 210, 0, 1);
+    --btn-blue: rgba(41, 82, 214, 1);
     --btn-green: rgba(0, 184, 0, 1);
     --btn-purple: rgba(184, 0, 184, 1);
-    --btn-orange: rgba(184, 125, 0, 1);
+    --btn-orange: rgba(201, 129, 25, 1);
     --btn-inactive: #626262;
 
-    --btn-hover-alpha: 0.5;
-    --btn-red-hover: rgba(241, 57, 57, var(--btn-hover-alpha));
-    --btn-yellow-hover: rgba(244, 244, 0, var(--btn-hover-alpha));
-    --btn-blue-hover: rgba(0, 90, 224, var(--btn-hover-alpha));
-    --btn-green-hover: rgba(0, 224, 0, var(--btn-hover-alpha));
-    --btn-purple-hover: rgba(224, 0, 224, var(--btn-hover-alpha));
-    --btn-orange-hover: rgba(224, 153, 0, var(--btn-hover-alpha));
+    --btn-red-active: rgba(239, 63, 63, 1);
+    --btn-yellow-active: rgba(225, 225, 0, 1);
+    --btn-blue-active: rgba(45, 111, 232, 1);
+    --btn-green-active: rgba(52, 240, 52, 1);
+    --btn-purple-active: rgba(248, 48, 248, 1);
+    --btn-orange-active: rgba(240, 145, 30, 1);
 
-    --btn-red-active: rgba(241, 57, 57, 1);
-    --btn-yellow-active: rgba(244, 244, 0, 1);
-    --btn-blue-active: rgba(0, 90, 224, 1);
-    --btn-green-active: rgba(0, 224, 0, 1);
-    --btn-purple-active: rgba(224, 0, 224, 1);
-    --btn-orange-active: rgba(224, 153, 0, 1);
+    --btn-hover-stroke: 6px;
+    --btn-red-stroke: rgba(255, 120, 120, 1);
+    --btn-yellow-stroke: rgba(255, 255, 160, 1);
+    --btn-blue-stroke: rgba(120, 120, 255, 1);
+    --btn-green-stroke: rgba(120, 255, 120, 1);
+    --btn-purple-stroke: rgba(255, 120, 255, 1);
+    --btn-orange-stroke: rgba(255, 172, 120, 1);
 }
 
 body {
@@ -412,32 +412,32 @@ path:hover {
 /* GAME BUTTON > STANDARD */
 .one {
     fill: var(--btn-green);
-    filter: drop-shadow(0 0 5px var(--btn-green));
+    filter: drop-shadow(0 0 3px var(--btn-green));
 }
 
 .two {
     fill: var(--btn-red);
-    filter: drop-shadow(0 0 5px var(--btn-red));
+    filter: drop-shadow(0 0 3px var(--btn-red));
 }
 
 .three {
     fill: var(--btn-blue);
-    filter: drop-shadow(0 0 5px var(--btn-blue));
+    filter: drop-shadow(0 0 3px var(--btn-blue));
 }
 
 .four {
     fill: var(--btn-yellow);
-    filter: drop-shadow(0 0 5px var(--btn-yellow));
+    filter: drop-shadow(0 0 3px var(--btn-yellow));
 }
 
 .five {
     fill: var(--btn-purple);
-    filter: drop-shadow(0 0 5px var(--btn-purple));
+    filter: drop-shadow(0 0 3px var(--btn-purple));
 }
 
 .six {
     fill: var(--btn-orange);
-    filter: drop-shadow(0 0 5px var(--btn-orange));
+    filter: drop-shadow(0 0 3px var(--btn-orange));
 }
 
 .inactive {
@@ -447,44 +447,40 @@ path:hover {
 
 /* GAME BUTTON > HOVER */
 .one:hover {
-    filter: drop-shadow(0 0 10px var(--btn-green));
-    stroke: var(--btn-green-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-green-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .two:hover {
-    filter: drop-shadow(0 0 10px var(--btn-red));
-    stroke: var(--btn-red-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-red-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .three:hover {
-    filter: drop-shadow(0 0 10px var(--btn-blue));
-    stroke: var(--btn-blue-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-blue-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .four:hover {
-    filter: drop-shadow(0 0 10px var(--btn-yellow));
-    stroke: var(--btn-yellow-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-yellow-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .five:hover {
-    filter: drop-shadow(0 0 10px var(--btn-purple));
-    stroke: var(--btn-purple-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-purple-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .six:hover {
-    filter: drop-shadow(0 0 10px var(--btn-orange));
-    stroke: var(--btn-orange-hover);
-    stroke-width: 4px;
+    stroke: var(--btn-orange-stroke);
+    stroke-width: var(--btn-hover-stroke);
 }
 
 .inactive:hover {
     fill: var(--btn-inactive);
     filter: drop-shadow(0 0 3px var(--btn-inactive));
+    stroke: var(--btn-inactive);
+    stroke-width: 0;
 }
 
 /* GAME BUTTON > PRESSED */
