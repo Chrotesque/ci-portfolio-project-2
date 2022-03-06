@@ -51,15 +51,36 @@ body {
 }
 
 .show-element {
-    display: block;
+    display: inherit;
 }
 
 
+#title,
+#score {
+    position: absolute;
+    display: inline-block;
+}
 
+#title {
+    margin-top: -4rem;
+    z-index: 1;
+    font-size: 5rem;
+}
 
+#score {
+    text-transform: uppercase;
+    bottom: 0;
+    margin-bottom: -1rem;
+    z-index: 1;
+    font-size: 2rem;
+}
+
+#score p {
+    display: inline-block;
+}
 
 .glow {
-    text-shadow: 0 0 4px #000, 0 0 25px var(--standard-text);
+    text-shadow: 0 0 2px #000, 0 0 10px #000, 0 0 25px var(--standard-text);
 }
 
 .dimmed {
@@ -70,7 +91,7 @@ h2 {
     font-size: 1.75rem;
 }
 
-h2#score {
+#score-mp {
     text-align: center;
     letter-spacing: 3px;
     font-size: 2rem;
@@ -249,12 +270,23 @@ footer li {
     text-shadow: 0 0 5px #fff;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
+#btn-status {
+    margin-left: 1rem;
+    color: var(--btn-setting-inactive);
+}
+
+#btn-status:hover {
+    color: var(--btn-setting-active);
+    text-shadow: 0 0 7px var(--btn-setting-active);
+}
+
 #middle {
     box-sizing: border-box;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
     width: 256px;
     height: 256px;
     top: 50%;
@@ -266,8 +298,30 @@ footer li {
     border: 1rem solid transparent;
 }
 
+#difficulty-selection,
+#in-game {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 256px;
+    row-gap: 2rem;
+}
+
+#difficulty-selection div {
+    width: 100%;
+}
+
+#in-game p {
+    display: block;
+    width: 100%;
+    color: var(--standard-light);
+    font-weight: bold;
+    text-align: center;
+    font-size: 2rem;
+}
+
 .game-circle-outer {
-    fill: var(--circle-bg);
+    fill: var(--btn-inactive);
 }
 
 .game-circle-bg {
@@ -286,15 +340,17 @@ footer li {
     bottom: 1rem;
 }
 
-#title {
+#end-of-game-status {
+    text-transform: uppercase;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     position: absolute;
-    z-index: 1;
-}
-
-#title h1 {
-    font-size: 6rem;
+    font-size: 2.5rem;
     display: inline-block;
-    margin-top: -4rem;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
 }
 
 .controls {
@@ -309,32 +365,11 @@ footer li {
     background-color: transparent;
 }
 
-/*
-R Y G P B O 
-R Y B P G + Y / P
-Y B R G + Y
-G B R
-*/
-
-
-/* BUTTON COLORS */
+/* GAME BUTTONS */
+/* GAME BUTTON > STANDARD */
 .one {
     fill: var(--btn-green);
     filter: drop-shadow(0 0 5px var(--btn-green));
-}
-
-.one:hover,
-.two:hover,
-.three:hover,
-.four:hover,
-.five:hover,
-.six:hover {
-    fill: black;
-}
-
-.one-pressed {
-    fill: var(--btn-green-active);
-    filter: drop-shadow(0 0 20px var(--btn-green-active));
 }
 
 .two {
@@ -342,19 +377,9 @@ G B R
     filter: drop-shadow(0 0 5px var(--btn-red));
 }
 
-.two-pressed {
-    fill: var(--btn-red-active);
-    filter: drop-shadow(0 0 20px var(--btn-red-active));
-}
-
 .three {
     fill: var(--btn-blue);
     filter: drop-shadow(0 0 5px var(--btn-blue));
-}
-
-.three-pressed {
-    fill: var(--btn-blue-active);
-    filter: drop-shadow(0 0 20px var(--btn-blue-active));
 }
 
 .four {
@@ -362,19 +387,9 @@ G B R
     filter: drop-shadow(0 0 5px var(--btn-yellow));
 }
 
-.four-pressed {
-    fill: var(--btn-yellow-active);
-    filter: drop-shadow(0 0 20px var(--btn-yellow-active));
-}
-
 .five {
     fill: var(--btn-purple);
     filter: drop-shadow(0 0 5px var(--btn-purple));
-}
-
-.five-pressed {
-    fill: var(--btn-purple-active);
-    filter: drop-shadow(0 0 20px var(--btn-purple-active));
 }
 
 .six {
@@ -382,14 +397,34 @@ G B R
     filter: drop-shadow(0 0 5px var(--btn-orange));
 }
 
-.six-pressed {
-    fill: var(--btn-orange-active);
-    filter: drop-shadow(0 0 20px var(--btn-orange-active));
-}
-
 .inactive {
     fill: var(--btn-inactive);
     filter: drop-shadow(0 0 3px var(--btn-inactive));
+}
+
+/* GAME BUTTON > HOVER */
+.one:hover {
+    filter: drop-shadow(0 0 10px var(--btn-green));
+}
+
+.two:hover {
+    filter: drop-shadow(0 0 10px var(--btn-red));
+}
+
+.three:hover {
+    filter: drop-shadow(0 0 10px var(--btn-blue));
+}
+
+.four:hover {
+    filter: drop-shadow(0 0 10px var(--btn-yellow));
+}
+
+.five:hover {
+    filter: drop-shadow(0 0 10px var(--btn-purple));
+}
+
+.six:hover {
+    filter: drop-shadow(0 0 10px var(--btn-orange));
 }
 
 .inactive:hover {
@@ -397,4 +432,33 @@ G B R
     filter: drop-shadow(0 0 3px var(--btn-inactive));
 }
 
-/* ////////////////////////////// */
+/* GAME BUTTON > PRESSED */
+.one-pressed {
+    fill: var(--btn-green-active);
+    filter: drop-shadow(0 0 20px var(--btn-green-active));
+}
+
+.two-pressed {
+    fill: var(--btn-red-active);
+    filter: drop-shadow(0 0 20px var(--btn-red-active));
+}
+
+.three-pressed {
+    fill: var(--btn-blue-active);
+    filter: drop-shadow(0 0 20px var(--btn-blue-active));
+}
+
+.four-pressed {
+    fill: var(--btn-yellow-active);
+    filter: drop-shadow(0 0 20px var(--btn-yellow-active));
+}
+
+.five-pressed {
+    fill: var(--btn-purple-active);
+    filter: drop-shadow(0 0 20px var(--btn-purple-active));
+}
+
+.six-pressed {
+    fill: var(--btn-orange-active);
+    filter: drop-shadow(0 0 20px var(--btn-orange-active));
+}

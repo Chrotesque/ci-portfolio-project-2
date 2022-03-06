@@ -32,16 +32,14 @@
         <section>
             <div id="game-area">
                 <!-- GAME SECTION: TITLE -->
-                <div id="title">
-                    <h1 class="glow">Simon Game</h1>
-                </div>
+                <h1 id="title" class="glow">Simon Game<button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="controls"><i class="fas fa-play-circle"
+                            aria-hidden="true"></i></button></h1>
                 <!-- GAME SECTION: NON GAME ELEMENTS -->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640px" height="640px">
                     <path class="game-circle-outer"
                         d="M319.999,639.999 C143.268,639.999 0.0,496.731 0.0,320.0 C0.0,143.268 143.268,0.0 319.999,0.0 C496.730,0.0 639.999,143.268 639.999,320.0 C639.999,496.731 496.730,639.999 319.999,639.999 ZM319.999,13.999 C151.0,13.999 13.999,151.0 13.999,320.0 C13.999,488.999 151.0,625.999 319.999,625.999 C488.999,625.999 625.999,488.999 625.999,320.0 C625.999,151.0 488.999,13.999 319.999,13.999 Z" />
-                    <!--<path class="game-circle-bg"
+                    <path class="game-circle-bg"
                         d="M319.999,13.999 C488.999,13.999 625.999,151.0 625.999,319.999 C625.999,488.999 488.999,625.999 319.999,625.999 C151.0,625.999 13.999,488.999 13.999,319.999 C13.999,151.0 151.0,13.999 319.999,13.999 Z" />
-                    -->
                 </svg>
                 <!-- GAME SECTION: 3 BUTTON LAYOUT -->
                 <div id="btn-set-three" class="svg-btn hide-element">
@@ -92,16 +90,32 @@
                 </div>
                 <!-- GAME SECTION: MIDDLE CONTROLS -->
                 <div id="middle">
-                    <button data-cat="setting" data-type="difficulty" data-value="easy" type="button" class="difficulty">Easy</button>
-                    <button data-cat="setting" data-type="difficulty" data-value="normal" type="button" class="difficulty">Normal</button>
-                    <button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="controls"><i class="fas fa-play-circle" aria-hidden="true"></i></button>
-                    <button data-cat="setting" data-type="difficulty" data-value="hard" type="button" class="difficulty">Hard</button>
-                    <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
+                    <div id="difficulty-selection" class="show-element">
+                        <div>
+                            <button data-cat="setting" data-type="difficulty" data-value="easy" type="button" class="difficulty">Easy</button>
+                            <button data-cat="setting" data-type="difficulty" data-value="normal" type="button" class="difficulty">Normal</button>
+                        </div>
+                        <div>
+                            <button data-cat="setting" data-type="difficulty" data-value="hard" type="button" class="difficulty">Hard</button>
+                            <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
+                        </div>
+                    </div>
+                    <div id="in-game" class="hide-element">
+                        <p id="turn-status">Turn</p>
+                        <!--<p id="score-amount">0</p>-->
+                    </div>
                 </div>
                 <!-- GAME SECTION: BOTTOM MENU BUTTONS -->
                 <div id="outer">
                     <button data-cat="menu" data-type="menu" data-value="help" class="controls" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
                     <button data-cat="menu" data-type="menu" data-value="settings" class="controls" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
+                </div>
+                <div id="score">
+                    <p class="glow" id="score-status"></p>
+                    <p class="glow" id="score-amount"></p>
+                </div>
+                <div id="end-of-game-status">
+                    <p id="game-status" class="glow">Choose a Difficulty</p>
                 </div>
             </div>
         </section>
@@ -178,7 +192,7 @@
                 </fieldset>
                 <fieldset>
                     <legend>Score Multiplier</legend>
-                    <h2 id="score">1</h2>
+                    <h2 id="score-mp">1</h2>
                 </fieldset>
             </div>
             <!-- MENU SECTION: HELP -->
@@ -309,7 +323,7 @@
         </section>
         <section>
             <div id="game-area">
-                <p id="status-display">Current Status</p>
+                <p id="turn-status">Current Status</p>
                 <p id="score-display">No Score</p>
                 <p id="score-amount">0</p>
                 <button data-cat="game-control" data-type="status" data-value="status" type="button" id="btn-status">Start</button>
