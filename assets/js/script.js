@@ -64,17 +64,10 @@ let settings = {
             "round": 500
         },
         "sleep": {
-            "computerTurn": 2000,
+            "computerTurnDelay": 2000,
             "playerTurnLoop": 100,
             "playerButtonPress": 300
         },
-        /*
-                "multiplier": {
-                    "buttons": [-15, 0, 15, 40],
-                    "speed": [-15, 0, 25],
-                    "strict": [0, 30],
-                    "markingsc": [15, 0]
-                },*/
         "multiplier": {
             "buttons": {
                 3: -15,
@@ -577,6 +570,24 @@ function winRound() {
     setScoreStatus("Last Score");
 }
 
+function updateGameStats() {
+    let speed = document.getElementById("stat-speed");
+    let round = document.getElementById("stat-round");
+    let turn = document.getElementById("stat-turn");
+    let sequenceLength = document.getElementById("stat-sequence-length");
+    let scoreMult = document.getElementById("stat-score-mp");
+    speed.innerHTML = currentGame.speed;
+    round.innerHTML = currentGame.round;
+    turn.innerHTML = currentGame.turn;
+    if (currentGame.sequence.length === 10) {
+        sequenceLength.innerHTML = "";
+    } else {
+        sequenceLength.innerHTML = ` + ${currentGame.sequence.length-10}`;
+    }
+
+    scoreMult.innerHTML = currentGame.multiplier * 100 + "%";
+}
+
 /**
  * Processes the computer turn and calls to playerTurn as well as winRound
  */
@@ -587,9 +598,10 @@ async function computerTurn() {
         winRound();
         // otherwise proceed to next turn
     } else {
+        updateGameStats();
         setTurnStatus("Computer Turn");
 
-        await sleep(settings.values.sleep.computerTurn);
+        await sleep(settings.values.sleep.computerTurnDelay);
         for (let i = 0; i < currentGame.turn; i++) {
             //(settings.control.stopRequest === false) ? setTurnStatus("Computer Turn in progress"): stopGame();
             let index = numToString(currentGame.sequence[i] + 1);

@@ -270,7 +270,8 @@ footer li {
     text-shadow: 0 0 5px #fff;
 }
 
-button:hover {
+button:hover,
+path:hover {
     cursor: pointer;
 }
 
