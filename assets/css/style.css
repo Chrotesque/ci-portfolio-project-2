@@ -299,26 +299,47 @@ button:hover {
 }
 
 #difficulty-selection,
-#in-game {
+#in-game-info {
+
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     width: 256px;
-    row-gap: 2rem;
 }
 
-#difficulty-selection div {
+#difficulty-selection {
+    row-gap: 4rem;
+}
+
+#difficulty-selection div,
+#in-game-info div {
     width: 100%;
 }
 
-#in-game p {
+#difficulty-selection button {
+    display: block;
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    height: 2.5rem;
+}
+
+
+#in-game-info {
+    position: inherit;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    row-gap: 3rem;
+}
+
+#in-game-info p {
+    color: var(--standard-light);
+    font-size: 1rem;
     display: block;
     width: 100%;
-    color: var(--standard-light);
-    font-weight: bold;
-    text-align: center;
-    font-size: 2rem;
 }
+
 
 .game-circle-outer {
     fill: var(--btn-inactive);
@@ -340,17 +361,26 @@ button:hover {
     bottom: 1rem;
 }
 
-#end-of-game-status {
+#end-of-game-status,
+#in-game-status {
     text-transform: uppercase;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    font-size: 2.5rem;
     display: inline-block;
     width: 100%;
     text-align: center;
-    transition: all 0.3s ease-in-out;
+}
+
+#end-of-game-status {
+    font-size: 2.25rem;
+}
+
+#in-game-status {
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.5rem;
 }
 
 .controls {

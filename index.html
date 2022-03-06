@@ -100,9 +100,19 @@
                             <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
                         </div>
                     </div>
-                    <div id="in-game" class="hide-element">
-                        <p id="turn-status">Turn</p>
-                        <!--<p id="score-amount">0</p>-->
+                    <div id="in-game-info" class="hide-element">
+                        <div>
+                            <p>Speed</p>
+                            <p>+ 40%</p>
+                            <p>Round / Turn</p>
+                            <p>4 / 3</p>
+                        </div>
+                        <div>
+                            <p>Sequence Length</p>
+                            <p>10 + 4</p>
+                            <p>Score Multiplier</p>
+                            <p>180%</p>
+                        </div>
                     </div>
                 </div>
                 <!-- GAME SECTION: BOTTOM MENU BUTTONS -->
@@ -116,6 +126,9 @@
                 </div>
                 <div id="end-of-game-status">
                     <p id="game-status" class="glow">Choose a Difficulty</p>
+                </div>
+                <div id="in-game-status" class="hide-element">
+                    <p id="turn-status"></p>
                 </div>
             </div>
         </section>

@@ -421,9 +421,9 @@ function toggleElement(element) {
 }
 
 function toggleMiddleDisplay() {
-    let outOfGame = document.getElementById("difficulty-selection");
-    let inGame = document.getElementById("in-game");
-    toggleElement(outOfGame);
+    let diffSelect = document.getElementById("difficulty-selection");
+    let inGame = document.getElementById("in-game-info");
+    toggleElement(diffSelect);
     toggleElement(inGame);
 }
 
@@ -551,7 +551,8 @@ function gameOver() {
     toggleMiddleDisplay();
     handleHighscore();
     deactivateButtonSet();
-    setGameStatus("You lost!");
+    setTurnStatus("");
+    setGameStatus("Game Over!");
     setScoreStatus("Last Score");
     let statusBtn = document.getElementById("btn-status");
     statusBtn.setAttribute("data-value", "start");
@@ -562,7 +563,8 @@ function stopGame() {
     toggleMiddleDisplay();
     //handleHighscore();
     deactivateButtonSet();
-    setGameStatus("You stopped the game!");
+    setTurnStatus("");
+    setGameStatus("Game Stopped!");
     setScoreStatus("Last Score");
     let statusBtn = document.getElementById("btn-status");
     statusBtn.setAttribute("data-value", "start");
