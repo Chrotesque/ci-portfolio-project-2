@@ -14,7 +14,13 @@
     --standard-highlight: #f9f9f9;
     --standard-shadow: #151515;
     --standard-border: #d9d9d3;
-    /* testing */
+
+    --btn-setting-inactive: #1785c0;
+    --btn-setting-active: #febf2e;
+    --btn-text-inactive: #fff;
+    --btn-text-active: #000;
+
+    /* Game area & buttons */
     --circle-bg: #d2d2cb;
 
     --btn-red: rgba(184, 0, 0, 1);
@@ -31,12 +37,6 @@
     --btn-green-active: rgba(0, 224, 0, 1);
     --btn-purple-active: rgba(224, 0, 224, 1);
     --btn-orange-active: rgba(224, 153, 0, 1);
-
-    --btn-setting-inactive: #1785c0;
-    --btn-setting-active: #febf2e;
-    --btn-text-inactive: #fff;
-    --btn-text-active: #000;
-    /* testing */
 }
 
 body {
@@ -150,13 +150,7 @@ fieldset {
 
 /* || ELEMENTS */
 /* || ELEMENTS > BUTTONS */
-button {
-    font-size: 1rem;
-    padding: 0.5rem;
-    color: var(--standard-light);
-    background-color: #3D3D3D;
-    font-weight: bold;
-}
+
 
 /* s stands for side, e stands for edge */
 button.es {
@@ -238,6 +232,9 @@ footer li {
 .difficulty {
     width: 100%;
     height: 2rem;
+    color: var(--standard-light);
+    background-color: #3D3D3D;
+    font-weight: bold;
 }
 
 .status {
@@ -300,14 +297,16 @@ footer li {
     margin-top: -4rem;
 }
 
-#outer button {
+.controls {
     font-size: 4rem;
     background-color: transparent;
+    color: var(--standard-light);
 }
 
-#outer button:hover {
+.controls:hover {
     color: #fff;
-    text-shadow: 0 0 5px #fff;
+    text-shadow: 0 0 7px var(--btn-setting-active);
+    background-color: transparent;
 }
 
 /* BUTTON COLORS */

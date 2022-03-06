@@ -146,11 +146,9 @@ function toggleMenu(clicked) {
     let selection = clicked.getAttribute("data-value");
     let div = document.getElementById("menu-" + selection);
     if (div.className === "hide-element") {
-        clicked.className = "active";
         div.className = "show-element";
     } else {
         div.className = "hide-element";
-        clicked.removeAttribute("class");
     }
 
 }
