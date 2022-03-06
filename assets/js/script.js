@@ -5,7 +5,7 @@
 let settings = {
     "control": {
         "stopRequest": true,
-        "locked": true
+        "locked": false
     },
     "setting": {
         "difficulty": "normal",
@@ -455,8 +455,7 @@ function controlGame(button) {
             runGame();
             break;
         case "stop":
-            settings.control.stopRequest = true;
-            stopGame();
+            stopGame("controlGame");
             break;
         default:
             playerInput.push(stringToNum(curButton) - 1);
@@ -512,6 +511,8 @@ function createSequence(length, buttonAmt) {
  */
 function runGame() {
 
+    settings.control.stopRequest = false;
+
     // for ease of use during creation of a snapshot of the settings
     let diffSettings = settings.difficulty[settings.setting.difficulty];
     let speedSettings = settings.values.speed;
@@ -552,16 +553,21 @@ function gameOver() {
     statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
 
-function stopGame() {
-    toggleMiddleDisplay();
-    //handleHighscore();
-    deactivateButtonSet();
-    setTurnStatus("");
-    setGameStatus("Game Stopped!");
-    setScoreStatus("Last Score");
-    let statusBtn = document.getElementById("btn-status");
-    statusBtn.setAttribute("data-value", "start");
-    statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
+function stopGame(loca) {
+    if (settings.control.stopRequest === false) {
+        settings.control.stopRequest = true;
+        toggleMiddleDisplay();
+        //handleHighscore();
+        deactivateButtonSet();
+        setTurnStatus("");
+        setGameStatus("Game Stopped!");
+        setScoreStatus("Last Score");
+        let statusBtn = document.getElementById("btn-status");
+        statusBtn.setAttribute("data-value", "start");
+        statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
+    }
+
+
 }
 
 function winRound() {
@@ -599,7 +605,9 @@ async function computerTurn() {
         // otherwise proceed to next turn
     } else {
         updateGameStats();
-        setTurnStatus("Computer Turn");
+        if (settings.control.stopRequest === false) {
+            setTurnStatus("Computer Turn");
+        }
 
         await sleep(settings.values.sleep.computerTurnDelay);
         for (let i = 0; i < currentGame.turn; i++) {
@@ -611,8 +619,7 @@ async function computerTurn() {
                     curButton = button;
                 }
             }
-            console.log(currentGame.sequence);
-            (settings.control.stopRequest === false) ? curButton.classList.add(index + "-pressed"): stopGame();
+            (settings.control.stopRequest === false) ? curButton.classList.add(index + "-pressed"): stopGame("computerTurn 620");
             //(settings.control.stopRequest === false) ? gameButtons[currentGame.sequence[i]].classList.add(index + "-pressed"): stopGame();
             await sleep(currentGame.speed.press);
             //gameButtons[currentGame.sequence[i]].classList.remove(index + "-pressed");
@@ -620,7 +627,7 @@ async function computerTurn() {
             await sleep(currentGame.speed.delay);
         }
 
-        (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame();
+        (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame("computerTurn 628");
 
     }
 
@@ -636,7 +643,9 @@ async function playerTurn(sequence, turn) {
     let currentSequence = currentGame.sequence.slice(0, currentGame.turn);
     let validity = true;
     let counter = currentSequence.length;
-    setTurnStatus("Your Turn");
+    if (settings.control.stopRequest === false) {
+        setTurnStatus("Your Turn");
+    }
 
     while (validity === true && counter > 0) {
         if (settings.control.stopRequest === false) {
@@ -663,7 +672,7 @@ async function playerTurn(sequence, turn) {
     } else if (validity === false) {
         gameOver();
     } else {
-        stopGame();
+        stopGame("playerTurn");
     }
 
 }
