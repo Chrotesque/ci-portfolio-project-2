@@ -165,11 +165,7 @@ function toggleMenu(clicked) {
 
     let selection = clicked.getAttribute("data-value");
     let div = document.getElementById("menu-" + selection);
-    if (div.className === "hide-element") {
-        div.className = "show-element";
-    } else {
-        div.className = "hide-element";
-    }
+    toggleElement(div);
 
 }
 
@@ -260,15 +256,14 @@ function updateGameButtons() {
     let identifier = numToString(newButtonAmt);
     let allButtonSets = document.getElementsByClassName("svg-btn");
     for (let button of allButtonSets) {
-        // first: hide them all
-        if (button.classList.contains("show-element")) {
-            button.classList.add("hide-element");
-            button.classList.remove("show-element");
+        // firstly hide them all
+        if (!button.classList.contains("hide-element")) {
+            toggleElement(button);
         }
     }
     let newSetToShow = document.getElementById("btn-set-" + identifier);
-    // second: show the correct one
-    newSetToShow.classList.add("show-element");
+    // secondly show the correct one
+    toggleElement(newSetToShow);
 
 }
 
@@ -380,8 +375,28 @@ function setMenuData() {
     chaosMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.chaos));
 }
 
+function toggleAdvancedInfo() {
+    let setting = settings.setting["stats-display"];
+    if (setting === "off") {
+        document.getElementById("multiplier-buttons").classList.add("hide-element");
+        document.getElementById("multiplier-speed").classList.add("hide-element");
+        document.getElementById("multiplier-markingsc").classList.add("hide-element");
+        document.getElementById("multiplier-strict").classList.add("hide-element");
+        document.getElementById("multiplier-rampup").classList.add("hide-element");
+        document.getElementById("multiplier-chaos").classList.add("hide-element");
+    } else {
+        document.getElementById("multiplier-buttons").classList.remove("hide-element");
+        document.getElementById("multiplier-speed").classList.remove("hide-element");
+        document.getElementById("multiplier-markingsc").classList.remove("hide-element");
+        document.getElementById("multiplier-strict").classList.remove("hide-element");
+        document.getElementById("multiplier-rampup").classList.remove("hide-element");
+        document.getElementById("multiplier-chaos").classList.remove("hide-element");
+        toggleElement(document.getElementById("in-game-info"));
+        lockElement(document.getElementById("in-game-info"));
+    }
+}
+
 function prepareMultiplierData(input) {
-    console.log(`length: ${input.length} | ${input}`);
     let result = " (";
     for (let i = 0; i < input.length; i++) {
         // all entries apart from the last
@@ -421,6 +436,9 @@ function changeSetting(clicked) {
     let customChanges = 0;
     for (let button of allButtons) {
         if (button.getAttribute("data-type") === type) {
+            if (button.getAttribute("data-type") === "stats-display") {
+                toggleAdvancedInfo();
+            }
             if (button.getAttribute("data-cat") === "custom") {
                 ++customChanges;
             }
@@ -449,6 +467,7 @@ function changeSetting(clicked) {
 }
 
 function toggleElement(element) {
+    /*
     if (element.classList.contains("show-element")) {
         element.classList.remove("show-element");
         element.classList.add("hide-element");
@@ -456,7 +475,24 @@ function toggleElement(element) {
         element.classList.add("show-element");
         element.classList.remove("hide-element");
     }
+    */
+    // element is hidden, remove to show
 
+    if (element.classList.contains("hide-element")) {
+        element.classList.remove("hide-element");
+        // element is visible, add hide
+    } else {
+        element.classList.add("hide-element");
+    }
+
+}
+
+function lockElement(element) {
+    if (element.classList.contains("lock-element")) {
+        element.classList.remove("lock-element");
+    } else {
+        element.classList.add("lock-element");
+    }
 }
 
 function toggleDifficultySelection() {
@@ -635,7 +671,7 @@ function updateGameStats() {
     let turn = document.getElementById("stat-turn");
     let sequenceLength = document.getElementById("stat-sequence-length");
     let scoreMult = document.getElementById("stat-score-mp");
-    speed.innerHTML = currentGame.speed;
+    speed.innerHTML = 100 + 10 * (currentGame.round - 1) + "%";
     round.innerHTML = currentGame.round;
     turn.innerHTML = currentGame.turn;
     if (currentGame.sequence.length === 10) {
@@ -644,7 +680,7 @@ function updateGameStats() {
         sequenceLength.innerHTML = ` + ${currentGame.sequence.length-10}`;
     }
 
-    scoreMult.innerHTML = currentGame.multiplier * 100 + "%";
+    scoreMult.innerHTML = Math.round(currentGame.multiplier * 100) + "%";
 }
 
 async function newRound() {

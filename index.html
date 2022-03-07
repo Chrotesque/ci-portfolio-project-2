@@ -41,7 +41,7 @@
                     </svg>
                 </div>
                 <!-- GAME SECTION: 4 BUTTON LAYOUT -->
-                <div id="btn-set-four" class="svg-btn show-element">
+                <div id="btn-set-four" class="svg-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640px" height="640px">
                         <path class="four inactive" data-value="four" d="M447.6,304.0 C439.827,246.435 394.425,200.747 336.999,193.125 L336.999,64.575 C465.169,72.981 567.574,175.698 575.489,304.0 L447.6,304.0 Z" />
                         <path class="three inactive" data-value="three" d="M447.6,335.999 L575.489,335.999 C567.574,464.301 465.169,567.18 337.0,575.424 L337.0,446.874 C394.425,439.252 439.827,393.564 447.6,335.999 Z" />
@@ -78,28 +78,32 @@
                 </div>
                 <!-- GAME SECTION: MIDDLE CONTROLS -->
                 <div id="middle">
-                    <div id="difficulty-selection" class="show-element">
-                        <div>
-                            <button data-cat="setting" data-type="difficulty" data-value="easy" type="button" class="difficulty">Easy</button>
-                            <button data-cat="setting" data-type="difficulty" data-value="normal" type="button" class="difficulty">Normal</button>
-                        </div>
-                        <div>
-                            <button data-cat="setting" data-type="difficulty" data-value="hard" type="button" class="difficulty">Hard</button>
-                            <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
+                    <div id="difficulty-selection">
+                        <div class="flex-container flex-difficulty">
+                            <div>
+                                <button data-cat="setting" data-type="difficulty" data-value="easy" type="button" class="difficulty">Easy</button>
+                                <button data-cat="setting" data-type="difficulty" data-value="normal" type="button" class="difficulty">Normal</button>
+                            </div>
+                            <div>
+                                <button data-cat="setting" data-type="difficulty" data-value="hard" type="button" class="difficulty">Hard</button>
+                                <button data-cat="setting" data-type="difficulty" data-value="custom" type="button" class="difficulty">Custom</button>
+                            </div>
                         </div>
                     </div>
-                    <div id="in-game-info" class="hide-element">
-                        <div>
-                            <p>Speed</p>
-                            <p class="stat" id="stat-speed">+ 40%</p>
-                            <p>Round / Turn</p>
-                            <p class="stat"><span id="stat-round">4</span> / <span id="stat-turn">3</span></p>
-                        </div>
-                        <div>
-                            <p>Sequence Length</p>
-                            <p class="stat"> 10<span id="stat-sequence-length">4</span></p>
-                            <p>Score Multiplier</p>
-                            <p class="stat" id="stat-score-mp">180%</p>
+                    <div id="in-game-info" class="lock-element">
+                        <div class="flex-container flex-ingame">
+                            <div>
+                                <p>Speed</p>
+                                <p class="stat" id="stat-speed">0</p>
+                                <p>Round / Turn</p>
+                                <p class="stat"><span id="stat-round">4</span> / <span id="stat-turn">0</span></p>
+                            </div>
+                            <div>
+                                <p>Sequence Length</p>
+                                <p class="stat"> 10<span id="stat-sequence-length">0</span></p>
+                                <p>Score Multiplier</p>
+                                <p class="stat" id="stat-score-mp">0</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -169,7 +173,7 @@
                 <fieldset>
                     <legend>Custom Difficulty</legend>
                     <div class="setting-row">
-                        <h3>Buttons<span id="multiplier-buttons">0</span></h3>
+                        <h3>Buttons<span id="multiplier-buttons" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings edge-shared">3</button><button data-cat="custom" data-type="buttons" data-value="4" type="button"
                                 class="settings">4</button><button data-cat="custom" data-type="buttons" data-value="5" type="button" class="settings">5</button><button data-cat="custom" data-type="buttons" data-value="6"
@@ -177,35 +181,35 @@
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>Game Speed<span id="multiplier-speed">0</span></h3>
+                        <h3>Game Speed<span id="multiplier-speed" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings edge-shared">Slow</button><button data-cat="custom" data-type="speed" data-value="normal"
                                 type="button" class="settings">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings shared-edge">Fast</button>
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>All Markings<span id="multiplier-markingsc">0</span></h3>
+                        <h3>All Markings<span id="multiplier-markingsc" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="markingsc" data-value="on"
                                 type="button" class="settings shared-edge">On</button>
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>Strict Mode<span id="multiplier-strict">0</span></h3>
+                        <h3>Strict Mode<span id="multiplier-strict" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>Ramp Up<span id="multiplier-rampup">0</span></h3>
+                        <h3>Ramp Up<span id="multiplier-rampup" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="rampup" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="rampup" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>Chaos Mode<span id="multiplier-chaos">0</span></h3>
+                        <h3>Chaos Mode<span id="multiplier-chaos" class="hide-element">0</span></h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="chaos" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="chaos" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
