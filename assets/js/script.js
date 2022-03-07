@@ -1,8 +1,8 @@
-//  || SCOPE FUNCTION START
+// SCOPE FUNCTION START
 
 (function () {
 
-    //  || GLOBAL VARIABLES
+    // GLOBAL VARIABLES
 
     let allButtons = [];
     let gameButtons = [];
@@ -116,7 +116,7 @@
         }
     }
 
-    //  || EVENT LISTENERS
+    // EVENT LISTENERS
 
     document.addEventListener("DOMContentLoaded", function () {
 
@@ -148,7 +148,7 @@
         }
     })
 
-    //  || GAME LOGIC
+    // GAME LOGIC
 
     /**
      * Controls the game depending on what button has been pressed, start, stop, etc.
@@ -304,7 +304,7 @@
         scoreMult.innerHTML = Math.round(currentGame.multiplier * 100) + "%";
     }
 
-    //  || GAME STATUS
+    // GAME STATUS
 
     /**
      * Ends the game after making a mistake
@@ -357,7 +357,7 @@
         computerTurn();
     }
 
-    //  || SINGLE USE HTML POPULATION
+    // SINGLE USE HTML POPULATION
 
     /**
      * Reads globVar and sets settings accordingly through adding html class
@@ -405,7 +405,7 @@
         chaosMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.chaos));
     }
 
-    //  || SETTINGS
+    // SETTINGS
 
     /**
      * Change game setting for next game through adding &| removing css class as well as changing global 
@@ -446,7 +446,7 @@
 
     }
 
-    //  || SCORE
+    // SCORE
 
     /**
      * Add to the current score amount 
@@ -486,7 +486,7 @@
         document.getElementById("score-mp").innerHTML = custom;
     }
 
-    //  || STATUS CHANGES
+    // STATUS CHANGES
 
     /**
      * Changes the turn status display, ie: Your Turn, Computer Turn, etc.
@@ -512,7 +512,7 @@
         score.innerHTML = update + " : ";
     }
 
-    //  || TOGGLERS
+    // TOGGLERS
 
     /**
      * Toggles a hidden element to either hidden / shown
@@ -611,7 +611,7 @@
 
     }
 
-    //  || GAME BUTTONS
+    // GAME BUTTONS
 
     /**
      * Saves all available game buttons in global array for convenient access
@@ -664,7 +664,7 @@
         curButton.classList.remove(input + "-pressed");
     }
 
-    //  || HELPER FUNCTIONS
+    // HELPER FUNCTIONS
 
     /**
      * Converts an integer into a string and returns it
@@ -790,6 +790,6 @@
         return result;
     }
 
-    //  || SCOPE FUNCTION END
+    // SCOPE FUNCTION END
 
 })();

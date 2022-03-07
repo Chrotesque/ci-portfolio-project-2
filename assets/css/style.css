@@ -1,7 +1,7 @@
-/* || IMPORTS */
+/* IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap');
 
-/* || GENERAL */
+/* GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -71,8 +71,8 @@ button:hover {
     color: var(--standard-highlight);
 }
 
-/* || CONTENT */
-/* || CONTENT > TITLE & SCORE */
+/* CONTENT */
+/* CONTENT > TITLE & SCORE */
 #title,
 #score {
     position: absolute;
@@ -115,7 +115,7 @@ button:hover {
     text-shadow: 0 0 7px var(--standard-orange);
 }
 
-/* || CONTENT > GAME AREA */
+/* CONTENT > GAME AREA */
 #game-area {
     position: fixed;
     display: flex;
@@ -130,7 +130,7 @@ button:hover {
     z-index: 0;
 }
 
-/* || CONTENT > GAME AREA > MIDDLE DISPLAY */
+/* CONTENT > GAME AREA > MIDDLE DISPLAY */
 #middle {
     box-sizing: border-box;
     width: 256px;
@@ -230,7 +230,7 @@ button:hover {
     font-size: 1.5rem;
 }
 
-/* || CONTENT > GAME BUTTONS */
+/* CONTENT > GAME BUTTONS */
 .game-circle-outer {
     fill: var(--btn-inactive);
 }
@@ -243,7 +243,7 @@ button:hover {
     position: absolute;
 }
 
-/* || CONTENT > GAME BUTTONS > STANDARD */
+/* CONTENT > GAME BUTTONS > STANDARD */
 .one {
     fill: var(--btn-green);
     filter: drop-shadow(0 0 3px var(--btn-green));
@@ -279,7 +279,7 @@ button:hover {
     filter: drop-shadow(0 0 3px var(--btn-inactive));
 }
 
-/* || CONTENT > GAME BUTTONS > HOVER */
+/* CONTENT > GAME BUTTONS > HOVER */
 .one:hover {
     stroke: var(--btn-green-stroke);
     stroke-width: var(--btn-hover-stroke);
@@ -317,7 +317,7 @@ button:hover {
     stroke-width: 0;
 }
 
-/* || CONTENT > GAME BUTTONS > PRESSED */
+/* CONTENT > GAME BUTTONS > PRESSED */
 .one-pressed {
     fill: var(--btn-green-active);
     filter: drop-shadow(0 0 20px var(--btn-green-active));
@@ -348,7 +348,7 @@ button:hover {
     filter: drop-shadow(0 0 20px var(--btn-orange-active));
 }
 
-/* || MENU */
+/* MENU */
 #menu-icon-container {
     width: 608px;
     display: flex;
@@ -413,7 +413,7 @@ button.closer:hover {
     color: var(--standard-bg);
 }
 
-/* || MENU > SETTINGS */
+/* MENU > SETTINGS */
 #menu-settings {
     width: 512px;
 }
@@ -496,7 +496,7 @@ span {
     color: var(--standard-note);
 }
 
-/* || MENU > HELP */
+/* MENU > HELP */
 #menu-help p {
     margin-top: 1rem;
 }
@@ -543,3 +543,13 @@ footer li {
     color: var(--standard-light);
     text-shadow: 0 0 1px var(--standard-light);
 }
+
+.svg-set {
+    width: 640px;
+    height: 640px;
+    background-size: 640px 640px;
+}
+
+/* MEDIA QUERIES */
+/* MEDIA QUERIES > PHONES */
+@media (max-width: 768px) {}
