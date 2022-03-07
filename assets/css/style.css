@@ -411,24 +411,25 @@ button.closer:hover {
 }
 
 legend {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     padding: 0.25rem 0.75rem 0.25rem 0.5rem;
     margin-left: -1rem;
     background: #24aff9;
     border-radius: 0.5rem;
+    font-weight: bold;
 }
 
 h3 {
-    font-size: 1.25rem;
-    line-height: 3rem;
+    font-size: 1.1rem;
+    line-height: 2.5rem;
     display: inline-block;
 }
 
 fieldset {
     border: 1px solid #aaaa9d;
     border-radius: 0.5rem;
-    padding: 1rem 1rem 1rem 2rem;
-    margin-top: 2rem;
+    padding: 0.5rem 1rem 1rem 2rem;
+    margin-top: 1.5rem;
     background-color: #BDBDB3;
 }
 
@@ -438,6 +439,10 @@ fieldset {
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-between;
+}
+
+.extra {
+    padding-top: 1.25rem;
 }
 
 .button-container {
@@ -451,7 +456,7 @@ fieldset {
 }
 
 button.settings {
-    padding: 0.75rem;
+    padding: 0.5rem;
     font-size: 1rem;
     font-weight: bold;
     color: var(--standard-light);
