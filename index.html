@@ -12,22 +12,10 @@
 
 <body>
 
-
     <noscript>
         <p>Your Javascript is NOT enabled. Unfortunately enough JavaScript is required to play this game.</p>
     </noscript>
     <main>
-        <section>
-            <!--
-            <div id="difficulty-selection">
-                <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button><button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button><button
-                    data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
-            </div>
-            <div id="assisting-controls">
-                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
-                <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
-                -->
-        </section>
         <!-- GAME SECTION -->
         <section>
             <div id="game-area">
@@ -138,22 +126,22 @@
             <div id="menu-settings" class="hide-element">
                 <div class="menu-headline">
                     <h2><i class="fas fa-cog" aria-hidden="true"></i> Settings</h2>
-                    <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times" aria-hidden="true"></i></button>
+                    <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-timedge-shared" aria-hidden="true"></i></button>
                 </div>
                 <fieldset>
                     <legend>Game Settings</legend>
                     <div class="setting-row">
                         <h3>Sound</h3>
                         <div class="button-container">
-                            <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button"
-                                class="settings se">On</button>
+                            <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button"
+                                class="settings shared-edge">On</button>
                         </div>
                     </div>
                     <div class="setting-row">
                         <h3>Markings</h3>
                         <div class="button-container">
-                            <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button"
-                                class="settings se">
+                            <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings edge-shared">12</button><button data-type="markings" data-cat="setting" data-value="sym"
+                                type="button" class="settings shared-edge">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <i class="fas fa-square" aria-hidden="true"></i>
                             </button>
@@ -162,9 +150,9 @@
                     <div class="setting-row">
                         <h3>Order</h3>
                         <div class="button-container">
-                            <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
+                            <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings edge-shared">
                                 <i class="fas fa-caret-square-left" aria-hidden="true"></i>
-                            </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
+                            </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings shared-edge">
                                 <i class="fas fa-caret-square-right" aria-hidden="true"></i>
                             </button>
                         </div>
@@ -175,31 +163,30 @@
                     <div class="setting-row">
                         <h3>Buttons</h3>
                         <div class="button-container">
-                            <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings es"><img src="/assets/images/general/btn_3_norm.png"></button><button data-cat="custom"
-                                data-type="buttons" data-value="4" type="button" class="settings ss"><img src="/assets/images/general/btn_4_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="5"
-                                type="button" class="settings ss"><img src="/assets/images/general/btn_5_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="6" type="button"
-                                class="settings se"><img src="/assets/images/general/btn_6_norm.png"></button>
+                            <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings edge-shared">3</button><button data-cat="custom" data-type="buttons" data-value="4" type="button"
+                                class="settings">4</button><button data-cat="custom" data-type="buttons" data-value="5" type="button" class="settings">5</button><button data-cat="custom" data-type="buttons" data-value="6"
+                                type="button" class="settings shared-edge">6</button>
                         </div>
                     </div>
                     <div class="setting-row">
                         <h3>Speed</h3>
                         <div class="button-container">
-                            <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button><button data-cat="custom" data-type="speed" data-value="normal" type="button"
-                                class="settings ss">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
+                            <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings edge-shared">Slow</button><button data-cat="custom" data-type="speed" data-value="normal"
+                                type="button" class="settings">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings shared-edge">Fast</button>
                         </div>
                     </div>
                     <div class="setting-row">
                         <h3>Strict</h3>
                         <div class="button-container">
-                            <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
-                                class="settings se">On</button>
+                            <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
+                                class="settings shared-edge">On</button>
                         </div>
                     </div>
                     <div class="setting-row">
                         <h3>Markings</h3>
                         <div class="button-container">
-                            <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="markingsc" data-value="on" type="button"
-                                class="settings se">On</button>
+                            <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="markingsc" data-value="on"
+                                type="button" class="settings shared-edge">On</button>
                         </div>
                     </div>
                 </fieldset>
@@ -231,123 +218,8 @@
         </section>
 
     </main>
-    <!-- old html
 
-        <main>
-        <section>
-            <div id="difficulty-selection">
-                <button data-cat="setting" data-type="difficulty" data-value="normal" type="button">Normal</button><button data-cat="setting" data-type="difficulty" data-value="hard" type="button">Hard</button><button
-                    data-cat="setting" data-type="difficulty" data-value="custom" type="button">Custom</button>
-            </div>
-            <div id="assisting-controls">
-                <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
-                <button data-cat="menu" data-type="menu" data-value="help" id="btn-help" type="button">Help</button>
-                <div id="menu-settings" class="show-element">
-                    <div class="menu-headline">
-                        <h2><i class="fas fa-cog" aria-hidden="true"></i> Settings</h2>
-                        <button data-cat="menu" data-type="menu" data-value="settings" id="btn-settings" type="button" class="closer"><i class="fas fa-times" aria-hidden="true"></i></button>
-                    </div>
-                    <fieldset>
-                        <legend>Game Settings</legend>
-                        <div class="setting-row">
-                            <h3>Sound</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="sound" data-value="off" type="button" class="settings es">Off</button><button data-cat="setting" data-type="sound" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Markings</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings es">12</button><button data-type="markings" data-cat="setting" data-value="sym" type="button"
-                                    class="settings se">
-                                    <i class="fas fa-star" aria-hidden="true"></i>
-                                    <i class="fas fa-square" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Order</h3>
-                            <div class="button-container">
-                                <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings es">
-                                    <i class="fas fa-caret-square-left" aria-hidden="true"></i>
-                                </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings se">
-                                    <i class="fas fa-caret-square-right" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Custom Difficulty</legend>
-                        <div class="setting-row">
-                            <h3>Buttons</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings es"><img src="/assets/images/general/btn_3_norm.png"></button><button data-cat="custom"
-                                    data-type="buttons" data-value="4" type="button" class="settings ss"><img src="/assets/images/general/btn_4_norm.png"></button><button data-cat="custom" data-type="buttons"
-                                    data-value="5" type="button" class="settings ss"><img src="/assets/images/general/btn_5_norm.png"></button><button data-cat="custom" data-type="buttons" data-value="6" type="button"
-                                    class="settings se"><img src="/assets/images/general/btn_6_norm.png"></button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Speed</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings es">Slow</button><button data-cat="custom" data-type="speed" data-value="normal" type="button"
-                                    class="settings ss">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings se">Fast</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Strict</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                        <div class="setting-row">
-                            <h3>Markings</h3>
-                            <div class="button-container">
-                                <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings es">Off</button><button data-cat="custom" data-type="markingsc" data-value="on" type="button"
-                                    class="settings se">On</button>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <legend>Score Multiplier</legend>
-                        <h2 id="score">1</h2>
-                    </fieldset>
-                </div>
-                <div id="menu-help" class="hide-element">
-                    <h2>Help</h2>
-                    <p>Simon Says is a simple game of memorizing the order of buttons pressed by the computer, then repeating the order yourself.</p>
-                    <p>The game consists of turns, sequences and rounds.</p>
-                    <p>Both you and the computer take turns to press the game buttons.</p>
-                    <p>The order in which the buttons are pressed is the sequence which grows with each turn but remains the same until the end of the round.</p>
-                    <p>Once the player has replicated the entire sequence correctly, the round ends and a new one starts.</p>
-                    <p>Should the player make a mistake, the game is either over OR the previous computer turn is repeated - depending on the difficulty.</p>
-                    <p>There are 3 difficulty levels:
-                        <ul>
-                            <li>Normal - The sequences are played at the standard speed, you have to deal with 4 buttons and can repeat a turn upon making a mistake.</li>
-                            <li>Hard - The sequences are played faster, you have 6 buttons and a single mistake will end the game.</li>
-                            <li>Custom - This is where we leave the phrase "simple game" behind and the settings menu comes into full play, allowing for incremental changes to suit your needs and wants.</li>
-                        </ul>
-                    </p>
-                    </p>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div id="game-area">
-                <p id="turn-status">Current Status</p>
-                <p id="score-display">No Score</p>
-                <p id="score-amount">0</p>
-                <button data-cat="game-control" data-type="status" data-value="status" type="button" id="btn-status">Start</button>
-            </div>
-        </section>
-
-    </main>
-
-    -->
-
-    <!-- Credits -->
+    <!-- FOOTER -->
     <footer>
         <ul class="socials">
             <li><a href="http://www.chrotesque.com" target="_blank" rel="noopener" aria-label="You can find more of my older visual work on my website (opens in a new tab)"><i class="fas fa-globe"
@@ -360,6 +232,7 @@
         </ul>
     </footer>
 
+    <!-- SCRIPTS -->
     <script src="https://kit.fontawesome.com/e7deff2959.js" crossorigin="anonymous"></script>
     <script src="assets/js/script.js"></script>
 </body>
