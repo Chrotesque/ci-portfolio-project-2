@@ -393,6 +393,9 @@ h2 {
 }
 
 button.closer {
+    position: absolute;
+    top: 1.6rem;
+    right: 1.6rem;
     background: var(--standard-bg);
     width: 3rem;
     height: 3rem;
