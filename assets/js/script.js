@@ -19,28 +19,36 @@ let settings = {
             "buttons": "3",
             "speed": "slow",
             "strict": "off",
-            "markingsc": "on"
+            "markingsc": "on",
+            "rampup": "off",
+            "chaos": "off"
         },
         "normal": {
             "multiplier": 0,
             "buttons": "4",
             "speed": "normal",
             "strict": "off",
-            "markingsc": "on"
+            "markingsc": "on",
+            "rampup": "on",
+            "chaos": "off"
         },
         "hard": {
             "multiplier": 0,
             "buttons": "5",
             "speed": "fast",
             "strict": "on",
-            "markingsc": "on"
+            "markingsc": "on",
+            "rampup": "on",
+            "chaos": "off"
         },
         "custom": {
             "multiplier": 0,
             "buttons": "6",
             "speed": "normal",
             "strict": "off",
-            "markingsc": "on"
+            "markingsc": "on",
+            "rampup": "on",
+            "chaos": "off"
         }
     },
     "values": {
@@ -60,8 +68,8 @@ let settings = {
         },
         "score": {
             "step": 10,
-            "turn": 100,
-            "round": 500
+            "turn": 50,
+            "round": 250
         },
         "sleep": {
             "computerTurnDelay": 2000,
@@ -88,6 +96,14 @@ let settings = {
             "markingsc": {
                 "off": 15,
                 "on": 0
+            },
+            "rampup": {
+                "off": 0,
+                "on": 15
+            },
+            "chaos": {
+                "off": 0,
+                "on": 50
             }
         }
     }
@@ -107,6 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initiateSettings();
     updateScoreMultiplierInternal();
     updateScoreMultiplierExternal();
+    setPointsHelpMenu();
 
     for (let button of allButtons) {
         button.addEventListener("click", function () {
@@ -176,6 +193,15 @@ function initiateSettings() {
         }
     }
 
+}
+
+function setPointsHelpMenu() {
+    let button = document.getElementById("points-button");
+    let turn = document.getElementById("points-turn");
+    let round = document.getElementById("points-round");
+    button.innerHTML = settings.values.score.step;
+    turn.innerHTML = settings.values.score.turn;
+    round.innerHTML = settings.values.score.round;
 }
 
 function numToString(input) {
@@ -330,8 +356,15 @@ function updateScoreMultiplierInternal() {
 }
 
 function updateScoreMultiplierExternal() {
-    let multiplier = Math.round(settings.difficulty.custom.multiplier * 100);
-    document.getElementById("score-mp").innerHTML = multiplier + "%";
+    let easy = Math.round(settings.difficulty.easy.multiplier * 100);
+    let normal = Math.round(settings.difficulty.normal.multiplier * 100);
+    let hard = Math.round(settings.difficulty.hard.multiplier * 100);
+    let custom = Math.round(settings.difficulty.custom.multiplier * 100);
+    document.getElementById("multiplier-easy").innerHTML = easy + "%";
+    document.getElementById("multiplier-normal").innerHTML = normal + "%";
+    document.getElementById("multiplier-hard").innerHTML = hard + "%";
+    document.getElementById("multiplier-custom").innerHTML = custom + "%";
+    document.getElementById("score-mp").innerHTML = custom + "%";
 }
 
 function handleHighscore() {
