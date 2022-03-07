@@ -10,17 +10,14 @@
 
 :root {
     --standard-bg: #272727;
-    --standard-text: #febf2e;
     --standard-light: #c6c6be;
     --standard-note: #4C4C4C;
     --standard-highlight: #f9f9f9;
     --standard-shadow: #151515;
-    --standard-border: #d9d9d3;
+    --standard-blue: #1798dd;
+    --standard-orange: #febf2e;
 
-    --btn-setting-inactive: #1785c0;
-    --btn-setting-active: #febf2e;
-    --btn-text-inactive: #fff;
-    --btn-text-active: #000;
+    --black: #000;
 
     /* Game area & buttons */
     --circle-bg: #d2d2cb;
@@ -53,7 +50,7 @@ body {
     font-family: Nunito;
     font-size: 1.25rem;
     background-color: var(--standard-bg);
-    color: var(--standard-text);
+    color: var(--standard-orange);
 }
 
 .hide-element {
@@ -71,7 +68,7 @@ path:hover {
 
 button:hover {
     background-color: #000;
-    color: #fff;
+    color: var(--standard-highlight);
 }
 
 /* || CONTENT */
@@ -101,21 +98,21 @@ button:hover {
 }
 
 .glow {
-    text-shadow: 0 0 2px #000, 0 0 10px #000, 0 0 25px var(--standard-text);
+    text-shadow: 0 0 2px #000, 0 0 10px #000, 0 0 25px var(--standard-orange);
 }
 
 .dimmed {
-    text-shadow: 0 0 4px #000, 0 0 10px var(--standard-text);
+    text-shadow: 0 0 4px #000, 0 0 10px var(--standard-orange);
 }
 
 #btn-status {
     margin-left: 1rem;
-    color: var(--btn-setting-inactive);
+    color: var(--standard-blue);
 }
 
 #btn-status:hover {
-    color: var(--btn-setting-active);
-    text-shadow: 0 0 7px var(--btn-setting-active);
+    color: var(--standard-orange);
+    text-shadow: 0 0 7px var(--standard-orange);
 }
 
 /* || CONTENT > GAME AREA */
@@ -199,7 +196,7 @@ button:hover {
 }
 
 #in-game-info p.stat {
-    color: var(--btn-setting-inactive);
+    color: var(--standard-blue);
 }
 
 .difficulty {
@@ -369,8 +366,8 @@ button:hover {
 }
 
 .big-icon:hover {
-    color: #fff;
-    text-shadow: 0 0 7px var(--btn-setting-active);
+    color: var(--standard-highlight);
+    text-shadow: 0 0 7px var(--standard-orange);
     background-color: transparent;
 }
 
@@ -412,7 +409,7 @@ button.closer {
 }
 
 button.closer:hover {
-    background: var(--btn-setting-active);
+    background: var(--standard-orange);
     color: var(--standard-bg);
 }
 
@@ -487,7 +484,7 @@ button.shared-edge {
 
 
 button.active {
-    background-color: var(--standard-text);
+    background-color: var(--standard-orange);
     color: #000;
 }
 
