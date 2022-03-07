@@ -1,24 +1,69 @@
-### **Wireframes**
-<details>
-<summary>Idea 1 - Simon Says (click to expand)</summary>
+# **Milestone Project 2 - Simon Game**
+## Javascript Game - <a href="https://chrotesque.github.io/ci-portfolio-project-2/" target="_blank">View deployed site here.</a>
 
-![Simon Says Difficulty](assets/images/readme/balsamiq/simonsays_difficulty.jpg)
-![Simon Says Mid-Game Game Over Help](assets/images/readme/balsamiq/simonsays_mid_gameover_help.jpg)
+<!-- ![AmIResponsive](assets/images/readme/amiresponsive.jpg) -->
 
-</details>
-<details>
-<summary>Idea 2 - Hangman (click to expand)</summary>
+<br>
 
-![Hangman Difficulty](assets/images/readme/balsamiq/hangman_difficulty.jpg)
-![Hangman Start Game](assets/images/readme/balsamiq/hangman_start.jpg)
-![Hangman Mid Game Help](assets/images/readme/balsamiq/hangman_help_mid.jpg)
+# Table of Contents
 
-</details>
-<details>
+1. [Overview](#overview-)
+2. [UX](#ux-)
+    * [Skeleton](#skeleton)
+        * [Wireframes](#wireframes)
+3. [Features](#features-)
+4. [Technologies Used](#technologies-used-)
+5. [Validation and Testing](#validation-and-testing-)
+6. [Bugs](#bugs-)
+7. [Deployment](#deployment-)
+8. [Credits](#credits-)
+9. [Statistics](#statistics-)
+10. [Acknowledgements](#acknowledgements-)
 
-<summary>Idea 3 - Pairs (click to expand)</summary>
+<br>
 
-![Pairs Difficulty Mid Game Help](assets/images/readme/balsamiq/pairs_diff_mid_help.jpg)
-![Pairs Game Over Extra Chance](assets/images/readme/balsamiq/pairs_gameover_extra.jpg)
+# **Overview** ([^](#table-of-contents))
 
-</details>
+Simon Game is a simple game about memorizing and replicating a sequence of button presses by the computer. The project consists of a single page with all necessary elements already in place, dynamic information is then being placed by Javascript which also runs the games logic.  
+
+# **UX** ([^](#table-of-contents))
+
+* ## **Skeleton**
+    ### **Wireframes**
+    <details>
+    <summary>Mobile Only - Difficulty Selection, Mid Game / Game Over & Help Screen</summary>
+
+    ![Balsamiq - Difficulty Selection](assets/images/readme/balsamiq/simonsays_difficulty.jpg)
+    ![Balsamiq - Mid Gameover Help](assets/images/readme/balsamiq/simonsays_mid_gameover_help.jpg)
+
+# **Features** ([^](#table-of-contents))
+
+TBD
+
+# **Technologies Used** ([^](#table-of-contents))
+
+TBD
+
+# **Validation and Testing** ([^](#table-of-contents))
+
+TBD
+
+# **Bugs** ([^](#table-of-contents))
+
+TBD
+
+# **Deployment** ([^](#table-of-contents))
+
+TBD
+
+# **Credits** ([^](#table-of-contents))
+
+TBD
+
+# **Statistics** ([^](#table-of-contents))
+
+TBD
+
+# **Acknowledgements** ([^](#table-of-contents))
+
+TBD
