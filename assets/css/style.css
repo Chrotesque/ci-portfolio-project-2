@@ -1,6 +1,7 @@
-/* || GENERAL */
+/* || IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;500&display=swap');
 
+/* || GENERAL */
 * {
     margin: 0;
     padding: 0;
@@ -62,7 +63,13 @@ body {
     display: inherit;
 }
 
+button:hover,
+path:hover {
+    cursor: pointer;
+}
 
+/* || CONTENT */
+/* || CONTENT > TITLE & SCORE */
 #title,
 #score {
     position: absolute;
@@ -95,155 +102,17 @@ body {
     text-shadow: 0 0 4px #000, 0 0 10px var(--standard-text);
 }
 
-h2 {
-    font-size: 1.75rem;
+#btn-status {
+    margin-left: 1rem;
+    color: var(--btn-setting-inactive);
 }
 
-#score-mp {
-    text-align: center;
-    letter-spacing: 3px;
-    font-size: 2rem;
+#btn-status:hover {
+    color: var(--btn-setting-active);
+    text-shadow: 0 0 7px var(--btn-setting-active);
 }
 
-h3 {
-    font-size: 1.25rem;
-    line-height: 3rem;
-    display: inline-block;
-}
-
-legend {
-    font-size: 1.5rem;
-    padding: 0.25rem 0.75rem 0.25rem 0.5rem;
-    margin-left: -1rem;
-    background: #24aff9;
-    border-radius: 0.5rem;
-}
-
-/* || MENU */
-/* || MENU > SETTINGS */
-#menu-settings,
-#menu-help {
-    min-width: 25%;
-    max-width: 35%;
-    color: var(--standard-bg);
-    position: fixed;
-    padding: 2rem;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    background: var(--standard-light);
-    border-radius: 1rem;
-    box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
-    background-image: url('/assets/images/general/arrow_test.png');
-    background-repeat: no-repeat;
-    background-position-x: 80%;
-    background-position-y: 83.8%;
-    z-index: 2;
-}
-
-#menu-help p {
-    margin-top: 1rem;
-}
-
-#menu-help li {
-    list-style-type: circle;
-    list-style-position: inside;
-}
-
-fieldset {
-    border: 1px solid #aaaa9d;
-    border-radius: 0.5rem;
-    padding: 1rem 1rem 1rem 2rem;
-    margin-top: 2rem;
-    background-color: #BDBDB3;
-}
-
-.setting-row,
-.menu-headline {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
-
-.fa-times {
-    font-size: 2rem;
-}
-
-
-
-.button-container {
-    padding-right: 1rem;
-}
-
-/* || ELEMENTS */
-/* || ELEMENTS > BUTTONS */
-
-
-/* s stands for side, e stands for edge */
-button.es {
-
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-}
-
-button.se {
-
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-}
-
-
-button:hover {
-    background-color: #000;
-    color: #fff;
-}
-
-button.activation {
-    background-color: #f00;
-    color: #fff;
-}
-
-button.active {
-    background-color: var(--standard-text);
-    color: #000;
-}
-
-button.closer {
-    border-radius: 50%;
-    width: 3rem;
-    height: 3rem;
-}
-
-/* FOOTER */
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 2.75rem;
-    text-align: center;
-}
-
-
-footer li {
-    display: inline-block;
-}
-
-.socials a {
-    padding: 0 1rem 0 1rem;
-    font-size: 2rem;
-    color: var(--btn-inactive);
-    display: block;
-    height: 3rem;
-}
-
-.socials a:hover {
-    color: var(--standard-light);
-    text-shadow: 0 0 1px var(--standard-light);
-}
-
-/* testing */
+/* || CONTENT > GAME AREA */
 #game-area {
     position: fixed;
     display: flex;
@@ -258,41 +127,7 @@ footer li {
     z-index: 0;
 }
 
-.difficulty {
-    width: 100%;
-    height: 2rem;
-    color: var(--standard-light);
-    background-color: #3D3D3D;
-    font-weight: bold;
-}
-
-.status {
-    background: transparent;
-    width: 100%;
-    font-size: 3rem;
-}
-
-.status:hover {
-    background: transparent;
-    color: #fff;
-    text-shadow: 0 0 5px #fff;
-}
-
-button:hover,
-path:hover {
-    cursor: pointer;
-}
-
-#btn-status {
-    margin-left: 1rem;
-    color: var(--btn-setting-inactive);
-}
-
-#btn-status:hover {
-    color: var(--btn-setting-active);
-    text-shadow: 0 0 7px var(--btn-setting-active);
-}
-
+/* || CONTENT > GAME AREA > MIDDLE DISPLAY */
 #middle {
     box-sizing: border-box;
     display: flex;
@@ -354,25 +189,12 @@ path:hover {
     color: var(--btn-setting-inactive);
 }
 
-
-.game-circle-outer {
-    fill: var(--btn-inactive);
-}
-
-.game-circle-bg {
-    fill: var(--standard-bg);
-}
-
-.svg-btn {
-    position: absolute;
-}
-
-#outer {
-    width: 608px;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 1rem;
+.difficulty {
+    width: 100%;
+    height: 2rem;
+    color: var(--standard-light);
+    background-color: #3D3D3D;
+    font-weight: bold;
 }
 
 #end-of-game-status,
@@ -398,20 +220,20 @@ path:hover {
     font-size: 1.5rem;
 }
 
-.controls {
-    font-size: 4rem;
-    background-color: transparent;
-    color: var(--standard-light);
+/* || CONTENT > GAME BUTTONS */
+.game-circle-outer {
+    fill: var(--btn-inactive);
 }
 
-.controls:hover {
-    color: #fff;
-    text-shadow: 0 0 7px var(--btn-setting-active);
-    background-color: transparent;
+.game-circle-bg {
+    fill: var(--standard-bg);
 }
 
-/* GAME BUTTONS */
-/* GAME BUTTON > STANDARD */
+.svg-btn {
+    position: absolute;
+}
+
+/* || CONTENT > GAME BUTTONS > STANDARD */
 .one {
     fill: var(--btn-green);
     filter: drop-shadow(0 0 3px var(--btn-green));
@@ -447,7 +269,7 @@ path:hover {
     filter: drop-shadow(0 0 3px var(--btn-inactive));
 }
 
-/* GAME BUTTON > HOVER */
+/* || CONTENT > GAME BUTTONS > HOVER */
 .one:hover {
     stroke: var(--btn-green-stroke);
     stroke-width: var(--btn-hover-stroke);
@@ -485,7 +307,7 @@ path:hover {
     stroke-width: 0;
 }
 
-/* GAME BUTTON > PRESSED */
+/* || CONTENT > GAME BUTTONS > PRESSED */
 .one-pressed {
     fill: var(--btn-green-active);
     filter: drop-shadow(0 0 20px var(--btn-green-active));
@@ -514,4 +336,166 @@ path:hover {
 .six-pressed {
     fill: var(--btn-orange-active);
     filter: drop-shadow(0 0 20px var(--btn-orange-active));
+}
+
+/* || MENU */
+#menu-icon-container {
+    width: 608px;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 1rem;
+}
+
+.big-icon {
+    font-size: 4rem;
+    background-color: transparent;
+    color: var(--standard-light);
+}
+
+.big-icon:hover {
+    color: #fff;
+    text-shadow: 0 0 7px var(--btn-setting-active);
+    background-color: transparent;
+}
+
+#menu-settings,
+#menu-help {
+    min-width: 25%;
+    max-width: 35%;
+    color: var(--standard-bg);
+    position: fixed;
+    padding: 2rem;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background: var(--standard-light);
+    border-radius: 1rem;
+    box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
+    background-image: url('/assets/images/general/arrow_test.png');
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    background-position-y: 83.8%;
+    z-index: 2;
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+.fa-times {
+    font-size: 2rem;
+}
+
+button.closer {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+}
+
+/* || MENU > SETTINGS */
+legend {
+    font-size: 1.5rem;
+    padding: 0.25rem 0.75rem 0.25rem 0.5rem;
+    margin-left: -1rem;
+    background: #24aff9;
+    border-radius: 0.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    line-height: 3rem;
+    display: inline-block;
+}
+
+fieldset {
+    border: 1px solid #aaaa9d;
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 1rem 2rem;
+    margin-top: 2rem;
+    background-color: #BDBDB3;
+}
+
+.setting-row,
+.menu-headline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.button-container {
+    padding-right: 1rem;
+}
+
+#score-mp {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 2rem;
+}
+
+/* TBD */
+button.es {
+
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+
+button.se {
+
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+}
+
+
+button:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+button.activation {
+    background-color: #f00;
+    color: #fff;
+}
+
+button.active {
+    background-color: var(--standard-text);
+    color: #000;
+}
+
+/* || MENU > HELP */
+#menu-help p {
+    margin-top: 1rem;
+}
+
+#menu-help li {
+    list-style-type: circle;
+    list-style-position: inside;
+}
+
+/* FOOTER */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2.75rem;
+    text-align: center;
+}
+
+footer li {
+    display: inline-block;
+}
+
+.socials a {
+    padding: 0 1rem 0 1rem;
+    font-size: 2rem;
+    color: var(--btn-inactive);
+    display: block;
+    height: 3rem;
+}
+
+.socials a:hover {
+    color: var(--standard-light);
+    text-shadow: 0 0 1px var(--standard-light);
 }
