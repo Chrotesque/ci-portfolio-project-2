@@ -12,6 +12,7 @@
     --standard-bg: #272727;
     --standard-text: #febf2e;
     --standard-light: #c6c6be;
+    --standard-note: #4C4C4C;
     --standard-highlight: #f9f9f9;
     --standard-shadow: #151515;
     --standard-border: #d9d9d3;
@@ -492,6 +493,10 @@ button.active {
 
 span {
     font-weight: bold;
+}
+
+.setting-row span {
+    color: var(--standard-note);
 }
 
 /* || MENU > HELP */
