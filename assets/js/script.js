@@ -12,6 +12,7 @@ let settings = {
         "sound": "off",
         "markings": "num",
         "order": "cw",
+        "stats-display": "off"
     },
     "difficulty": {
         "easy": {
