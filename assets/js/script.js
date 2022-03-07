@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
     initiateSettings();
     updateScoreMultiplierInternal();
     updateScoreMultiplierExternal();
-    setPointsHelpMenu();
+    setMenuData();
 
     for (let button of allButtons) {
         button.addEventListener("click", function () {
@@ -194,15 +194,6 @@ function initiateSettings() {
         }
     }
 
-}
-
-function setPointsHelpMenu() {
-    let button = document.getElementById("points-button");
-    let turn = document.getElementById("points-turn");
-    let round = document.getElementById("points-round");
-    button.innerHTML = settings.values.score.step;
-    turn.innerHTML = settings.values.score.turn;
-    round.innerHTML = settings.values.score.round;
 }
 
 function numToString(input) {
@@ -357,15 +348,58 @@ function updateScoreMultiplierInternal() {
 }
 
 function updateScoreMultiplierExternal() {
-    let easy = Math.round(settings.difficulty.easy.multiplier * 100);
-    let normal = Math.round(settings.difficulty.normal.multiplier * 100);
-    let hard = Math.round(settings.difficulty.hard.multiplier * 100);
-    let custom = Math.round(settings.difficulty.custom.multiplier * 100);
-    document.getElementById("multiplier-easy").innerHTML = easy + "%";
-    document.getElementById("multiplier-normal").innerHTML = normal + "%";
-    document.getElementById("multiplier-hard").innerHTML = hard + "%";
-    document.getElementById("multiplier-custom").innerHTML = custom + "%";
-    document.getElementById("score-mp").innerHTML = custom + "%";
+    let easy = `${Math.round(settings.difficulty.easy.multiplier * 100)}%`;
+    let normal = `${Math.round(settings.difficulty.normal.multiplier * 100)}%`;
+    let hard = `${Math.round(settings.difficulty.hard.multiplier * 100)}%`;
+    let custom = `${Math.round(settings.difficulty.custom.multiplier * 100)}%`;
+    document.getElementById("multiplier-easy").innerHTML = easy;
+    document.getElementById("multiplier-normal").innerHTML = normal;
+    document.getElementById("multiplier-hard").innerHTML = hard;
+    document.getElementById("multiplier-custom").innerHTML = custom;
+    document.getElementById("score-mp").innerHTML = custom;
+}
+
+function setMenuData() {
+    let button = document.getElementById("points-button");
+    let turn = document.getElementById("points-turn");
+    let round = document.getElementById("points-round");
+    let buttonMult = document.getElementById("multiplier-buttons");
+    let speedMult = document.getElementById("multiplier-speed");
+    let markingsMult = document.getElementById("multiplier-markingsc");
+    let strictMult = document.getElementById("multiplier-strict");
+    let rampupMult = document.getElementById("multiplier-rampup");
+    let chaosMult = document.getElementById("multiplier-chaos");
+    button.innerHTML = settings.values.score.step;
+    turn.innerHTML = settings.values.score.turn;
+    round.innerHTML = settings.values.score.round;
+    buttonMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.buttons));
+    speedMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.speed));
+    markingsMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.markingsc));
+    strictMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.strict));
+    rampupMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.rampup));
+    chaosMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.chaos));
+}
+
+function prepareMultiplierData(input) {
+    console.log(`length: ${input.length} | ${input}`);
+    let result = " (";
+    for (let i = 0; i < input.length; i++) {
+        // all entries apart from the last
+        if (i < input.length - 1) {
+            if (input[i] <= 0) {
+                result += `${input[i]}`;
+                result += ", ";
+            } else {
+                result += `+${input[i]}`;
+                result += ", ";
+            }
+        } else {
+            result += `+${input[i]}`;
+            result += ` %)`;
+        }
+    }
+
+    return result;
 }
 
 function handleHighscore() {

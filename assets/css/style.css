@@ -500,6 +500,13 @@ span {
 #menu-help li {
     list-style-type: circle;
     list-style-position: inside;
+    text-indent: -22px;
+    margin-left: 30px;
+}
+
+#menu-help i {
+    margin-left: 0;
+    text-indent: 0;
 }
 
 /* FOOTER */
