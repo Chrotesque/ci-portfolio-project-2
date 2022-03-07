@@ -177,29 +177,6 @@ function initiateSettings() {
 
 }
 
-/*
-function addGameButton() {
-    let gameArea = document.getElementById("game-area");
-    let newButton = document.createElement("button");
-    let newIndex = gameButtons.length + 1;
-    newButton.setAttribute("data-cat", "game-control");
-    newButton.setAttribute("data-type", "input");
-    newButton.setAttribute("data-value", newIndex);
-    newButton.setAttribute("type", "button");
-    newButton.innerHTML = newIndex;
-    newButton.addEventListener("click", function () {
-        controlGame(this);
-    });
-    gameArea.appendChild(newButton);
-    gameButtons.push(newButton);
-}
-
-function removeGameButton() {
-    let button = gameButtons.pop();
-    button.remove();
-}
-*/
-
 function numToString(input) {
     let result;
     input = parseInt(input);
