@@ -345,9 +345,11 @@ path:hover {
     justify-content: space-between;
     position: absolute;
     bottom: 1rem;
+    pointer-events: none;
 }
 
 .big-icon {
+    pointer-events: all;
     font-size: 4rem;
     background-color: transparent;
     color: var(--standard-light);
