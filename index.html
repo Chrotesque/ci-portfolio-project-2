@@ -176,6 +176,13 @@
                         </div>
                     </div>
                     <div class="setting-row">
+                        <h3>Markings</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="markingsc" data-value="on"
+                                type="button" class="settings shared-edge">On</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
                         <h3>Strict</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
@@ -183,10 +190,17 @@
                         </div>
                     </div>
                     <div class="setting-row">
-                        <h3>Markings</h3>
+                        <h3>Ramp Up</h3>
                         <div class="button-container">
-                            <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="markingsc" data-value="on"
-                                type="button" class="settings shared-edge">On</button>
+                            <button data-cat="custom" data-type="rampup" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="rampup" data-value="on" type="button"
+                                class="settings shared-edge">On</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <h3>Chaos</h3>
+                        <div class="button-container">
+                            <button data-cat="custom" data-type="chaos" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="chaos" data-value="on" type="button"
+                                class="settings shared-edge">On</button>
                         </div>
                     </div>
                 </fieldset>
@@ -201,18 +215,28 @@
                     <h2><i class="fas fa-question-circle" aria-hidden="true"></i> Help</h2>
                     <button data-cat="menu" data-type="menu" data-value="help" id="btn-settings" type="button" class="closer"><i class="fas fa-times" aria-hidden="true"></i></button>
                 </div>
-                <p>Simon Game is a simple game of memorizing the order of buttons pressed by the computer, then correctly repeating the order yourself.</p>
-                <p>The game consists of <strong>turns</strong>, <strong>sequences</strong> and <strong>rounds</strong>.</p>
-                <p>Both you and the computer take <strong>turns</strong> to press the game buttons.</p>
-                <p>The order in which the buttons are pressed is the <strong>sequence</strong> which grows with each turn but remains the same until the end of the round.</p>
-                <p>Once the player has replicated the entire sequence correctly, the <strong>round</strong> ends and a new one starts.</p>
-                <p>Should the player make a mistake, the game is either over OR the previous computer turn is repeated - depending on the difficulty.</p>
+                <p>Simon Game is a game of memorizing the order of buttons pressed by the computer, then correctly repeating the order yourself.</p>
+                <p>Both you and the computer take <strong>turns</strong> to press the game buttons, always starting with the computer.</p>
+                <p>The <strong>sequence</strong> of buttons pressed grows with each turn and remains unchanged until the end of the round.</p>
+                <p>Once you have replicated the entire sequence correctly, the <strong>round</strong> is won and a new one starts.</p>
+                <p>Upon making a mistake, the game is either over OR the current computer turn is repeated - depending on the difficulty.</p>
                 <p>There are 4 difficulty levels:</p>
                 <ul>
-                    <li>Easy - The sequences are played at the slowest speed, you have to deal with 3 buttons and can repeat a turn upon making a mistake.</li>
-                    <li>Normal - The sequences are played at the standard speed, you have to deal with 4 buttons and can repeat a turn upon making a mistake.</li>
-                    <li>Hard - The sequences are played faster, you have 6 buttons and a single mistake will end the game.</li>
-                    <li>Custom - This is where we leave the phrase "simple game" behind and the settings menu comes into full play, allowing for incremental changes to suit your needs and wants.</li>
+                    <li><strong>Easy</strong>: 3 buttons, slow speed, multiplier of <span id="multiplier-easy">0</span></li>
+                    <li><strong>Normal</strong>: 4 buttons, normal speed, ramps up, multiplier of <span id="multiplier-normal">0</span></li>
+                    <li><strong>Hard</strong>: 5 buttons, fast speed, strict on, ramps up, multiplier of <span id="multiplier-hard">0</span></li>
+                    <li><strong>Custom</strong>: customized through the settings menu, current multiplier of <span id="multiplier-custom">0</span></li>
+                </ul>
+                <p>Points are given for each correct button press (<span id="points-button">0</span>), a fully completed turn (<span id="points-turn">0</span>) and for winning a round (<span id="points-round">0</span>).
+                    However,
+                    these are the base values and multiplied by the multiplier seen above.</p>
+                <p>A few settings explained:</p>
+                <ul>
+                    <li>Game Settings don't affect the multiplier of the custom difficulty</li>
+                    <li>Easy, Normal and Hard have fixed settings each and cannot be changed</li>
+                    <li><strong>Strict</strong> controls if making a mistake will end the game</li>
+                    <li><strong>Ramp Up</strong> will increase the difficulty each round, affecting sequence length and speed</li>
+                    <li><strong>Chaos</strong> is a surprise, give it a try!</li>
                 </ul>
             </div>
         </section>
