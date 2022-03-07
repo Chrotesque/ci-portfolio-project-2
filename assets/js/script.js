@@ -65,6 +65,7 @@ let settings = {
         },
         "sleep": {
             "computerTurnDelay": 2000,
+            "newRoundDelay": 4000,
             "playerTurnLoop": 100,
             "playerButtonPress": 300
         },
@@ -390,11 +391,15 @@ function toggleElement(element) {
 
 }
 
-function toggleMiddleDisplay() {
+function toggleDifficultySelection() {
     let diffSelect = document.getElementById("difficulty-selection");
-    let inGame = document.getElementById("in-game-info");
     toggleElement(diffSelect);
+}
+
+function toggleIngameStats() {
+    let inGame = document.getElementById("in-game-info");
     toggleElement(inGame);
+
 }
 
 /**
@@ -499,7 +504,7 @@ function runGame() {
     currentGame.multiplier = diffSettings.multiplier;
     currentGame.round = 1;
     currentGame.turn = 1;
-    currentGame.sequence = createSequence(10, diffSettings.buttons);
+    currentGame.sequence = createSequence(3, diffSettings.buttons);
     currentGame.buttons = diffSettings.buttons;
     currentGame.speed = speedSettings[diffSettings.speed];
     currentGame.strict = diffSettings.strict;
@@ -513,13 +518,15 @@ function runGame() {
     statusBtn.setAttribute("data-value", "stop");
     setGameStatus("");
     collectGameButtons();
-    toggleMiddleDisplay();
+    toggleDifficultySelection();
+    toggleIngameStats();
     computerTurn();
 
 }
 
 function gameOver() {
-    toggleMiddleDisplay();
+    toggleDifficultySelection();
+    toggleIngameStats();
     handleHighscore();
     deactivateButtonSet();
     setTurnStatus("");
@@ -530,10 +537,11 @@ function gameOver() {
     statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
 
-function stopGame(loca) {
+function stopGame() {
     if (settings.control.stopRequest === false) {
         settings.control.stopRequest = true;
-        toggleMiddleDisplay();
+        toggleDifficultySelection();
+        toggleIngameStats();
         //handleHighscore();
         deactivateButtonSet();
         setTurnStatus("");
@@ -571,6 +579,21 @@ function updateGameStats() {
     scoreMult.innerHTML = currentGame.multiplier * 100 + "%";
 }
 
+async function newRound() {
+    currentGame.round++;
+    currentGame.turn = 1;
+    let diffSettings = settings.difficulty[settings.setting.difficulty];
+    currentGame.sequence = createSequence(3, diffSettings.buttons);
+    //TBD: increasing difficulty, speed, etc.
+    setTurnStatus("");
+    setGameStatus(`Round ${currentGame.round-1} won!`);
+    toggleIngameStats();
+    await sleep(settings.values.sleep.newRoundDelay);
+    setGameStatus("");
+    toggleIngameStats();
+    computerTurn();
+}
+
 /**
  * Processes the computer turn and calls to playerTurn as well as winRound
  */
@@ -578,7 +601,8 @@ async function computerTurn() {
 
     // if the previous turn was the last, this round is won
     if (currentGame.turn > currentGame.sequence.length) {
-        winRound();
+        //winRound();
+        newRound();
         // otherwise proceed to next turn
     } else {
         updateGameStats();
