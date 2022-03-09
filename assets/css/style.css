@@ -562,7 +562,7 @@ footer li {
 
 /* MEDIA QUERIES */
 /* MEDIA QUERIES LANDSCAPE > PHONES GENERAL */
-@media (max-width: 1000px) and (orientation: landscape) {
+@media (max-width: 1200px) and (orientation: landscape) {
 
     .one:hover,
     .two:hover,
@@ -801,6 +801,15 @@ footer li {
         height: 416px;
     }
 
+    #end-of-game-status {
+        font-size: 3rem;
+    }
+
+    #in-game-status {
+        font-size: 1.5rem;
+        width: 200px;
+    }
+
     #difficulty-selection button {
         font-size: 1.75rem;
         height: 5rem;
@@ -831,6 +840,15 @@ footer li {
         height: 512px;
     }
 
+    #end-of-game-status {
+        font-size: 3rem;
+    }
+
+    #in-game-status {
+        font-size: 1.75rem;
+        width: 200px;
+    }
+
     #difficulty-selection button {
         font-size: 2rem;
         height: 6.25rem;
@@ -847,7 +865,7 @@ footer li {
 }
 
 /* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > TABLET / SMALL SCREEN SPECIAL CASE */
-@media (max-height: 830px) and (orientation: landscape) {
+@media (max-height: 750px) and (orientation: landscape) {
 
     #title {
         font-size: 3rem;
@@ -856,6 +874,15 @@ footer li {
 
     #btn-status {
         font-size: 4rem;
+    }
+
+    #end-of-game-status {
+        font-size: 3rem;
+    }
+
+    #in-game-status {
+        font-size: 1.75rem;
+        width: 200px;
     }
 
     #menu-settings,
@@ -874,6 +901,27 @@ footer li {
 
     h2 {
         padding: 1.5rem 0 0 2rem;
+    }
+
+    #score {
+        bottom: 2.5rem;
+        right: 5rem;
+    }
+
+    #in-game-info {
+        position: absolute;
+        text-align: start;
+        font-size: 1rem;
+        top: unset;
+        left: 2.5rem;
+        transform: none;
+        bottom: 6rem;
+        width: 256px;
+        overflow: visible;
+    }
+
+    .flex-ingame {
+        row-gap: 0;
     }
 
     #menu-settings {
