@@ -315,7 +315,7 @@
         deactivateButtonSet();
         setTurnStatus("");
         setGameStatus("Game Over!");
-        setScoreStatus("Last Score");
+        setScoreStatus("Highscore");
         let statusBtn = document.getElementById("btn-status");
         statusBtn.setAttribute("data-value", "start");
         statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -332,7 +332,7 @@
             deactivateButtonSet();
             setTurnStatus("");
             setGameStatus("Game Stopped!");
-            setScoreStatus("Last Score");
+            setScoreStatus("Highscore");
             let statusBtn = document.getElementById("btn-status");
             statusBtn.setAttribute("data-value", "start");
             statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -509,7 +509,7 @@
      */
     function setScoreStatus(update) {
         let score = document.getElementById("score-status");
-        score.innerHTML = update + " : ";
+        score.innerHTML = update + " ";
     }
 
     // TOGGLERS

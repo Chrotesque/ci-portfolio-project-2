@@ -18,10 +18,13 @@
     <main>
         <!-- GAME SECTION -->
         <section>
+            <!-- GAME SECTION: TITLE -->
+            <div id="title">
+                <h1 class="glow">Simon Game</h1>
+                <button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="big-icon"><i class="fas fa-play-circle" aria-hidden="true"></i></button>
+            </div>
             <div id="game-area">
-                <!-- GAME SECTION: TITLE -->
-                <h1 id="title" class="glow">Simon Game<button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="big-icon"><i class="fas fa-play-circle"
-                            aria-hidden="true"></i></button></h1>
+
                 <!-- GAME SECTION: NON GAME ELEMENTS -->
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="640px" height="640px">
                     <path class="game-circle-outer"
@@ -90,39 +93,40 @@
                             </div>
                         </div>
                     </div>
-                    <div id="in-game-info" class="lock-element">
-                        <div class="flex-container flex-ingame">
-                            <div>
-                                <p>Speed</p>
-                                <p class="stat" id="stat-speed">0</p>
-                                <p>Round / Turn</p>
-                                <p class="stat"><span id="stat-round">4</span> / <span id="stat-turn">0</span></p>
-                            </div>
-                            <div>
-                                <p>Sequence Length</p>
-                                <p class="stat"> 10<span id="stat-sequence-length">0</span></p>
-                                <p>Score Multiplier</p>
-                                <p class="stat" id="stat-score-mp">0</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- GAME SECTION: BOTTOM MENU BUTTONS -->
-                <div id="menu-icon-container">
-                    <button data-cat="menu" data-type="menu" data-value="help" class="big-icon" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
-                    <button data-cat="menu" data-type="menu" data-value="settings" class="big-icon" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
-                </div>
-                <div id="score">
-                    <p class="glow" id="score-status"></p>
-                    <p class="glow" id="score-amount"></p>
-                </div>
-                <div id="end-of-game-status">
-                    <p id="game-status" class="glow">Choose a Difficulty</p>
-                </div>
-                <div id="in-game-status" class="hide-element">
-                    <p id="turn-status"></p>
                 </div>
             </div>
+            <div id="in-game-info" class="lock-element">
+                <div class="flex-container flex-ingame">
+                    <div>
+                        <p>Speed</p>
+                        <p class="stat" id="stat-speed">0</p>
+                        <p>Round / Turn</p>
+                        <p class="stat"><span id="stat-round">4</span> / <span id="stat-turn">0</span></p>
+                    </div>
+                    <div>
+                        <p>Sequence</p>
+                        <p class="stat"> 10<span id="stat-sequence-length">0</span></p>
+                        <p>Multiplier</p>
+                        <p class="stat" id="stat-score-mp">0</p>
+                    </div>
+                </div>
+            </div>
+            <!-- GAME SECTION: BOTTOM MENU BUTTONS -->
+            <div id="menu-icon-container">
+                <button data-cat="menu" data-type="menu" data-value="help" class="big-icon" type="button"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+                <button data-cat="menu" data-type="menu" data-value="settings" class="big-icon" type="button"><i class="fas fa-cog" aria-hidden="true"></i></button>
+            </div>
+            <div id="score">
+                <p class="glow" id="score-status"></p>
+                <p class="glow" id="score-amount"></p>
+            </div>
+            <div id="end-of-game-status">
+                <p id="game-status" class="glow">Choose a Difficulty</p>
+            </div>
+            <div id="in-game-status" class="hide-element">
+                <p id="turn-status"></p>
+            </div>
+
         </section>
         <!-- MENU SECTION -->
         <section>
@@ -173,52 +177,58 @@
                 <fieldset>
                     <legend>Custom Difficulty</legend>
                     <div class="setting-row">
-                        <h3>Buttons<span id="multiplier-buttons" class="hide-element">0</span></h3>
+                        <h3>Buttons</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings edge-shared">3</button><button data-cat="custom" data-type="buttons" data-value="4" type="button"
                                 class="settings">4</button><button data-cat="custom" data-type="buttons" data-value="5" type="button" class="settings">5</button><button data-cat="custom" data-type="buttons" data-value="6"
                                 type="button" class="settings shared-edge">6</button>
                         </div>
                     </div>
+                    <p id="multiplier-buttons" class="hide-element">0</p>
                     <div class="setting-row">
-                        <h3>Game Speed<span id="multiplier-speed" class="hide-element">0</span></h3>
+                        <h3>Game Speed</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings edge-shared">Slow</button><button data-cat="custom" data-type="speed" data-value="normal"
                                 type="button" class="settings">Normal</button><button data-cat="custom" data-type="speed" data-value="fast" type="button" class="settings shared-edge">Fast</button>
                         </div>
                     </div>
+                    <p id="multiplier-speed" class="hide-element">0</p>
                     <div class="setting-row">
-                        <h3>All Markings<span id="multiplier-markingsc" class="hide-element">0</span></h3>
+                        <h3>All Markings</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="markingsc" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="markingsc" data-value="on"
                                 type="button" class="settings shared-edge">On</button>
                         </div>
                     </div>
+                    <p id="multiplier-markingsc" class="hide-element">0</p>
                     <div class="setting-row">
-                        <h3>Strict Mode<span id="multiplier-strict" class="hide-element">0</span></h3>
+                        <h3>Strict Mode</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
                         </div>
                     </div>
+                    <p id="multiplier-strict" class="hide-element">0</p>
                     <div class="setting-row">
-                        <h3>Ramp Up<span id="multiplier-rampup" class="hide-element">0</span></h3>
+                        <h3>Ramp Up</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="rampup" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="rampup" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
                         </div>
                     </div>
+                    <p id="multiplier-rampup" class="hide-element">0</p>
                     <div class="setting-row">
-                        <h3>Chaos Mode<span id="multiplier-chaos" class="hide-element">0</span></h3>
+                        <h3>Chaos Mode</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="chaos" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="chaos" data-value="on" type="button"
                                 class="settings shared-edge">On</button>
                         </div>
                     </div>
+                    <p id="multiplier-chaos" class="hide-element">0</p>
                     <div class="setting-row extra">
                         <h3>Multiplier</h3>
                         <div class="button-container">
-                            <h2 id="score-mp">1</h2>
+                            <p id="score-mp">1</p>
                         </div>
                     </div>
                 </fieldset>

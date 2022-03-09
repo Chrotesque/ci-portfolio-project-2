@@ -53,10 +53,7 @@ body {
     color: var(--standard-orange);
 }
 
-.hide-element {
-    display: none;
-}
-
+.hide-element,
 .lock-element {
     display: none;
 }
@@ -73,24 +70,31 @@ button:hover {
 
 /* CONTENT */
 /* CONTENT > TITLE & SCORE */
-#title,
-#score {
-    position: absolute;
-    display: inline-block;
-}
 
 #title {
-    margin-top: -4rem;
     z-index: 1;
-    font-size: 5rem;
+    font-size: 4rem;
+    position: absolute;
+    top: calc(50% - 340px);
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+h1 {
+    display: inline-block;
 }
 
 #score {
     text-transform: uppercase;
-    bottom: 0;
     margin-bottom: -1rem;
     z-index: 1;
     font-size: 2rem;
+    position: absolute;
+    bottom: calc(50% - 340px);
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 #score p {
@@ -106,8 +110,8 @@ button:hover {
 }
 
 #btn-status {
-    margin-left: 1rem;
     color: var(--standard-blue);
+    font-size: 5rem;
 }
 
 #btn-status:hover {
@@ -139,8 +143,6 @@ button:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    overflow: hidden;
-    border-radius: 50%;
     border: 1rem solid transparent;
 }
 
@@ -165,6 +167,12 @@ button:hover {
     align-items: center;
 }
 
+#difficulty-selection,
+#in-game-info {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 #difficulty-selection div,
 #in-game-info div {
     width: 100%;
@@ -184,13 +192,14 @@ button:hover {
     position: inherit;
     top: 50%;
     left: 50%;
+    position: absolute;
+    font-size: 1rem;
     transform: translate(-50%, -50%);
     text-align: center;
 }
 
 #in-game-info p {
     color: var(--standard-light);
-    font-size: 1rem;
     display: block;
     width: 100%;
 }
@@ -204,6 +213,7 @@ button:hover {
     height: 2rem;
     color: var(--standard-light);
     background-color: #3D3D3D;
+    /* accessibility tweaking required */
     font-weight: bold;
 }
 
@@ -356,6 +366,10 @@ button:hover {
     position: absolute;
     bottom: 1rem;
     pointer-events: none;
+    bottom: calc(50% - 340px);
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
 }
 
 .big-icon {
@@ -383,9 +397,6 @@ button:hover {
     background: var(--standard-light);
     border-radius: 1rem;
     box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
-    background-repeat: no-repeat;
-    background-position-x: 80%;
-    background-position-y: 83.8%;
     z-index: 2;
 }
 
@@ -428,16 +439,16 @@ legend {
 }
 
 h3 {
-    font-size: 1.1rem;
     line-height: 2.5rem;
     display: inline-block;
 }
 
 fieldset {
+    font-size: 1rem;
     border: 1px solid #aaaa9d;
     border-radius: 0.5rem;
     padding: 0.5rem 1rem 1rem 2rem;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     background-color: #BDBDB3;
 }
 
@@ -446,6 +457,7 @@ fieldset {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
+    align-items: baseline;
     justify-content: space-between;
 }
 
@@ -461,10 +473,11 @@ fieldset {
     text-align: center;
     letter-spacing: 3px;
     font-size: 2rem;
+    font-weight: bold;
 }
 
 button.settings {
-    padding: 0.5rem;
+    padding: 0.4rem 1rem 0.4rem 1rem;
     font-size: 1rem;
     font-weight: bold;
     color: var(--standard-light);
@@ -492,8 +505,9 @@ span {
     font-weight: bold;
 }
 
-.setting-row span {
+fieldset p {
     color: var(--standard-note);
+    margin: -0.5rem 0 0.5rem 0;
 }
 
 /* MENU > HELP */
@@ -544,12 +558,648 @@ footer li {
     text-shadow: 0 0 1px var(--standard-light);
 }
 
-.svg-set {
-    width: 640px;
-    height: 640px;
-    background-size: 640px 640px;
-}
 
 /* MEDIA QUERIES */
-/* MEDIA QUERIES > PHONES */
-@media (max-width: 768px) {}
+/* MEDIA QUERIES LANDSCAPE > PHONES GENERAL */
+@media (max-width: 1000px) and (orientation: landscape) {
+
+    .one:hover,
+    .two:hover,
+    .three:hover,
+    .four:hover,
+    .five:hover,
+    .six:hover {
+        stroke: none;
+    }
+
+    /* CONTENT > GAME AREA */
+    #game-area {
+        width: 640px;
+        height: 640px;
+    }
+
+    #middle {
+        width: 264px;
+        height: 264px;
+        pointer-events: none;
+    }
+
+    #difficulty-selection {
+        pointer-events: all;
+        height: 100%;
+    }
+
+    .difficulty {
+        background-color: rgba(53, 53, 53, 0.5);
+        /* accessibility tweaking required */
+    }
+
+    #in-game-info {
+        position: absolute;
+        text-align: end;
+        font-size: 0.8rem;
+        top: unset;
+        left: unset;
+        transform: none;
+        right: 5rem;
+        bottom: 3rem;
+        width: 256px;
+        overflow: visible;
+    }
+
+    .flex-ingame {
+        row-gap: 0rem;
+    }
+
+    #title {
+        top: unset;
+        left: unset;
+        margin-right: unset;
+        transform: unset;
+        position: unset;
+    }
+
+    h1 {
+        position: absolute;
+        width: 32%;
+        left: 12rem;
+        top: 1rem;
+        font-size: 3rem;
+        left: 2rem;
+    }
+
+    #score {
+        position: absolute;
+        bottom: 1.5rem;
+        text-align: center;
+        right: 5rem;
+        font-size: 1.5rem;
+        left: unset;
+        margin-right: unset;
+        transform: unset;
+    }
+
+    .big-icon {
+        font-size: 4rem;
+    }
+
+    #btn-status {
+        position: absolute;
+        font-size: 6rem;
+        padding: 3rem 0 0 0.5rem;
+        bottom: 1rem;
+        margin-left: 2.5rem;
+        z-index: 2;
+    }
+
+    /* CONTENT > GAME AREA > MIDDLE DISPLAY */
+    #end-of-game-status {
+        font-size: 2rem;
+    }
+
+    #in-game-status {
+        width: 100px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+
+    /* MENU */
+    #menu-settings,
+    #menu-help {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-right: 0;
+        transform: none;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 0 0 2rem 0;
+    }
+
+    #menu-icon-container {
+        bottom: unset;
+        left: unset;
+        margin-right: unset;
+        transform: unset;
+        display: flex;
+        flex-wrap: nowrap;
+        width: 10rem;
+        height: 4rem;
+        top: 1rem;
+        right: 1rem;
+    }
+
+    h2 {
+        padding: 1.5rem 0 0 2rem;
+    }
+
+    /* MENU > SETTINGS */
+    #menu-settings {
+        padding-bottom: 1rem;
+    }
+
+    fieldset {
+        padding: 0.5rem 1rem 1rem 2rem;
+        margin: 1.5rem 1rem 0 1rem;
+    }
+
+    /* MENU > HELP */
+    #menu-help h2 {
+        padding-bottom: 1.5rem;
+    }
+
+    #menu-help p {
+        margin-top: 1rem;
+        padding: 0 2rem 0 2rem;
+    }
+
+    #menu-help ul {
+        padding-left: 1.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+        text-align: end;
+        bottom: 6rem;
+        width: 3rem;
+        right: 1rem;
+    }
+
+
+
+}
+
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION */
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > PHONES SMALL */
+@media (max-height: 375px) and (orientation: landscape) {
+
+    svg {
+        transform: scale(0.45);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #middle {
+        width: 296px;
+        height: 296px;
+    }
+
+    #difficulty-selection button {
+        height: 3.25rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 3.5rem;
+    }
+
+}
+
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > PHONES BIG */
+@media (min-height: 376px) and (max-height: 450px) and (orientation: landscape) {
+
+    svg {
+        transform: scale(0.55);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #middle {
+        width: 356px;
+        height: 356px;
+    }
+
+    #difficulty-selection button {
+        height: 4rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 4.25rem;
+    }
+
+    #end-of-game-status {
+        font-size: 2.5rem;
+    }
+
+}
+
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > BIGGER SIZE PHONES (IE FOLD) */
+@media (min-height: 451px) and (max-height: 550px) and (orientation: landscape) {
+
+    svg {
+        transform: scale(0.65);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #middle {
+        width: 416px;
+        height: 416px;
+    }
+
+    #difficulty-selection button {
+        font-size: 1.75rem;
+        height: 5rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 3.9rem;
+
+    }
+
+    #end-of-game-status {
+        font-size: 2.5rem;
+    }
+
+
+}
+
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > BIGGER SIZE PHONES (IE FOLD) */
+@media (min-height: 551px) and (max-height: 675px) and (orientation: landscape) {
+
+    svg {
+        transform: scale(0.8);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #middle {
+        width: 512px;
+        height: 512px;
+    }
+
+    #difficulty-selection button {
+        font-size: 2rem;
+        height: 6.25rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 5rem;
+    }
+
+    #end-of-game-status {
+        font-size: 3rem;
+    }
+
+}
+
+/* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > TABLET / SMALL SCREEN SPECIAL CASE */
+@media (max-height: 830px) and (orientation: landscape) {
+
+    #menu-settings,
+    #menu-help {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-right: 1rem;
+        transform: none;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 0 0 2rem 0;
+        box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
+    }
+
+    h2 {
+        padding: 1.5rem 0 0 2rem;
+    }
+
+    #menu-settings {
+        padding-bottom: 1rem;
+    }
+
+    fieldset {
+        padding: 0.5rem 1rem 1rem 2rem;
+        margin: 1.5rem 0 0 0;
+        border-radius: unset;
+    }
+
+    /* MENU > HELP */
+    #menu-help h2 {
+        padding-bottom: 1.5rem;
+    }
+
+    #menu-help p {
+        margin-top: 1rem;
+        padding: 0 2rem 0 2rem;
+    }
+
+    #menu-help ul {
+        padding-left: 1.75rem;
+    }
+}
+
+/* MEDIA QUERIES > PORTRAIT */
+/* MEDIA QUERIES > PORTRAIT > GENERAL */
+@media (max-width: 700px) and (orientation: portrait) {
+
+    .one:hover,
+    .two:hover,
+    .three:hover,
+    .four:hover,
+    .five:hover,
+    .six:hover {
+        stroke: none;
+    }
+
+    /* CONTENT > GAME AREA */
+    #game-area {
+        width: 640px;
+        height: 640px;
+    }
+
+    #middle {
+        pointer-events: none;
+    }
+
+    #difficulty-selection {
+        pointer-events: all;
+        height: 100%;
+    }
+
+    .difficulty {
+        background-color: rgba(53, 53, 53, 0.5);
+        /* accessibility tweaking required */
+    }
+
+    #in-game-info {
+        position: absolute;
+        text-align: end;
+        font-size: 0.8rem;
+        top: unset;
+        left: unset;
+        transform: none;
+        right: 1rem;
+        bottom: 3rem;
+        width: 256px;
+        overflow: visible;
+    }
+
+    .flex-ingame {
+        row-gap: 0;
+    }
+
+    h1 {
+        margin-top: 250px;
+        font-size: 3rem;
+        white-space: nowrap;
+    }
+
+    #btn-status {
+        position: absolute;
+        font-size: 4rem;
+        z-index: 2;
+        left: 37%;
+        top: calc(50% + 500px);
+    }
+
+    #score {
+        left: unset;
+        top: unset;
+        transform: unset;
+        bottom: 1.70rem;
+        text-align: center;
+        right: 1rem;
+        margin-right: unset;
+        font-size: 1.5rem;
+    }
+
+    #menu-help li {
+        padding-right: 2rem;
+    }
+
+    .big-icon {
+        font-size: 4rem;
+        background-color: var(--standard-bg);
+        border-radius: 50%;
+        padding: 0;
+        line-height: 2rem;
+        border: 4px solid var(--standard-bg);
+    }
+
+    /* CONTENT > GAME AREA > MIDDLE DISPLAY */
+    #end-of-game-status {
+        font-size: 2rem;
+    }
+
+    #in-game-status {
+        width: 100px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+
+    /* MENU */
+    #menu-settings,
+    #menu-help {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin-right: 1rem;
+        transform: none;
+        border-radius: 0;
+        box-shadow: none;
+        width: 100%;
+        padding: 0 0 2rem 0;
+        box-shadow: 0 0 2rem var(--standard-shadow), 2px 2px 0.15rem var(--standard-shadow);
+    }
+
+    #menu-icon-container {
+        width: 350px;
+        bottom: unset;
+        top: calc(50% - 150px);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+    h2 {
+        padding: 1.5rem 0 0 2rem;
+    }
+
+    /* MENU > SETTINGS */
+    #menu-settings {
+        padding-bottom: 1rem;
+    }
+
+    fieldset {
+        padding: 0.5rem 1rem 1rem 2rem;
+        margin: 1.5rem 0 0 0;
+        border-radius: unset;
+    }
+
+    /* MENU > HELP */
+    #menu-help h2 {
+        padding-bottom: 1.5rem;
+    }
+
+    #menu-help p {
+        margin-top: 1rem;
+        padding: 0 2rem 0 2rem;
+    }
+
+    #menu-help ul {
+        padding-left: 1.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+        text-align: start;
+        left: 0.5rem;
+        bottom: 0;
+    }
+
+    .socials a {
+        padding: 0 0.5rem 0 0.5rem;
+
+    }
+
+}
+
+/* MEDIA QUERIES PORTRAIT > GAME AREA OPTIMIZATION */
+@media (max-width: 450px) and (orientation: portrait) {
+
+    svg {
+        transform: scale(0.55);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    #menu-icon-container {
+        top: calc(50% - 140px);
+    }
+
+    #middle {
+        width: 360px;
+        height: 360px;
+    }
+
+    #difficulty-selection button {
+        height: 4rem;
+    }
+
+    .button-container {
+        padding: 0;
+    }
+
+    .flex-difficulty {
+        row-gap: 4.4rem;
+    }
+
+}
+
+@media (min-width: 451px) and (max-width: 550px) and (orientation: portrait) {
+
+    svg {
+        transform: scale(0.65);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    h1 {
+        margin-top: 160px;
+    }
+
+    #btn-status {
+        left: 40%;
+        top: calc(50% + 525px);
+    }
+
+    #menu-icon-container {
+        top: calc(50% - 170px);
+    }
+
+    #middle {
+        width: 420px;
+        height: 420px;
+    }
+
+    #difficulty-selection button {
+        height: 5rem;
+        font-size: 1.5rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 4.3rem;
+    }
+
+    h1 {
+        top: calc(50% - 215px);
+        font-size: 4rem;
+    }
+
+    #end-of-game-status {
+        font-size: 2.5rem;
+    }
+
+    #in-game-status {
+        width: 200px;
+        font-size: 1.5rem;
+    }
+
+    #score {
+        font-size: 2rem;
+    }
+
+    #in-game-info {
+        bottom: 3.5rem;
+    }
+
+}
+
+@media (min-width: 551px) and (max-width: 700px) and (orientation: portrait) {
+
+    svg {
+        transform: scale(0.8);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    h1 {
+        margin-top: 20px;
+    }
+
+    #btn-status {
+        left: 40%;
+        top: calc(50% + 570px);
+        font-size: 5rem;
+    }
+
+    #menu-icon-container {
+        top: calc(50% - 220px);
+    }
+
+    #middle {
+        width: 505px;
+        height: 505px;
+    }
+
+    #score {
+        font-size: 2rem;
+    }
+
+    #in-game-info {
+        bottom: 3.5rem;
+    }
+
+    #difficulty-selection button {
+        height: 6rem;
+        font-size: 1.75rem;
+    }
+
+    .flex-difficulty {
+        row-gap: 5.4rem;
+    }
+
+    h1 {
+        top: calc(50% - 280px);
+        font-size: 5rem;
+    }
+
+    #end-of-game-status {
+        font-size: 3rem;
+    }
+
+    #in-game-status {
+        width: 200px;
+        font-size: 1.75rem;
+    }
+
+
+}

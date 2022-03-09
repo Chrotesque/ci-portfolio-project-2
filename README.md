@@ -31,10 +31,17 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 * ## **Skeleton**
     ### **Wireframes**
     <details>
-    <summary>Mobile Only - Difficulty Selection, Mid Game / Game Over & Help Screen</summary>
+    <summary>Mobile Only Wireframes: Difficulty Selection, Mid Game / Game Over & Help Screen</summary>
 
-    ![Balsamiq - Difficulty Selection](assets/images/readme/balsamiq/simonsays_difficulty.jpg)
-    ![Balsamiq - Mid Gameover Help](assets/images/readme/balsamiq/simonsays_mid_gameover_help.jpg)
+    ![Balsamiq - Difficulty Selection](assets/images/readme/wireframe_difficulty.jpg)
+    ![Balsamiq - Mid Gameover Help](assets/images/readme/wireframe_midgameoverhelp.jpg)
+    </details>
+    <details>
+    <summary>Hand-made Sketches from MS OneNote: Settings Menu & Middle Display</summary>
+
+    ![OneNote - Settings Menu](assets/images/readme/sketch_settings.jpg)
+    ![OneNote - Middle Display](assets/images/readme/sketch_middle.jpg)
+    </details>
 
 # **Features** ([^](#table-of-contents))
 
