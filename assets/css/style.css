@@ -51,6 +51,7 @@ body {
     font-size: 1.25rem;
     background-color: var(--standard-bg);
     color: var(--standard-orange);
+    height: 100%;
 }
 
 .hide-element,
@@ -517,7 +518,7 @@ fieldset p {
 
 #menu-help {
     width: 640px;
-    font-size: 1rem;
+    font-size: 1.25rem;
 }
 
 #menu-help li {
@@ -720,6 +721,10 @@ footer li {
         padding-left: 1.75rem;
     }
 
+    #menu-help li {
+        padding-right: 2rem;
+    }
+
     /* FOOTER */
     footer {
         text-align: end;
@@ -844,11 +849,20 @@ footer li {
 /* MEDIA QUERIES LANDSCAPE > GAME AREA OPTIMIZATION > TABLET / SMALL SCREEN SPECIAL CASE */
 @media (max-height: 830px) and (orientation: landscape) {
 
+    #title {
+        font-size: 3rem;
+        top: calc(50% - 320px);
+    }
+
+    #btn-status {
+        font-size: 4rem;
+    }
+
     #menu-settings,
     #menu-help {
         position: relative;
-        top: 0;
-        left: 0;
+        top: unset;
+        left: unset;
         margin-right: 1rem;
         transform: none;
         border-radius: 0;
@@ -868,7 +882,7 @@ footer li {
 
     fieldset {
         padding: 0.5rem 1rem 1rem 2rem;
-        margin: 1.5rem 0 0 0;
+        margin: 2rem 0 0 0;
         border-radius: unset;
     }
 
@@ -884,6 +898,15 @@ footer li {
 
     #menu-help ul {
         padding-left: 1.75rem;
+    }
+
+    /* FOOTER */
+    footer {
+
+        text-align: end;
+        bottom: 7rem;
+        width: 3rem;
+        right: 2rem;
     }
 }
 
@@ -1028,6 +1051,10 @@ footer li {
     }
 
     /* MENU > HELP */
+    #menu-help {
+        font-size: 1.1rem;
+    }
+
     #menu-help h2 {
         padding-bottom: 1.5rem;
     }
