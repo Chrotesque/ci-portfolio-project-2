@@ -11,7 +11,8 @@
     let settings = {
         "control": {
             "stopRequest": true,
-            "locked": false
+            "locked": false,
+            "svgCuts": false
         },
         "setting": {
             "difficulty": "normal",
@@ -196,14 +197,22 @@
 
         // start of the game
         addScore(0);
-        setScoreStatus("Score");
+        //setScoreStatus("Score");
         let statusBtn = document.getElementById("btn-status");
+        let svgNoCut = document.getElementById("game-circle-outer-nocut");
+        let svgCut = document.getElementById("game-circle-outer-cut");
+        let svgScore = document.getElementById("game-circle-text-score");
         statusBtn.innerHTML = '<i class="fas fa-stop-circle" aria-hidden="true"></i>';
         statusBtn.setAttribute("data-value", "stop");
         setGameStatus("");
         collectGameButtons();
+        if (settings.control.svgCuts === false) {
+            toggleElement(svgNoCut);
+            toggleElement(svgCut);
+            toggleElement(svgScore);
+            settings.control.svgCuts = true;
+        }
         toggleDifficultySelection();
-        toggleIngameStats();
         computerTurn();
     }
 
@@ -217,7 +226,7 @@
             newRound();
             // otherwise proceed to next turn
         } else {
-            updateGameStats();
+            //updateGameStats();
             if (settings.control.stopRequest === false) {
                 setTurnStatus("Computer Turn");
             }
@@ -311,11 +320,10 @@
      */
     function gameOver() {
         toggleDifficultySelection();
-        toggleIngameStats();
         deactivateButtonSet();
         setTurnStatus("");
         setGameStatus("Game Over!");
-        setScoreStatus("Highscore");
+        //setScoreStatus("Highscore");
         let statusBtn = document.getElementById("btn-status");
         statusBtn.setAttribute("data-value", "start");
         statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -328,11 +336,10 @@
         if (settings.control.stopRequest === false) {
             settings.control.stopRequest = true;
             toggleDifficultySelection();
-            toggleIngameStats();
             deactivateButtonSet();
             setTurnStatus("");
             setGameStatus("Game Stopped!");
-            setScoreStatus("Highscore");
+            //setScoreStatus("Highscore");
             let statusBtn = document.getElementById("btn-status");
             statusBtn.setAttribute("data-value", "start");
             statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -350,10 +357,8 @@
         //TBD: increasing difficulty, speed, etc.
         setTurnStatus("");
         setGameStatus(`Round ${currentGame.round-1} won!`);
-        toggleIngameStats();
         await sleep(settings.values.sleep.newRoundDelay);
         setGameStatus("");
-        toggleIngameStats();
         computerTurn();
     }
 
@@ -442,6 +447,18 @@
             updateScoreMultiplierInternal();
             updateScoreMultiplierExternal();
             updateGameButtons();
+            // automatically change difficulty to custom once a change to the custom settings was initiated
+            for (let button of allButtons) {
+                if (button.getAttribute("data-type") === "difficulty") {
+                    if (button.getAttribute("data-value") === "custom") {
+                        button.classList.add("active");
+                    } else {
+                        if (button.classList.contains("active")) {
+                            button.classList.remove("active");
+                        }
+                    }
+                }
+            }
         }
 
     }
@@ -536,15 +553,6 @@
     }
 
     /**
-     * Specifically toggles the ingame stats UI
-     */
-    function toggleIngameStats() {
-        let inGame = document.getElementById("in-game-info");
-        toggleElement(inGame);
-
-    }
-
-    /**
      * Toggles a lock on an element
      */
     function lockElement(element) {
@@ -586,8 +594,6 @@
             document.getElementById("multiplier-strict").classList.remove("hide-element");
             document.getElementById("multiplier-rampup").classList.remove("hide-element");
             document.getElementById("multiplier-chaos").classList.remove("hide-element");
-            toggleElement(document.getElementById("in-game-info"));
-            lockElement(document.getElementById("in-game-info"));
         }
     }
 
