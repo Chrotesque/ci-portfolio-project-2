@@ -29,7 +29,8 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "off",
-            "chaos": "off"
+            "chaos": "off",
+            "sequence": 6
         },
         "normal": {
             "multiplier": 0,
@@ -37,8 +38,9 @@ let settings = {
             "speed": "normal",
             "strict": "off",
             "markingsc": "on",
-            "rampup": "on",
-            "chaos": "off"
+            "rampup": "off",
+            "chaos": "off",
+            "sequence": 6
         },
         "hard": {
             "multiplier": 0,
@@ -47,7 +49,8 @@ let settings = {
             "strict": "on",
             "markingsc": "on",
             "rampup": "on",
-            "chaos": "off"
+            "chaos": "off",
+            "sequence": 8
         },
         "custom": {
             "multiplier": 0,
@@ -56,7 +59,8 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "on",
-            "chaos": "off"
+            "chaos": "off",
+            "sequence": 10
         }
     },
     "values": {
@@ -84,6 +88,13 @@ let settings = {
             "newRoundDelay": 4000,
             "playerTurnLoop": 100,
             "playerButtonPress": 300
+        },
+        "rampup": {
+            "roundIncrease": 10
+        },
+        "chaos": {
+            "sequenceRange": 5,
+            "speedFactor": 3
         },
         "multiplier": {
             "buttons": {
@@ -183,15 +194,18 @@ function runGame() {
     // for ease of use during creation of a snapshot of the settings
     let diffSettings = settings.difficulty[settings.setting.difficulty];
     let speedSettings = settings.values.speed;
+    let speedPress = speedSettings[diffSettings.speed].press;
+    let speedDelay = speedSettings[diffSettings.speed].delay;
 
     // snapshot of settings to the currentGame var
     currentGame.score = 0;
     currentGame.multiplier = diffSettings.multiplier;
     currentGame.round = 1;
     currentGame.turn = 1;
-    currentGame.sequence = createSequence(3, diffSettings.buttons);
+    currentGame.sequenceLength = diffSettings.sequence;
+    currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
     currentGame.buttons = diffSettings.buttons;
-    currentGame.speed = speedSettings[diffSettings.speed];
+    currentGame.speed = [speedPress, speedDelay];
     currentGame.strict = diffSettings.strict;
     currentGame.markingsc = diffSettings.markingsc;
     currentGame.rampup = diffSettings.rampup;
@@ -242,9 +256,9 @@ async function computerTurn() {
                 }
             }
             (settings.control.stopRequest === false) ? curButton.classList.add(index + "-pressed"): stopGame("computerTurn 620");
-            await sleep(currentGame.speed.press);
+            await sleep(currentGame.speed[0]);
             curButton.classList.remove(index + "-pressed");
-            await sleep(currentGame.speed.delay);
+            await sleep(currentGame.speed[1]);
         }
         (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame("computerTurn 628");
     }
@@ -330,17 +344,26 @@ function stopGame() {
 async function newRound() {
     currentGame.round++;
     if (currentGame.rampup === "on") {
-        console.log("ramping up");
+        rampUpDifficulty();
     }
     currentGame.turn = 1;
     let diffSettings = settings.difficulty[settings.setting.difficulty];
-    currentGame.sequence = createSequence(3, diffSettings.buttons);
+    currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
     //TBD: increasing difficulty, speed, etc.
     setTurnStatus("");
     setGameStatus(`Round ${currentGame.round-1} won!`);
     await sleep(settings.values.sleep.newRoundDelay);
     setGameStatus("");
     computerTurn();
+}
+
+/**
+ * Increases difficulty when option ramp up is active
+ */
+function rampUpDifficulty() {
+    currentGame.sequenceLength++;
+    currentGame.speed[0] -= currentGame.speed[0] / settings.values.rampup.roundIncrease;
+    currentGame.speed[1] -= currentGame.speed[1] / settings.values.rampup.roundIncrease;
 }
 
 // SINGLE USE HTML POPULATION
@@ -442,7 +465,6 @@ function changeSetting(clicked) {
 
     updateGameButtons();
     clicked.classList.add("active");
-
 }
 
 // SCORE
