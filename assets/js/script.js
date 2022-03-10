@@ -115,6 +115,14 @@ let settings = {
         }
     }
 }
+const audio = {
+    one: new Audio("assets/audio/beep1.mp3"),
+    two: new Audio("assets/audio/beep2.mp3"),
+    three: new Audio("assets/audio/beep3.mp3"),
+    four: new Audio("assets/audio/beep4.mp3"),
+    five: new Audio("assets/audio/beep5.mp3"),
+    six: new Audio("assets/audio/beep6.mp3")
+};
 
 // EVENT LISTENERS
 
@@ -242,12 +250,19 @@ async function computerTurn() {
                     curButton = button;
                 }
             }
-            (settings.control.stopRequest === false) ? curButton.classList.add(index + "-pressed"): stopGame("computerTurn 620");
+            if (settings.control.stopRequest === false) {
+                curButton.classList.add(index + "-pressed");
+                if (settings.setting.sound === "on") {
+                    audio[curButton.getAttribute("data-value")].play();
+                }
+            } else {
+                stopGame();
+            }
             await sleep(currentGame.speed[0]);
             curButton.classList.remove(index + "-pressed");
             await sleep(currentGame.speed[1]);
         }
-        (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame("computerTurn 628");
+        (settings.control.stopRequest === false) ? playerTurn(currentGame.sequence, currentGame.turn): stopGame();
     }
 }
 
@@ -684,6 +699,9 @@ async function playButton(input) {
         if (input === button.getAttribute("data-value")) {
             curButton = button;
         }
+    }
+    if (settings.setting.sound === "on") {
+        audio[curButton.getAttribute("data-value")].play();
     }
     curButton.classList.add(input + "-pressed");
     await sleep(settings.values.sleep.playerButtonPress);
