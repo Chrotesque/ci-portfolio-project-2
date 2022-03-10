@@ -197,7 +197,6 @@
 
         // start of the game
         addScore(0);
-        //setScoreStatus("Score");
         let statusBtn = document.getElementById("btn-status");
         let svgNoCut = document.getElementById("game-circle-outer-nocut");
         let svgCut = document.getElementById("game-circle-outer-cut");
@@ -302,7 +301,6 @@
         deactivateButtonSet();
         setTurnStatus("");
         setGameStatus("Game Over!");
-        //setScoreStatus("Highscore");
         let statusBtn = document.getElementById("btn-status");
         statusBtn.setAttribute("data-value", "start");
         statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -318,7 +316,6 @@
             deactivateButtonSet();
             setTurnStatus("");
             setGameStatus("Game Stopped!");
-            //setScoreStatus("Highscore");
             let statusBtn = document.getElementById("btn-status");
             statusBtn.setAttribute("data-value", "start");
             statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
@@ -498,14 +495,6 @@
     async function setGameStatus(update) {
         let status = document.getElementById("game-status");
         status.textContent = update;
-    }
-
-    /**
-     * Changes the score name display, ie: Score, Latest Score, etc. 
-     */
-    function setScoreStatus(update) {
-        let score = document.getElementById("score-status");
-        score.innerHTML = update + " ";
     }
 
     // TOGGLERS
