@@ -89,16 +89,16 @@ let settings = {
                 3: -15,
                 4: 0,
                 5: 15,
-                6: 40
+                6: 30
             },
             "speed": {
-                "slow": -15,
+                "slow": -10,
                 "normal": 0,
-                "fast": 15
+                "fast": 10
             },
             "strict": {
                 "off": 0,
-                "on": 30
+                "on": 20
             },
             "rampup": {
                 "off": 0,
@@ -609,13 +609,11 @@ function toggleAdvancedInfo() {
     if (setting === "off") {
         document.getElementById("multiplier-buttons").classList.add("hide-element");
         document.getElementById("multiplier-speed").classList.add("hide-element");
-        document.getElementById("multiplier-markingsc").classList.add("hide-element");
         document.getElementById("multiplier-strict").classList.add("hide-element");
         document.getElementById("multiplier-rampup").classList.add("hide-element");
     } else {
         document.getElementById("multiplier-buttons").classList.remove("hide-element");
         document.getElementById("multiplier-speed").classList.remove("hide-element");
-        document.getElementById("multiplier-markingsc").classList.remove("hide-element");
         document.getElementById("multiplier-strict").classList.remove("hide-element");
         document.getElementById("multiplier-rampup").classList.remove("hide-element");
     }
