@@ -292,27 +292,6 @@
         }
     }
 
-    /**
-     * Updates the advanced game info
-     */
-    function updateGameStats() {
-        let speed = document.getElementById("stat-speed");
-        let round = document.getElementById("stat-round");
-        let turn = document.getElementById("stat-turn");
-        let sequenceLength = document.getElementById("stat-sequence-length");
-        let scoreMult = document.getElementById("stat-score-mp");
-        speed.innerHTML = 100 + 10 * (currentGame.round - 1) + "%";
-        round.innerHTML = currentGame.round;
-        turn.innerHTML = currentGame.turn;
-        if (currentGame.sequence.length === 10) {
-            sequenceLength.innerHTML = "";
-        } else {
-            sequenceLength.innerHTML = ` + ${currentGame.sequence.length-10}`;
-        }
-
-        scoreMult.innerHTML = Math.round(currentGame.multiplier * 100) + "%";
-    }
-
     // GAME STATUS
 
     /**
