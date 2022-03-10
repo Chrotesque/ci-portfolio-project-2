@@ -29,7 +29,7 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "off",
-            "sequence": 6
+            "sequence": 2
         },
         "normal": {
             "multiplier": 0,
@@ -38,7 +38,7 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "off",
-            "sequence": 6
+            "sequence": 2
         },
         "hard": {
             "multiplier": 0,
@@ -56,7 +56,7 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "on",
-            "sequence": 4
+            "sequence": 2
         }
     },
     "values": {
@@ -261,6 +261,7 @@ async function playerTurn() {
     let currentSequence = currentGame.sequence.slice(0, currentGame.turn);
     let validity = true;
     let counter = currentSequence.length;
+    let turnScore = 0;
     if (settings.control.stopRequest === false) {
         setTurnStatus("Your Turn");
     }
@@ -271,7 +272,7 @@ async function playerTurn() {
                 let playerInputToCheck = parseInt(playerInput.shift());
                 let currentSequenceToCheck = parseInt(currentSequence.shift());
                 if (validatePlayerInput(playerInputToCheck, currentSequenceToCheck)) {
-                    addScore(settings.values.score.step);
+                    turnScore += settings.values.score.step;
                     --counter;
                 } else {
                     validity = false;
@@ -285,12 +286,13 @@ async function playerTurn() {
 
     if (validity === true && counter <= 0) {
         ++currentGame.turn;
-        addScore(settings.values.score.turn);
+        turnScore += settings.values.score.turn
+        addScore(turnScore);
         computerTurn();
     } else if (validity === false) {
-        gameOver();
+        failCheck();
     } else {
-        stopGame("playerTurn");
+        stopGame();
     }
 }
 
@@ -337,7 +339,7 @@ async function newRound() {
     currentGame.speed[0] = rampup.speed;
     currentGame.speed[1] = rampup.delay;
 
-    currentGame.sequenceLength = currentGame.sequenceLength;
+    currentGame.sequence = createSequence(currentGame.sequenceLength, currentGame.buttons);
     //TBD: increasing difficulty, speed, etc.
     setTurnStatus("");
     setGameStatus(`Round ${currentGame.round-1} won!`);
@@ -363,8 +365,25 @@ function rampUpDifficulty(length, speed, delay) {
             "speed": speed,
             "delay": delay
         };
-        return result;
     }
+    return result;
+}
+
+function failCheck() {
+    let strict = currentGame.strict;
+    if (strict === "on") {
+        gameOver();
+    } else {
+        repeatSequence();
+    }
+}
+
+async function repeatSequence() {
+    setTurnStatus("");
+    setGameStatus(`Wrong! Let's repeat.`);
+    await sleep(settings.values.sleep.computerTurnDelay);
+    setGameStatus("");
+    computerTurn();
 }
 
 // SINGLE USE HTML POPULATION
