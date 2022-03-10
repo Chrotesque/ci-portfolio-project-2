@@ -17,8 +17,9 @@ let settings = {
     "setting": {
         "difficulty": "normal",
         "sound": "off",
-        "markings": "num",
-        "order": "cw",
+        "markings-toggle": "on",
+        "markings-type": "num",
+        "markings-order": "cw",
         "stats-display": "off"
     },
     "difficulty": {
@@ -162,7 +163,7 @@ function controlGame(button) {
             runGame();
             break;
         case "stop":
-            stopGame("controlGame");
+            stopGame();
             break;
         default:
             playerInput.push(stringToNum(curButton) - 1);
@@ -184,6 +185,7 @@ function runGame() {
     let speedSettings = settings.values.speed;
     let speedPress = speedSettings[diffSettings.speed].press;
     let speedDelay = speedSettings[diffSettings.speed].delay;
+    let btnNum = numToString(diffSettings.buttons);
 
     // snapshot of settings to the currentGame var
     setScore(0);
@@ -196,6 +198,9 @@ function runGame() {
     currentGame.rampup = diffSettings.rampup;
     currentGame.sequenceLength = diffSettings.sequence;
     currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
+    if (settings.setting['markings-toggle'] === "on") {
+        toggleMarkings(btnNum);
+    }
 
     // start of the game
 
@@ -308,11 +313,16 @@ async function playerTurn() {
  * Ends the game after making a mistake
  */
 function gameOver() {
+    let statusBtn = document.getElementById("btn-status");
+    let btnNum = numToString(settings.difficulty[settings.setting.difficulty].buttons);
+    currentGame = {};
     toggleDifficultySelection();
     deactivateButtonSet();
     setTurnStatus("");
     setGameStatus("Game Over!");
-    let statusBtn = document.getElementById("btn-status");
+    if (settings.setting['markings-toggle'] === "on") {
+        toggleMarkings(btnNum);
+    }
     statusBtn.setAttribute("data-value", "start");
     statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
 }
@@ -322,12 +332,17 @@ function gameOver() {
  */
 function stopGame() {
     if (settings.control.stopRequest === false) {
+        let statusBtn = document.getElementById("btn-status");
+        let btnNum = numToString(settings.difficulty[settings.setting.difficulty].buttons);
+        currentGame = {};
         settings.control.stopRequest = true;
         toggleDifficultySelection();
         deactivateButtonSet();
         setTurnStatus("");
+        if (settings.setting['markings-toggle'] === "on") {
+            toggleMarkings(btnNum);
+        }
         setGameStatus("Game Stopped!");
-        let statusBtn = document.getElementById("btn-status");
         statusBtn.setAttribute("data-value", "start");
         statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
     }
@@ -442,7 +457,7 @@ function setMenuData() {
  * Change game setting for next game through adding &| removing css class as well as changing global 
  * settings variable
  */
-function changeSetting(clicked) {
+function changeSetting2(clicked) {
 
     let cat = clicked.getAttribute("data-cat");
     let type = clicked.getAttribute("data-type");
@@ -452,6 +467,12 @@ function changeSetting(clicked) {
         if (button.getAttribute("data-type") === type) {
             if (button.getAttribute("data-type") === "stats-display") {
                 toggleAdvancedInfo();
+            }
+            if (button.getAttribute("data-type") === "markings-toggle") {
+                //if (typeof currentGame.round === 'number') {
+                let btnNum = numToString(settings.difficulty[settings.setting.difficulty].buttons);
+                toggleMarkings(btnNum);
+                //}
             }
             if (button.getAttribute("data-cat") === "custom") {
                 ++customChanges;
@@ -487,6 +508,75 @@ function changeSetting(clicked) {
 
     updateGameButtons();
     clicked.classList.add("active");
+}
+
+function changeSetting(clicked) {
+    console.log(clicked);
+    let cat = clicked.getAttribute("data-cat");
+    let type = clicked.getAttribute("data-type");
+    let value = clicked.getAttribute("data-value");
+
+    // change values in globVar
+    if (cat === "setting") {
+        settings[cat][type] = value;
+    } else {
+        settings.difficulty[cat][type] = value;
+    }
+
+    for (let button of allButtons) {
+        if (button.getAttribute("data-cat") === cat) {
+            if (button.getAttribute("data-type") === type) {
+                if (button.classList.contains("active")) {
+                    if (cat === "custom") {
+                        // update multiplier values only if changes occured
+                        settings.setting.difficulty = "custom";
+                        for (let button of allButtons) {
+                            // update difficulty buttons
+                            if (button.getAttribute("data-type") === "difficulty") {
+                                if (button.getAttribute("data-value") === "custom") {
+                                    button.classList.add("active");
+                                } else {
+                                    if (button.classList.contains("active")) {
+                                        button.classList.remove("active");
+                                    }
+                                }
+                            }
+                        }
+                        updateGameButtons();
+                        // update score multipliers
+                        updateScoreMultiplierInternal();
+                        updateScoreMultiplierExternal();
+                    }
+                    // remove active from currently active element
+                    button.classList.remove("active");
+                }
+            }
+        }
+    }
+
+    // add active to clicked element and update gameButtons
+    clicked.classList.add("active");
+    updateGameButtons();
+    switch (clicked.getAttribute("data-type")) {
+        case "sound":
+            settings.setting.sound = value;
+            break;
+        case "stats-display":
+            settings.setting["stats-display"] = value;
+            toggleAdvancedInfo();
+            break;
+        case "markings-toggle":
+            if (currentGame.buttons !== undefined) {
+                toggleMarkings(numToString(currentGame.buttons));
+            }
+            break;
+        case "markings-type":
+            changeMarkingsType();
+            break;
+        case "markings-order":
+            changeMarkingsOrder();
+            break;
+    }
 }
 
 // SCORE
@@ -579,14 +669,11 @@ function toggleDifficultySelection() {
 }
 
 /**
- * Toggles a lock on an element
+ * Toggles Markings
  */
-function lockElement(element) {
-    if (element.classList.contains("lock-element")) {
-        element.classList.remove("lock-element");
-    } else {
-        element.classList.add("lock-element");
-    }
+function toggleMarkings(number) {
+    let parent = document.getElementById("btn-set-" + number);
+    toggleElement(parent.childNodes[1]);
 }
 
 /**
@@ -620,7 +707,7 @@ function toggleAdvancedInfo() {
 }
 
 /**
- * Toggles through the amount of game buttons being displayed through class add/rem
+ * Toggles the amount of game buttons being displayed through class add/rem
  */
 function updateGameButtons() {
 
@@ -637,6 +724,36 @@ function updateGameButtons() {
     // secondly show the correct one
     toggleElement(newSetToShow);
 
+}
+
+function changeMarkingsType() {
+
+}
+
+/**
+ * Reverses the order of button markings
+ */
+function changeMarkingsOrder() {
+    // repeat this for all btn sets
+    for (let i = 3; i < 7; i++) {
+        let number = numToString(i);
+        let btnSet = document.getElementById("btn-set-" + number);
+        let markings = [];
+        let buttons = [];
+        let parent = btnSet.childNodes[1].querySelectorAll('p');
+        for (let j = 0; j < parent.length; j++) {
+            markings.push(parent[j].innerHTML);
+            buttons.push(parent[j]);
+        }
+        // reverse array
+        markings.reverse();
+        // making sure that the 1 stays at the same spot on the screen, yet the rest reversed
+        let last = markings.pop();
+        markings.unshift(last);
+        for (let k = 0; k < buttons.length; k++) {
+            buttons[k].innerHTML = markings[k];
+        }
+    }
 }
 
 // GAME BUTTONS
