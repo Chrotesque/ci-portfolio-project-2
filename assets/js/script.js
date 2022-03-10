@@ -29,7 +29,6 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "off",
-            "chaos": "off",
             "sequence": 6
         },
         "normal": {
@@ -39,7 +38,6 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "off",
-            "chaos": "off",
             "sequence": 6
         },
         "hard": {
@@ -49,8 +47,7 @@ let settings = {
             "strict": "on",
             "markingsc": "on",
             "rampup": "on",
-            "chaos": "off",
-            "sequence": 8
+            "sequence": 2
         },
         "custom": {
             "multiplier": 0,
@@ -59,8 +56,7 @@ let settings = {
             "strict": "off",
             "markingsc": "on",
             "rampup": "on",
-            "chaos": "off",
-            "sequence": 10
+            "sequence": 4
         }
     },
     "values": {
@@ -92,10 +88,6 @@ let settings = {
         "rampup": {
             "roundIncrease": 10
         },
-        "chaos": {
-            "sequenceRange": 5,
-            "speedFactor": 3
-        },
         "multiplier": {
             "buttons": {
                 3: -15,
@@ -119,10 +111,6 @@ let settings = {
             "rampup": {
                 "off": 0,
                 "on": 15
-            },
-            "chaos": {
-                "off": 0,
-                "on": 50
             }
         }
     }
@@ -202,14 +190,13 @@ function runGame() {
     currentGame.multiplier = diffSettings.multiplier;
     currentGame.round = 1;
     currentGame.turn = 1;
-    currentGame.sequenceLength = diffSettings.sequence;
-    currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
     currentGame.buttons = diffSettings.buttons;
     currentGame.speed = [speedPress, speedDelay];
     currentGame.strict = diffSettings.strict;
     currentGame.markingsc = diffSettings.markingsc;
     currentGame.rampup = diffSettings.rampup;
-    currentGame.chaos = diffSettings.chaos;
+    currentGame.sequenceLength = diffSettings.sequence;
+    currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
 
     // start of the game
 
@@ -343,12 +330,14 @@ function stopGame() {
  */
 async function newRound() {
     currentGame.round++;
-    if (currentGame.rampup === "on") {
-        rampUpDifficulty();
-    }
     currentGame.turn = 1;
-    let diffSettings = settings.difficulty[settings.setting.difficulty];
-    currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
+
+    let rampup = rampUpDifficulty(currentGame.sequenceLength, currentGame.speed[0], currentGame.speed[1]);
+    currentGame.sequenceLength = rampup.sequenceLength;
+    currentGame.speed[0] = rampup.speed;
+    currentGame.speed[1] = rampup.delay;
+
+    currentGame.sequenceLength = currentGame.sequenceLength;
     //TBD: increasing difficulty, speed, etc.
     setTurnStatus("");
     setGameStatus(`Round ${currentGame.round-1} won!`);
@@ -360,10 +349,22 @@ async function newRound() {
 /**
  * Increases difficulty when option ramp up is active
  */
-function rampUpDifficulty() {
-    currentGame.sequenceLength++;
-    currentGame.speed[0] -= currentGame.speed[0] / settings.values.rampup.roundIncrease;
-    currentGame.speed[1] -= currentGame.speed[1] / settings.values.rampup.roundIncrease;
+function rampUpDifficulty(length, speed, delay) {
+    let result = {};
+    if (currentGame.rampup === "on") {
+        result = {
+            "sequenceLength": length + 1,
+            "speed": speed - (speed / settings.values.rampup.roundIncrease),
+            "delay": delay - (delay / settings.values.rampup.roundIncrease)
+        };
+    } else {
+        result = {
+            "sequenceLength": length,
+            "speed": speed,
+            "delay": delay
+        };
+        return result;
+    }
 }
 
 // SINGLE USE HTML POPULATION
@@ -402,7 +403,6 @@ function setMenuData() {
     let markingsMult = document.getElementById("multiplier-markingsc");
     let strictMult = document.getElementById("multiplier-strict");
     let rampupMult = document.getElementById("multiplier-rampup");
-    let chaosMult = document.getElementById("multiplier-chaos");
     button.innerHTML = settings.values.score.step;
     turn.innerHTML = settings.values.score.turn;
     round.innerHTML = settings.values.score.round;
@@ -411,7 +411,6 @@ function setMenuData() {
     markingsMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.markingsc));
     strictMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.strict));
     rampupMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.rampup));
-    chaosMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.chaos));
 }
 
 // SETTINGS
@@ -590,14 +589,12 @@ function toggleAdvancedInfo() {
         document.getElementById("multiplier-markingsc").classList.add("hide-element");
         document.getElementById("multiplier-strict").classList.add("hide-element");
         document.getElementById("multiplier-rampup").classList.add("hide-element");
-        document.getElementById("multiplier-chaos").classList.add("hide-element");
     } else {
         document.getElementById("multiplier-buttons").classList.remove("hide-element");
         document.getElementById("multiplier-speed").classList.remove("hide-element");
         document.getElementById("multiplier-markingsc").classList.remove("hide-element");
         document.getElementById("multiplier-strict").classList.remove("hide-element");
         document.getElementById("multiplier-rampup").classList.remove("hide-element");
-        document.getElementById("multiplier-chaos").classList.remove("hide-element");
     }
 }
 
@@ -753,6 +750,23 @@ function validatePlayerInput(num1, num2) {
  */
 function getRandom(max) {
     return Math.floor(Math.random() * max);
+
+}
+
+/**
+ * Returns a random number between (min) and (max)
+ */
+function getRandomRange(min, max) {
+    let stop = false;
+    let result;
+    while (stop === false) {
+        let random = getRandom(max);
+        if (random >= min) {
+            result = random;
+            stop = true;
+        }
+    }
+    return result;
 }
 
 /**
