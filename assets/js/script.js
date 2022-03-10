@@ -198,7 +198,7 @@ function runGame() {
     let speedDelay = speedSettings[diffSettings.speed].delay;
 
     // snapshot of settings to the currentGame var
-    currentGame.score = 0;
+    setScore(0);
     currentGame.multiplier = diffSettings.multiplier;
     currentGame.round = 1;
     currentGame.turn = 1;
@@ -212,7 +212,7 @@ function runGame() {
     currentGame.chaos = diffSettings.chaos;
 
     // start of the game
-    addScore(0);
+
     let statusBtn = document.getElementById("btn-status");
     let svgNoCut = document.getElementById("game-circle-outer-nocut");
     let svgCut = document.getElementById("game-circle-outer-cut");
@@ -474,6 +474,14 @@ function changeSetting(clicked) {
  */
 function addScore(update) {
     currentGame.score += update * currentGame.multiplier;
+    document.getElementById("score-amount").innerHTML = Math.round(currentGame.score);
+}
+
+/**
+ * Sets the score to a certain amount 
+ */
+function setScore(update) {
+    currentGame.score = update;
     document.getElementById("score-amount").innerHTML = Math.round(currentGame.score);
 }
 
