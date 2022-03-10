@@ -636,6 +636,7 @@ footer li {
 
     #menu-help {
         font-size: 1rem;
+        padding-bottom: 2rem;
     }
 
     #menu-help p {
@@ -643,14 +644,9 @@ footer li {
         padding-right: 1.5rem;
     }
 
-    #menu-help ul {
-        padding-bottom: 2rem;
-    }
-
     #menu-help li {
         text-indent: 5px;
-        margin-left: 22px;
-        margin-right: 3rem;
+        margin: 0 22px 0 3rem;
     }
 }
 
@@ -723,6 +719,7 @@ footer li {
 
     #menu-help {
         font-size: 1.1rem;
+        padding-bottom: 2rem;
     }
 
     #menu-help p {
@@ -730,13 +727,8 @@ footer li {
         padding-right: 1.5rem;
     }
 
-    #menu-help ul {
-        padding-bottom: 2rem;
-    }
-
     #menu-help li {
         text-indent: 5px;
-        margin-left: 22px;
-        margin-right: 3rem;
+        margin: 0 22px 0 3rem;
     }
 }
