@@ -35,6 +35,11 @@
                 </svg>
                 <!-- GAME SECTION: 3 BUTTON LAYOUT -->
                 <div id="btn-set-three" class="svg-btn hide-element">
+                    <div class="markings hide-element">
+                        <p class="three-one">1</p>
+                        <p class="three-two">2</p>
+                        <p class="three-three">3</p>
+                    </div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="698px" height="698px">
                         <path class="one inactive" data-value="one"
                             d="M448.604,268.614 C425.139,239.576 389.241,220.999 348.999,220.999 C308.940,220.999 273.183,239.407 249.713,268.220 L138.148,203.808 C184.325,136.876 261.533,92.999 348.999,92.999 C436.646,92.999 513.993,137.55 560.137,204.220 L448.604,268.614 Z" />
@@ -46,6 +51,12 @@
                 </div>
                 <!-- GAME SECTION: 4 BUTTON LAYOUT -->
                 <div id="btn-set-four" class="svg-btn">
+                    <div class="markings hide-element">
+                        <p class="four-one">1</p>
+                        <p class="four-two">2</p>
+                        <p class="four-three">3</p>
+                        <p class="four-four">4</p>
+                    </div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="698px" height="698px">
                         <path class="four inactive" data-value="four" d="M476.6,332.999 C468.827,275.435 423.425,229.747 365.999,222.125 L365.999,93.575 C494.168,101.981 596.574,204.698 604.489,332.999 L476.6,332.999 Z" />
                         <path class="three inactive" data-value="three"
@@ -57,6 +68,13 @@
                 </div>
                 <!-- GAME SECTION: 5 BUTTON LAYOUT -->
                 <div id="btn-set-five" class="svg-btn hide-element">
+                    <div class="markings hide-element">
+                        <p class="five-one">1</p>
+                        <p class="five-two">2</p>
+                        <p class="five-three">3</p>
+                        <p class="five-four">4</p>
+                        <p class="five-five">5</p>
+                    </div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="698px" height="698px">
                         <path class="two inactive" data-value="two"
                             d="M511.471,280.331 L465.241,295.355 C447.219,256.370 410.168,227.987 365.999,222.125 L365.999,93.575 C467.49,100.202 552.79,165.457 587.424,255.647 L511.471,280.331 Z" />
@@ -71,6 +89,14 @@
                 </div>
                 <!-- GAME SECTION: 6 BUTTON LAYOUT -->
                 <div id="btn-set-six" class="svg-btn hide-element">
+                    <div class="markings hide-element">
+                        <p class="six-one">1</p>
+                        <p class="six-two">2</p>
+                        <p class="six-three">3</p>
+                        <p class="six-four">4</p>
+                        <p class="six-five">5</p>
+                        <p class="six-six">6</p>
+                    </div>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="698px" height="698px">
                         <path class="two inactive" data-value="two"
                             d="M450.296,270.752 C430.158,244.722 400.215,226.667 365.999,222.125 L365.999,93.575 C447.548,98.923 518.668,142.452 561.661,206.456 L450.296,270.752 Z" />
@@ -131,10 +157,17 @@
                         </div>
                     </div>
                     <div class="setting-row">
+                        <h3>Markings Toggle</h3>
+                        <div class="button-container">
+                            <button data-cat="setting" data-type="markings-toggle" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="setting" data-type="markings-toggle"
+                                data-value="on" type="button" class="settings shared-edge">On</button>
+                        </div>
+                    </div>
+                    <div class="setting-row">
                         <h3>Markings Type</h3>
                         <div class="button-container">
-                            <button data-cat="setting" data-type="markings" data-value="num" type="button" class="settings edge-shared">1 2 3</button><button data-type="markings" data-cat="setting" data-value="sym"
-                                type="button" class="settings shared-edge">
+                            <button data-cat="setting" data-type="markings-type" data-value="num" type="button" class="settings edge-shared">1 2 3</button><button data-type="markings-type" data-cat="setting"
+                                data-value="sym" type="button" class="settings shared-edge">
                                 <i class="fas fa-star" aria-hidden="true"></i>
                                 <i class="fas fa-square" aria-hidden="true"></i>
                                 <i class="fas fa-circle" aria-hidden="true"></i>
@@ -144,9 +177,9 @@
                     <div class="setting-row">
                         <h3>Markings Order</h3>
                         <div class="button-container">
-                            <button data-cat="setting" data-type="order" data-value="ccw" type="button" class="settings edge-shared">
+                            <button data-cat="setting" data-type="markings-order" data-value="ccw" type="button" class="settings edge-shared">
                                 <i class="fas fa-caret-square-left" aria-hidden="true"></i>
-                            </button><button data-type="order" data-cat="setting" data-value="cw" type="button" class="settings shared-edge">
+                            </button><button data-type="markings-order" data-cat="setting" data-value="cw" type="button" class="settings shared-edge">
                                 <i class="fas fa-caret-square-right" aria-hidden="true"></i>
                             </button>
                         </div>

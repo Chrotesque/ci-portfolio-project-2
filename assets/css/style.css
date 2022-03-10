@@ -144,7 +144,6 @@ h1 {
     text-shadow: 0 0 7px var(--standard-orange);
 }
 
-
 /* CONTENT > GAME AREA */
 #game-area {
     position: fixed;
@@ -152,7 +151,6 @@ h1 {
     justify-content: center;
     top: 50%;
     left: 50%;
-    margin-right: -50%;
     transform: translate(-50%, -50%);
     width: 698px;
     height: 698px;
@@ -276,8 +274,137 @@ h1 {
     position: absolute;
 }
 
-/* CONTENT > GAME BUTTONS > STANDARD */
+/* CONTENT > GAME BUTTONS > MARKINGS */
+.markings {
+    position: absolute;
+    width: calc(512px * var(--scale));
+    height: calc(512px * var(--scale));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    border-radius: 50%;
+    pointer-events: none;
+}
 
+.three-one,
+.three-two,
+.three-three,
+.four-one,
+.four-two,
+.four-three,
+.four-four,
+.five-one,
+.five-two,
+.five-three,
+.five-four,
+.five-five,
+.six-one,
+.six-two,
+.six-three,
+.six-four,
+.six-five,
+.six-six {
+    color: var(--standard-bg);
+    position: absolute;
+    font-size: 4rem;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.three-one {
+    left: calc(50%);
+    top: calc(50% - 190px);
+}
+
+.three-two {
+    left: calc(50% + 158px);
+    top: calc(50% + 100px);
+}
+
+.three-three {
+    left: calc(50% - 158px);
+    top: calc(50% + 100px);
+}
+
+.four-one {
+    left: calc(50% + 135px);
+    top: calc(50% - 135px);
+}
+
+.four-two {
+    left: calc(50% + 135px);
+    top: calc(50% + 135px);
+}
+
+.four-three {
+    left: calc(50% - 135px);
+    top: calc(50% + 135px);
+}
+
+.four-four {
+    left: calc(50% - 135px);
+    top: calc(50% - 135px);
+}
+
+.five-one {
+    left: calc(50% + 115px);
+    top: calc(50% - 158px);
+}
+
+.five-two {
+    left: calc(50% + 178px);
+    top: calc(50% + 59px);
+}
+
+.five-three {
+    left: calc(50%);
+    top: calc(50% + 190px);
+}
+
+.five-four {
+    left: calc(50% - 178px);
+    top: calc(50% + 59px);
+}
+
+.five-five {
+    left: calc(50% - 115px);
+    top: calc(50% - 158px);
+}
+
+.six-one {
+    left: calc(50% + 99px);
+    top: calc(50% - 169px);
+}
+
+.six-two {
+    left: calc(50% + 190px);
+    top: calc(50%);
+}
+
+.six-three {
+    left: calc(50% + 99px);
+    top: calc(50% + 169px);
+}
+
+.six-four {
+    left: calc(50% - 99px);
+    top: calc(50% + 169px);
+}
+
+.six-five {
+    left: calc(50% - 190px);
+    top: calc(50%);
+}
+
+.six-six {
+    left: calc(50% - 99px);
+    top: calc(50% - 169px);
+}
+
+
+/* CONTENT > GAME BUTTONS > STANDARD */
 svg {
     -webkit-tap-highlight-color: transparent;
     transform: scale(var(--scale));
