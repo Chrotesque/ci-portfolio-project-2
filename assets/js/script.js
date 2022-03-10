@@ -27,7 +27,6 @@ let settings = {
             "buttons": "3",
             "speed": "slow",
             "strict": "off",
-            "markingsc": "on",
             "rampup": "off",
             "sequence": 2
         },
@@ -36,25 +35,22 @@ let settings = {
             "buttons": "4",
             "speed": "normal",
             "strict": "off",
-            "markingsc": "on",
             "rampup": "off",
             "sequence": 2
         },
         "hard": {
             "multiplier": 0,
             "buttons": "5",
-            "speed": "fast",
+            "speed": "normal",
             "strict": "on",
-            "markingsc": "on",
             "rampup": "on",
             "sequence": 2
         },
         "custom": {
             "multiplier": 0,
             "buttons": "6",
-            "speed": "normal",
-            "strict": "off",
-            "markingsc": "on",
+            "speed": "fast",
+            "strict": "on",
             "rampup": "on",
             "sequence": 2
         }
@@ -103,10 +99,6 @@ let settings = {
             "strict": {
                 "off": 0,
                 "on": 30
-            },
-            "markingsc": {
-                "off": 15,
-                "on": 0
             },
             "rampup": {
                 "off": 0,
@@ -201,7 +193,6 @@ function runGame() {
     currentGame.buttons = diffSettings.buttons;
     currentGame.speed = [speedPress, speedDelay];
     currentGame.strict = diffSettings.strict;
-    currentGame.markingsc = diffSettings.markingsc;
     currentGame.rampup = diffSettings.rampup;
     currentGame.sequenceLength = diffSettings.sequence;
     currentGame.sequence = createSequence(currentGame.sequenceLength, diffSettings.buttons);
@@ -434,7 +425,6 @@ function setMenuData() {
     let round = document.getElementById("points-round");
     let buttonMult = document.getElementById("multiplier-buttons");
     let speedMult = document.getElementById("multiplier-speed");
-    let markingsMult = document.getElementById("multiplier-markingsc");
     let strictMult = document.getElementById("multiplier-strict");
     let rampupMult = document.getElementById("multiplier-rampup");
     button.innerHTML = settings.values.score.step;
@@ -442,7 +432,6 @@ function setMenuData() {
     round.innerHTML = settings.values.score.round;
     buttonMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.buttons));
     speedMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.speed));
-    markingsMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.markingsc));
     strictMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.strict));
     rampupMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.rampup));
 }
