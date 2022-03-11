@@ -806,6 +806,12 @@
      */
     function deactivateButtonSet() {
         for (let i = 0; i < gameButtons.length; i++) {
+            // deactivates the button currently being pressed, should one be pressed 
+            let value = gameButtons[i].getAttribute("data-value");
+            if (gameButtons[i].classList.contains(value + "-pressed")) {
+                gameButtons[i].classList.remove(value + "-pressed");
+            }
+            // adds inactivate class regardless
             gameButtons[i].classList.add("inactive");
         }
     }
