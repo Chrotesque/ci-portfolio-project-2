@@ -1,5 +1,3 @@
-/*jshint esversion: 8 */
-
 // SCOPE FUNCTION START
 
 (function () {
@@ -235,7 +233,6 @@
             newRound();
             // otherwise proceed to next turn
         } else {
-            //updateGameStats();
             if (settings.control.stopRequest === false) {
                 setTurnStatus("Computer Turn");
             }
@@ -370,7 +367,6 @@
         currentGame.speed[1] = rampup.delay;
 
         currentGame.sequence = createSequence(currentGame.sequenceLength, currentGame.buttons);
-        //TBD: increasing difficulty, speed, etc.
         setTurnStatus("");
         setGameStatus(`Round ${currentGame.round-1} won!`);
         await sleep(settings.values.sleep.newRoundDelay);
