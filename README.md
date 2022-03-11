@@ -179,6 +179,9 @@ When a game is running, feedback is provided as such:
 - the settings offer accessibility options to make the game easier to play for those with color blindness, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default
 - the help menu explains the game, how it works, the differences between the difficulty modes, point base values and a few settings that are not necessarily quick to understand on first glance
 - the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, in addition to changes of those settings automatically selecting the difficulty itself
+- while there is no indicator as to what button has been played directly, even without any colors it's still visible that a button "lit up":
+
+    ![Greyscale Game](assets/images/readme/greyscale.jpg)
 
 <br>
 
