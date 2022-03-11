@@ -41,6 +41,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     As a returning user ...
     1. I want to be able to change up my experience through different difficulty settings. 
     2. I also want to be able to further increase the difficulty later down the line or change the game to my specific needs. 
+    3. I quickly want to understand how the various settings in the custom difficulty section of the settings menu affect my score multiplier 
 
     <br>
 
@@ -101,7 +102,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     I employed a desktop first approach which later turned out to be a mistake, one I found rather hard to remedy. As such the game went through a variety of styles. While I developed a portion of the Javascript without a real GUI, I later invested a great deal of time towards a main feature of the game, offering multiple button configurations (3, 4, 5 or 6).
 
     The iteration I stuck with uses SVGs for unlimited scaling in theory to also avoid artifacts when using .jpg/.png image files or similar formats and additionally to improve performance on mobile, to avoid the download of big files which would undoubtably be required to make the game look good at bigger resolutions.
-    
+
     The game in it's latest iteration is rather compact and all required elements are gathered around the center of the screen. The name and the score (not visible at first) are part of the surrounding frame: 
 
     ![Game Design](assets/images/readme/active_script.jpg)
@@ -127,6 +128,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 
     Instead of rasterized images I created vector graphics and use them as svgs within the html which were created using [Adobe Photoshop](#technologies-used-).
 
+    <br>
 
 # **Features** ([^](#table-of-contents))
 
@@ -183,6 +185,7 @@ When a game is running, feedback is provided as such:
 ## Cheating Prevention
 
 The game is using a few global variables. Access to those through the console would make it rather easy to cheat. During my research I stumbled upon the use of a so-called "Scoping Function", meaning enveloping the entire code base in a function that is being called immediately. Therefore all global variables are within scope and inaccessible to the console.
+Commenting out 2 lines of code make it possible to hunt for errors using the console and removing those comments brings back the cheat prevention.
 
 <br>
 
@@ -265,13 +268,53 @@ And Mobile:
 
 ## User Story Testing
 
-TBD
+As a first time user ...
+1. I want to be able to understand what the game is about and how it is played.
+
+    > Depending on the location of the user, the game might already be well known to the user and can be quickly experienced in it's standard setting as the difficulty "normal" is pre-selected. In order to start the game, the commonly known icon to play (typically music) is being used and offered in a visually distinct manner
+    
+    > For users that don't know the game, the commonly well understood icon of the question mark should allow them to open the help and read up on what the game is and how it's played
+
+    > Lastly the game might be easy to pick up by simply starting it and following the concise "directions" in the middle of the screen  
+
+2. I don't want to spend much time on setting the game up but rather jump right into it.
+
+    > Once the page is loaded, the standard experience of this game is literally a single click away from being experienced by simply pressing start. Other difficulty settings add a single click to the mix to get started
+
+<br>
+
+As a returning user ...
+1. I want to be able to change up my experience through different difficulty settings. 
+
+    > The pre-built difficulty settings easy, normal and hard should offer an experience for a variety of users of various skills and the custom difficulty is similarily built, with a pre-selection of the hardest settings that can further be modified using the settings menu
+
+    > While some of the differences between the difficulty settings are less noticeable like the computer speed, the amount of buttons shown is the biggest differentiating factor right out of the gate.
+
+2. I also want to be able to further increase the difficulty later down the line or change the game to my specific needs. 
+
+    > The settings menu allows the customization of the custom difficulty and thus allows a player to make significant changes to the experience.
+
+3. I quickly want to understand how the various settings in the custom difficulty section of the settings menu affect my score multiplier 
+
+    > Technically there's 2 ways of figuring this out, either through going through the options and manually calculating the difference in Multiplier shown at the bottom, however ...
+
+    > The better way is to activate the Multplier % option at the top of the custom difficulty section, which will display the percentages taken from the Javascript file for full transparency
 
 <br>
 
 # **Bugs** ([^](#table-of-contents))
 
+## Existing Bugs
+
 TBD
+
+<br>
+
+## Fixed Bugs
+
+TBD
+
+<br>
 
 # **Deployment** ([^](#table-of-contents))
 This project was developed using Gitpod through which it was committed and pushed to the repository on Github as host:
