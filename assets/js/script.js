@@ -1,9 +1,7 @@
 // SCOPE FUNCTION START
-
 (function () {
 
     // GLOBAL VARIABLES
-
     let allButtons = [];
     let gameButtons = [];
     let playerInput = [];
@@ -11,7 +9,6 @@
     let settings = {
         "control": {
             "stopRequest": true,
-            "locked": false,
             "svgCuts": false
         },
         "setting": {
@@ -462,7 +459,6 @@
      * settings variable
      */
     function changeSetting(clicked) {
-        console.log(clicked);
         let cat = clicked.getAttribute("data-cat");
         let type = clicked.getAttribute("data-type");
         let value = clicked.getAttribute("data-value");
@@ -488,7 +484,6 @@
                 if (clicked.getAttribute("data-value") !== settings.setting['markings-order']) {
                     changeMarkingsOrder();
                 }
-                console.log(`data-value ${clicked.getAttribute("data-value")} settings: ${settings.setting['markings-order']}`);
                 break;
         }
 
@@ -955,5 +950,4 @@
     }
 
     // SCOPE FUNCTION END
-
 })();
