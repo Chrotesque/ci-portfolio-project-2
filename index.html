@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A more accessible version of Simon Game with a few options to make it more interesting, try your best to get a high score!">
+    <title>Simon Game</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Simon Game</title>
 </head>
 
 <body>
@@ -121,9 +122,9 @@
             </div>
         </div>
         <!-- GAME SECTION: BOTTOM MENU BUTTONS -->
-        <button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="big-icon"><i class="fas fa-play-circle" aria-hidden="true"></i></button>
-        <button data-cat="menu" data-type="menu" data-value="help" class="big-icon" type="button" id="btn-help"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
-        <button data-cat="menu" data-type="menu" data-value="settings" class="big-icon" type="button" id="btn-settings"><i class="fas fa-cog" aria-hidden="true"></i></button>
+        <button data-cat="game-control" data-type="status" data-value="start" type="button" id="btn-status" class="big-icon" aria-label="Start the Game"><i class="fas fa-play-circle" aria-hidden="true"></i></button>
+        <button data-cat="menu" data-type="menu" data-value="help" class="big-icon" type="button" id="btn-help" aria-label="Help Menu"><i class="fas fa-question-circle" aria-hidden="true"></i></button>
+        <button data-cat="menu" data-type="menu" data-value="settings" class="big-icon" type="button" id="btn-settings" aria-label="Settings Menu"><i class="fas fa-cog" aria-hidden="true"></i></button>
         <div id="score">
             <p id="score-amount"></p>
         </div>
