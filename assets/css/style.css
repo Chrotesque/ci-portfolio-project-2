@@ -610,6 +610,10 @@ fieldset {
     font-weight: bold;
 }
 
+button {
+    font-family: Nunito;
+}
+
 button.settings {
     padding: 0.4rem 1rem 0.4rem 1rem;
     font-size: 1rem;
