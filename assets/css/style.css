@@ -9,18 +9,20 @@
 }
 
 :root {
+    /* General Colors */
     --scale: 1;
     --standard-bg: #272727;
     --standard-light: #c6c6be;
+    --standard-section: #BDBDB3;
     --standard-note: #4C4C4C;
     --standard-highlight: #f9f9f9;
+    --standard-border: #aaaa9d;
     --standard-shadow: #151515;
-    --standard-blue: #1798dd;
+    --standard-blue: #24aff9;
     --standard-orange: #febf2e;
+    --standard-transparent-bg: rgba(49, 49, 49, 0.75);
 
-    --black: #000;
-
-    /* Game area & buttons */
+    /* Game Area & Buttons */
     --circle-bg: #d2d2cb;
 
     --btn-red: rgba(195, 32, 32, 1);
@@ -29,7 +31,7 @@
     --btn-green: rgba(0, 184, 0, 1);
     --btn-purple: rgba(184, 0, 184, 1);
     --btn-orange: rgba(201, 129, 25, 1);
-    --btn-inactive: #626262;
+    --btn-inactive: #454545;
 
     --btn-red-active: rgba(239, 63, 63, 1);
     --btn-yellow-active: rgba(225, 225, 0, 1);
@@ -226,8 +228,7 @@ h1 {
     width: 100%;
     height: 2rem;
     color: var(--standard-light);
-    background-color: rgba(49, 49, 49, 0.5);
-    /* accessibility tweaking required */
+    background-color: var(--standard-transparent-bg);
     font-weight: bold;
 }
 
@@ -246,7 +247,7 @@ h1 {
 
 #end-of-game-status {
     font-size: calc(2.75rem * var(--scale));
-    text-shadow: 0 0 4px #000;
+    text-shadow: 0 0 4px var(--standard-shadow);
 }
 
 #in-game-status {
@@ -566,7 +567,7 @@ legend {
     font-size: 1.25rem;
     padding: 0.25rem 0.75rem 0.25rem 0.5rem;
     margin-left: -1rem;
-    background: #24aff9;
+    background: var(--standard-blue);
     border-radius: 0.5rem;
     font-weight: bold;
 }
@@ -578,11 +579,11 @@ h3 {
 
 fieldset {
     font-size: 1rem;
-    border: 1px solid #aaaa9d;
+    border: 1px solid var(--standard-border);
     border-radius: 0.5rem;
     padding: 0.5rem 1rem 1rem 2rem;
     margin-top: 1rem;
-    background-color: #BDBDB3;
+    background-color: var(--standard-section);
 }
 
 .setting-row,
@@ -631,7 +632,7 @@ button.shared-edge {
 
 button.active {
     background-color: var(--standard-orange);
-    color: #000;
+    color: var(--standard-bg);
 }
 
 span {
@@ -650,7 +651,7 @@ fieldset p {
 #settings-lock p {
     font-size: 1.25rem;
     color: var(--btn-red);
-    text-shadow: 0 0 1px #000;
+    text-shadow: 0 0 1px var(--standard-shadow);
 }
 
 /* MENU > HELP */
@@ -701,6 +702,29 @@ footer li {
     text-shadow: 0 0 1px var(--standard-light);
 }
 
+/* NO SCRIPT */
+#no-script {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: var(--standard-bg);
+    border-radius: 50%;
+    width: calc(522px * var(--scale));
+    height: calc(522px * var(--scale));
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#no-script p {
+    display: block;
+    text-align: center;
+    font-size: calc(2rem * var(--scale));
+    color: var(--btn-red);
+}
 
 /* MEDIA QUERIES > TOUCH SCREEN ADJUSTMENTS */
 @media (max-width: 1680px) {
