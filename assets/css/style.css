@@ -24,8 +24,6 @@
     --standard-transparent-bg: rgba(49, 49, 49, 0.75);
 
     /* Game Area & Buttons */
-    --circle-bg: #d2d2cb;
-
     --btn-red: rgba(195, 32, 32, 1);
     --btn-yellow: rgba(210, 210, 0, 1);
     --btn-blue: rgba(41, 82, 214, 1);
@@ -317,6 +315,7 @@ h1 {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    text-shadow: 0 0 3px var(--standard-bg);
 }
 
 .three-one {
