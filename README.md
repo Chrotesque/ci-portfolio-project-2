@@ -162,9 +162,28 @@ TBD
 
 TBD
 
-# **Deployment** ([^](#table-of-contents))
+# Deployment ([^](#table-of-contents))
+This project was developed using Gitpod through which it was committed and pushed to the repository on Github as host:
+1. Visit <a href="https://github.com/" target="_blank">GitHub</a> and login
+2. Open the <a href="https://github.com/Chrotesque/ci-portfolio-project-1" target="_blank">respository</a>
 
-TBD
+## Github pages
+Github pages were used to deploy the project as follows:
+1. Open the **Settings** on the repository specific navigation marked with a gear icon
+2. Navigate to the **Pages** subnavigation on the left
+3. Select the master branch under **Source** and click **Save**
+4. The page refreshes automatically and displays the published site URL at the top next to an exclamation mark
+5. It will take a couple of minutes for the site to become available initially
+
+## Making a Local Clone
+Once the project has been accessed on Github:
+1. Underneath the repository specific navigartion you'll find the button **Code** on the right side above the file listing
+2. Upon click, the pop-up will offer the option to copy the repository's git-URL with HTTPS selected at the top within the pop-up
+4. Open a Git Bash terminal
+5. Change the current working directory to the location where you want the cloned directory to be made
+6. Type **git clone**, and then paste the URL you copied in Step 3 and hit Enter; your local clone will now be created
+
+<br>
 
 # **Credits** ([^](#table-of-contents))
 
