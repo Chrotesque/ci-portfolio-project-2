@@ -132,7 +132,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 
 TBD
 
-# Technologies Used ([^](#table-of-contents))
+# **Technologies Used** ([^](#table-of-contents))
 - Main languages: <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank">HTML5</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank">CSS3</a> & <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">Javascript</a>
 - <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> used for fonts throughout the whole site
 - <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> used for a few select icons to be able to style them as font/text
@@ -162,7 +162,7 @@ TBD
 
 TBD
 
-# Deployment ([^](#table-of-contents))
+# **Deployment** ([^](#table-of-contents))
 This project was developed using Gitpod through which it was committed and pushed to the repository on Github as host:
 1. Visit <a href="https://github.com/" target="_blank">GitHub</a> and login
 2. Open the <a href="https://github.com/Chrotesque/ci-portfolio-project-1" target="_blank">respository</a>
@@ -185,7 +185,7 @@ Once the project has been accessed on Github:
 
 <br>
 
-# Credits ([^](#table-of-contents))
+# **Credits** ([^](#table-of-contents))
 ## Content & Media
 - All content was written by the developer
 - Vector graphics contained within the index.html were created by the developer
@@ -204,8 +204,9 @@ Once the project has been accessed on Github:
 
 # **Statistics** ([^](#table-of-contents))
 
-TBD
+According to Wakatime this project took me roughly 93 hours. This does not include research nor graphics creation.
 
 # **Acknowledgements** ([^](#table-of-contents))
-
-TBD
+I'd like to thank:
+- My Mentor Jack Wachira for our concise and very helpful feedback sessions
+- My girlfriend Joyce for providing helpful user experience feedback
