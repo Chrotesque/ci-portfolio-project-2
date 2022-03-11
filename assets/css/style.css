@@ -20,6 +20,7 @@
     --standard-shadow: #151515;
     --standard-blue: #24aff9;
     --standard-orange: #febf2e;
+    --standard-orange-highlight: #ffdd8e;
     --standard-transparent-bg: rgba(49, 49, 49, 0.75);
 
     /* Game Area & Buttons */
@@ -629,10 +630,18 @@ button.shared-edge {
     border-bottom-right-radius: 0.5rem;
 }
 
-
 button.active {
-    background-color: var(--standard-orange);
     color: var(--standard-bg);
+    background-color: var(--standard-orange);
+}
+
+#menu-settings button.active {
+    border: 2px solid;
+    border-top-color: var(--standard-orange-highlight);
+    border-left-color: var(--standard-orange-highlight);
+    border-bottom-color: var(--standard-shadow);
+    border-right-color: var(--standard-shadow);
+    background-color: var(--standard-orange);
 }
 
 span {

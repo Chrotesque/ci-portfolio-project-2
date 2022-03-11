@@ -118,7 +118,6 @@
     };
 
     // EVENT LISTENERS
-
     document.addEventListener("DOMContentLoaded", function () {
 
         let allPaths = document.getElementsByTagName("path");
@@ -204,7 +203,6 @@
         }
 
         // start of the game
-
         let statusBtn = document.getElementById("btn-status");
         let svgNoCut = document.getElementById("game-circle-outer-nocut");
         let svgCut = document.getElementById("game-circle-outer-cut");
@@ -236,7 +234,6 @@
             if (settings.control.stopRequest === false) {
                 setTurnStatus("Computer Turn");
             }
-
             await sleep(settings.values.sleep.computerTurnDelay);
             for (let i = 0; i < currentGame.turn; i++) {
                 let index = numToString(currentGame.sequence[i] + 1);
@@ -280,7 +277,6 @@
         if (settings.control.stopRequest === false) {
             setTurnStatus("Your Turn");
         }
-
         while (validity === true && counter > 0) {
             if (settings.control.stopRequest === false) {
                 if (playerInput.length > 0) {
@@ -298,7 +294,6 @@
             }
             await sleep(settings.values.sleep.playerTurnLoop); // browser tab freezes without sleep
         }
-
         if (validity === true && counter <= 0) {
             ++currentGame.turn;
             turnScore += settings.values.score.turn;
@@ -395,6 +390,9 @@
         return result;
     }
 
+    /**
+     * Part of the strict mode, checks whether to repeat a sequence or end the game
+     */
     function failCheck() {
         let strict = currentGame.strict;
         if (strict === "on") {
@@ -404,6 +402,9 @@
         }
     }
 
+    /**
+     * Part of the strict mode, repeats a sequence
+     */
     async function repeatSequence() {
         setTurnStatus("");
         setGameStatus(`Wrong! Let's repeat.`);
@@ -418,9 +419,7 @@
      * Reads globVar and sets settings accordingly through adding html class
      */
     function initiateSettings() {
-
         let newArray = Object.assign({}, settings.difficulty.custom, settings.setting);
-
         let keys = Object.keys(newArray);
         let values = Object.values(newArray);
         for (let button of allButtons) {
@@ -630,7 +629,6 @@
      * Toggles a menu visible / invisible
      */
     function toggleMenu(clicked) {
-
         let selection = clicked.getAttribute("data-value");
         let div = document.getElementById("menu-" + selection);
         toggleElement(div);
@@ -660,7 +658,6 @@
      * Toggles the amount of game buttons being displayed through class add/rem
      */
     function updateGameButtons() {
-
         let newButtonAmt = parseInt(settings.difficulty[settings.setting.difficulty].buttons);
         let identifier = numToString(newButtonAmt);
         let allButtonSets = document.getElementsByClassName("svg-btn");
@@ -673,7 +670,6 @@
         let newSetToShow = document.getElementById("btn-set-" + identifier);
         // secondly show the correct one
         toggleElement(newSetToShow);
-
     }
 
     /**
@@ -783,7 +779,6 @@
      * Saves all available game buttons in global array for convenient access
      */
     function collectGameButtons() {
-
         gameButtons = [];
         let curBtnAmt = settings.difficulty[settings.setting.difficulty].buttons;
         let index = numToString(curBtnAmt);
@@ -899,7 +894,6 @@
      * Validates player input compared to the computer sequence and returns bool
      */
     function validatePlayerInput(num1, num2) {
-
         if (num1 === num2) {
             return true;
         } else {
