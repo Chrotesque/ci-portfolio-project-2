@@ -185,9 +185,22 @@ Once the project has been accessed on Github:
 
 <br>
 
-# **Credits** ([^](#table-of-contents))
+# Credits ([^](#table-of-contents))
+## Content & Media
+- All content was written by the developer
+- Vector graphics contained within the index.html were created by the developer
+- The color palette was created by the developer himself, based off of <a href="https://www.pagecloud.com/blog/best-google-fonts-pairings" target="_blank">this article</a>
+- The font Nunito is being provided by <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>
+- Icons from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a>
 
-TBD
+## Code
+- The sleep function used in my javascript file came from <a href="https://www.sitepoint.com/delay-sleep-pause-wait/" target="_blank">this article</a>
+
+## Readme
+- I copied various portions of my previously created <a href="https://github.com/Chrotesque/ci-portfolio-project-1/blob/main/README.md" target="_blank">my previously created README</a> for my milestone project 1
+- I took inspiration from <a href="https://github.com/code-institute-solutions/samplereadme" target="_blank">the SampleReadme from Code Institute</a>.
+
+<br>
 
 # **Statistics** ([^](#table-of-contents))
 
