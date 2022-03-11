@@ -187,14 +187,17 @@
                 </fieldset>
                 <fieldset>
                     <legend>Custom Difficulty</legend>
-                    <div class="setting-row">
+                    <div id="settings-lock" class="hide-element">
+                        <p>Custom Difficulty settings are deactivated during an active game.</p>
+                    </div>
+                    <div class="setting-row lock-toggle">
                         <h3>Multiplier %</h3>
                         <div class="button-container">
                             <button data-cat="setting" data-type="stats-display" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="setting" data-type="stats-display" data-value="on"
                                 type="button" class="settings shared-edge">On</button>
                         </div>
                     </div>
-                    <div class="setting-row">
+                    <div class="setting-row lock-toggle">
                         <h3>Buttons</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="buttons" data-value="3" type="button" class="settings edge-shared">3</button><button data-cat="custom" data-type="buttons" data-value="4" type="button"
@@ -203,7 +206,7 @@
                         </div>
                     </div>
                     <p id="multiplier-buttons" class="hide-element">0</p>
-                    <div class="setting-row">
+                    <div class="setting-row lock-toggle">
                         <h3>Speed</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="speed" data-value="slow" type="button" class="settings edge-shared">Slow</button><button data-cat="custom" data-type="speed" data-value="normal"
@@ -211,7 +214,7 @@
                         </div>
                     </div>
                     <p id="multiplier-speed" class="hide-element">0</p>
-                    <div class="setting-row">
+                    <div class="setting-row lock-toggle">
                         <h3>Strict Mode</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="strict" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="strict" data-value="on" type="button"
@@ -219,7 +222,7 @@
                         </div>
                     </div>
                     <p id="multiplier-strict" class="hide-element">0</p>
-                    <div class="setting-row">
+                    <div class="setting-row lock-toggle">
                         <h3>Ramp Up</h3>
                         <div class="button-container">
                             <button data-cat="custom" data-type="rampup" data-value="off" type="button" class="settings edge-shared">Off</button><button data-cat="custom" data-type="rampup" data-value="on" type="button"

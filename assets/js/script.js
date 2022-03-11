@@ -151,7 +151,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // GAME LOGIC
 
-
 /**
  * Controls the game depending on what button has been pressed, start, stop, etc.
  */
@@ -180,6 +179,7 @@ function controlGame(button) {
 function runGame() {
 
     settings.control.stopRequest = false;
+    toggleCustomSettingsLock();
 
     // for ease of use during creation of a snapshot of the settings
     let diffSettings = settings.difficulty[settings.setting.difficulty];
@@ -326,6 +326,7 @@ function gameOver() {
     }
     statusBtn.setAttribute("data-value", "start");
     statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
+    toggleCustomSettingsLock();
 }
 
 /**
@@ -346,6 +347,7 @@ function stopGame() {
         setGameStatus("Game Stopped!");
         statusBtn.setAttribute("data-value", "start");
         statusBtn.innerHTML = '<i class="fas fa-play-circle" aria-hidden="true"></i>';
+        toggleCustomSettingsLock();
     }
 }
 
@@ -801,6 +803,24 @@ function changeMarkingsOrder() {
         for (let k = 0; k < buttons.length; k++) {
             buttons[k].innerHTML = markings[k];
         }
+    }
+}
+
+/**
+ * Removes settings during a game to avoid issues with the running game
+ */
+function toggleCustomSettingsLock() {
+    let lockWarning = document.getElementById("settings-lock");
+    let lockedSettings = document.querySelectorAll('.lock-toggle');
+    for (let element of lockedSettings) {
+        if (element.classList.contains("setting-row")) {
+            lockWarning.classList.remove("hide-element");
+            element.classList.remove("setting-row");
+        } else {
+            lockWarning.classList.add("hide-element");
+            element.classList.add("setting-row");
+        }
+        toggleElement(element);
     }
 }
 

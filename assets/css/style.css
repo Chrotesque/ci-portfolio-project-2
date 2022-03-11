@@ -139,6 +139,10 @@ h1 {
     transform: rotate(-26deg);
 }
 
+.rotate {
+    transform: rotate(-90deg);
+}
+
 #btn-status:hover {
     color: var(--standard-orange);
     text-shadow: 0 0 7px var(--standard-orange);
@@ -637,6 +641,16 @@ span {
 fieldset p {
     color: var(--standard-note);
     margin: -0.5rem 0 0.5rem 0;
+}
+
+#settings-lock {
+    padding-top: 2rem;
+}
+
+#settings-lock p {
+    font-size: 1.25rem;
+    color: var(--btn-red);
+    text-shadow: 0 0 1px #000;
 }
 
 /* MENU > HELP */
