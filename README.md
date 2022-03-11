@@ -132,9 +132,27 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 
 TBD
 
-# **Technologies Used** ([^](#table-of-contents))
+# Technologies Used ([^](#table-of-contents))
+- Main languages: <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank">HTML5</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank">CSS3</a> & <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">Javascript</a>
+- <a href="https://fonts.google.com/" target="_blank">Google Fonts</a> used for fonts throughout the whole site
+- <a href="https://fontawesome.com/" target="_blank">Font Awesome</a> used for a few select icons to be able to style them as font/text
+- <a href="https://git-scm.com/" target="_blank">Git</a> used for version control through the Gitpod terminal for deployment onto Github
+- <a href="https://github.com/" target="_blank">GitHub</a> used as host and for deployment of the site
+- <a href="http://gitpod.com" target="_blank">Gitpod</a> used as IDE
+- <a href="https://validator.w3.org/" target="_blank">W3C Markup Validation Service</a> used to validate HTML code
+- <a href="https://jigsaw.w3.org/css-validator/" target="_blank">W3c CSS Validation Service</a> used to validate CSS code
+- <a href="https://jshint.com/" target="_blank">JSHint</a> used to analyze and error correct the Javascript code
+- <a href="https://color.a11y.com/" target="_blank">a11y Color Contrast Accessibility Validator</a> used to validate contrast accessibility
+- <a href="http://clickup.com" target="_blank">ClickUp</a> used for project management
+- <a href="https://wakatime.com" target="_blank">WakaTime</a> used as time tracking tool
+- <a href="https://www.adobe.com/products/photoshop.html" target="_blank">Adobe Photoshop 2021</a> used for the creation of vector graphics
+- <a href="https://tinypng.com/" target="_blank">TinyPNG</a> used to optimize JPG and PNG file sizes for this readme
+- <a href="https://lettercounter.github.io/" target="_blank">Lettercounter</a> used to keep commit messages below or at 50 characters
+- <a href="http://ami.responsivedesign.is/" target="_blank">Am I Responsive?</a> used to create responsive preview of the site used at the top of this readme
+- <a href="https://coolors.co/" target="_blank">Coolors</a> used to create a color palette for this project
+- <a href="https://balsamiq.com/" target="_blank">Balsamiq</a> used to create the wireframes during the initial design stage
 
-TBD
+<br>
 
 # **Validation and Testing** ([^](#table-of-contents))
 
