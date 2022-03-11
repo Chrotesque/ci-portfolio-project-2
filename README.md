@@ -130,7 +130,68 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 
 # **Features** ([^](#table-of-contents))
 
-TBD
+## Responsive
+
+The page scales down to roughly 270px width and technically the same amount of height. Technically only because a real smartphone does include various interface elements that further reduce the height of the available screen. Realistically it scales down to about 340px height.
+
+<br>
+
+## Interactivity
+
+### General
+The project provides feedback in varies ways:
+- the most important button start/stop of the game is being displayed in a unique color when compared to the rest of the UI
+- hover effects for desktop users
+- buttons / elements that are "active" are highlighted in the main color orange of the project
+- active buttons in the settings menu have a thicker outline due to borders to highlight what's considered on and what is considered off, based off of user experience feedback
+- all warning messages on the project are displayed in red
+- the settings menu is divided into 2 portions:
+    1. Game Settings: controls sound and markings options
+    2. Custom Difficulty: upon changing a setting here, the custom difficulty will immediately be selected according to the settings visible there
+- custom difficulty settings get deactivated once a game is running in either difficulty, mostly to avoid confusion and as an easy way to handle certain code dificiencies - without that feature, it would be easily possible to break the game and while it's possible to remedy this, it would require further work that has very little benefit
+- in order to inform the user of the score multiplier, the custom difficulty section displays the percentage which dynamically changes when settings are changed
+- the help menu features values directly gathered from the global settings variable in the Javascript file, thus not requiring a change of the html in case values are changed within the Javascript code
+
+<br>
+
+### Settings
+
+The game offers 3 hard set difficulty modes and a custom difficulty, which can be adjusted to the users preferences.
+It features these options:
+- Buttons - the amount of buttons being used to play the game
+- Speed - the speed of the computer playing the buttons
+- Strict Mode - allows the user to make mistakes and still continue to play the game, the computer will simply repeat the last turn instead
+- Ramp Up - allows the user a greater challenge as the game goes on, ever increasing the difficulty by increasing the sequence length with each round as well as the computer speed
+
+<br>
+
+### The Game
+
+When a game is running, feedback is provided as such:
+- if the sound setting is set to on, the game will play sound effects
+- the middle of the screen shows the ingame status ("Your Turn", "Computer Turn") as well as game status ("Game Over",  Choose Difficulty") informing the player as to what's going on
+
+<br>
+
+### Accessibility
+- the settings offer accessibility options to make the game easier to play for those with color blindness, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default
+- the help menu explains the game, how it works, the differences between the difficulty modes, point base values and a few settings that are not necessarily quick to understand on first glance
+- the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, in addition to changes of those settings automatically selecting the difficulty itself
+
+<br>
+
+## Cheating Prevention
+
+The game is using a few global variables. Access to those through the console would make it rather easy to cheat. During my research I stumbled upon the use of a so-called "Scoping Function", meaning enveloping the entire code base in a function that is being called immediately. Therefore all global variables are within scope and inaccessible to the console.
+
+<br>
+
+## Error Handling
+
+- No direct user input is required, instead the user interacts with the project through buttons in the settings menu and in the main screen
+- As shown above in the section [Surface](#surface) the game shows a warning message should Javascript be deactivated, instructing the user what to do
+
+<br>
 
 # **Technologies Used** ([^](#table-of-contents))
 - Main languages: <a href="https://en.wikipedia.org/wiki/HTML5" target="_blank">HTML5</a>, <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank">CSS3</a> & <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank">Javascript</a>
