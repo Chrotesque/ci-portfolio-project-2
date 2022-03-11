@@ -151,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // GAME LOGIC
 
+
 /**
  * Controls the game depending on what button has been pressed, start, stop, etc.
  */
@@ -516,47 +517,7 @@ function changeSetting(clicked) {
     let type = clicked.getAttribute("data-type");
     let value = clicked.getAttribute("data-value");
 
-    // change values in globVar
-    if (cat === "setting") {
-        settings[cat][type] = value;
-    } else {
-        settings.difficulty[cat][type] = value;
-    }
-
-    for (let button of allButtons) {
-        if (button.getAttribute("data-cat") === cat) {
-            if (button.getAttribute("data-type") === type) {
-                if (button.classList.contains("active")) {
-                    if (cat === "custom") {
-                        // update multiplier values only if changes occured
-                        settings.setting.difficulty = "custom";
-                        for (let button of allButtons) {
-                            // update difficulty buttons
-                            if (button.getAttribute("data-type") === "difficulty") {
-                                if (button.getAttribute("data-value") === "custom") {
-                                    button.classList.add("active");
-                                } else {
-                                    if (button.classList.contains("active")) {
-                                        button.classList.remove("active");
-                                    }
-                                }
-                            }
-                        }
-                        updateGameButtons();
-                        // update score multipliers
-                        updateScoreMultiplierInternal();
-                        updateScoreMultiplierExternal();
-                    }
-                    // remove active from currently active element
-                    button.classList.remove("active");
-                }
-            }
-        }
-    }
-
-    // add active to clicked element and update gameButtons
-    clicked.classList.add("active");
-    updateGameButtons();
+    // special actions on a case by case basis
     switch (clicked.getAttribute("data-type")) {
         case "sound":
             settings.setting.sound = value;
@@ -574,9 +535,55 @@ function changeSetting(clicked) {
             changeMarkingsType();
             break;
         case "markings-order":
-            changeMarkingsOrder();
+            if (clicked.getAttribute("data-value") !== settings.setting['markings-order']) {
+                changeMarkingsOrder();
+            }
+            console.log(`data-value ${clicked.getAttribute("data-value")} settings: ${settings.setting['markings-order']}`);
             break;
     }
+
+    // change values in globVar
+    if (cat === "setting") {
+        settings[cat][type] = value;
+    } else {
+        settings.difficulty[cat][type] = value;
+    }
+
+    // if a custom difficulty button has been pressed
+    if (cat === "custom") {
+        // change globVar setting to custom
+        settings.setting.difficulty = "custom";
+        for (let button of allButtons) {
+            // update difficulty buttons and select custom
+            if (button.getAttribute("data-type") === "difficulty") {
+                if (button.getAttribute("data-value") === "custom") {
+                    button.classList.add("active");
+                } else {
+                    if (button.classList.contains("active")) {
+                        button.classList.remove("active");
+                    }
+                }
+            }
+        }
+        updateGameButtons();
+        // update score multipliers
+        updateScoreMultiplierInternal();
+        updateScoreMultiplierExternal();
+    }
+
+    // remove active class from same class of buttons
+    for (let button of allButtons) {
+        if (button.getAttribute("data-cat") === cat) {
+            if (button.getAttribute("data-type") === type) {
+                if (button.classList.contains("active")) {
+                    button.classList.remove("active");
+                }
+            }
+        }
+    }
+    // add active to clicked button
+    clicked.classList.add("active");
+    updateGameButtons();
 }
 
 // SCORE
@@ -669,14 +676,6 @@ function toggleDifficultySelection() {
 }
 
 /**
- * Toggles Markings
- */
-function toggleMarkings(number) {
-    let parent = document.getElementById("btn-set-" + number);
-    toggleElement(parent.childNodes[1]);
-}
-
-/**
  * Toggles a menu visible / invisible
  */
 function toggleMenu(clicked) {
@@ -726,8 +725,57 @@ function updateGameButtons() {
 
 }
 
-function changeMarkingsType() {
+/**
+ * Toggles Markings
+ */
+function toggleMarkings(number) {
+    let parent = document.getElementById("btn-set-" + number);
+    toggleElement(parent.childNodes[1]);
+}
 
+/**
+ * Replaces numeric markings with symbols
+ */
+function changeMarkingsType() {
+    let markings = [
+        [
+            '<i class="fas fa-star" aria-hidden="true"></i>',
+            '<i class="fas fa-square" aria-hidden="true"></i>',
+            '<i class="fas fa-circle" aria-hidden="true"></i>',
+            '<i class="fas fa-play rotate" aria-hidden="true"></i>',
+            '<i class="fas fa-moon" aria-hidden="true"></i>',
+            '<i class="fas fa-heart" aria-hidden="true"></i>'
+        ],
+        [1, 2, 3, 4, 5, 6]
+    ];
+    // address all button sets
+    for (let i = 3; i < 7; i++) {
+        let number = numToString(i);
+        let array = [];
+        let buttons = [];
+        let btnSet = document.getElementById("btn-set-" + number);
+        let parent = btnSet.childNodes[1].querySelectorAll('p');
+
+        (settings.setting['markings-type'] === "sym") ? array = [...markings[1]]: array = [...markings[0]];
+        // removing unnecessary elements from array
+
+        // creating button element array
+        for (let j = 0; j < parent.length; j++) {
+            buttons.push(parent[j]);
+        }
+        // reverse actions
+        if (settings.setting['markings-order'] === "ccw") {
+            array.splice(i, 6 - i);
+            buttons.splice(i, 6 - i);
+            array.reverse();
+            let arrayLast = array.pop();
+            array.unshift(arrayLast);
+        }
+        // replacing markings with temp array contents
+        for (let k = 0; k < buttons.length; k++) {
+            buttons[k].innerHTML = array[k];
+        }
+    }
 }
 
 /**
