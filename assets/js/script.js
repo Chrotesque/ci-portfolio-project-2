@@ -363,8 +363,10 @@
         setTurnStatus("");
         setGameStatus(`Round ${currentGame.round-1} won!`);
         await sleep(settings.values.sleep.newRoundDelay);
-        setGameStatus("");
-        computerTurn();
+        if (settings.control.stopRequest === false) {
+            setGameStatus("");
+            computerTurn();
+        }
     }
 
     /**
