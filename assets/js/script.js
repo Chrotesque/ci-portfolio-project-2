@@ -80,7 +80,8 @@
                 "playerButtonPress": 300
             },
             "rampup": {
-                "roundIncrease": 10
+                "speedIncrease": 10,
+                "sequenceIncrease": 1
             },
             "multiplier": {
                 "buttons": {
@@ -373,9 +374,9 @@
         let result = {};
         if (currentGame.rampup === "on") {
             result = {
-                "sequenceLength": length + 1,
-                "speed": speed - (speed / settings.values.rampup.roundIncrease),
-                "delay": delay - (delay / settings.values.rampup.roundIncrease)
+                "sequenceLength": length + settings.values.rampup.sequenceIncrease,
+                "speed": speed - (speed / settings.values.rampup.speedIncrease),
+                "delay": delay - (delay / settings.values.rampup.speedIncrease)
             };
         } else {
             result = {
@@ -439,6 +440,8 @@
         let button = document.getElementById("points-button");
         let turn = document.getElementById("points-turn");
         let round = document.getElementById("points-round");
+        let rampSpeed = document.getElementById("rampup-speed");
+        let rampSeq = document.getElementById("rampup-sequence");
         let buttonMult = document.getElementById("multiplier-buttons");
         let speedMult = document.getElementById("multiplier-speed");
         let strictMult = document.getElementById("multiplier-strict");
@@ -446,6 +449,8 @@
         button.innerHTML = settings.values.score.step;
         turn.innerHTML = settings.values.score.turn;
         round.innerHTML = settings.values.score.round;
+        rampSpeed.innerHTML = settings.values.rampup.speedIncrease;
+        rampSeq.innerHTML = settings.values.rampup.sequenceIncrease;
         buttonMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.buttons));
         speedMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.speed));
         strictMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.strict));

@@ -210,6 +210,7 @@ Commenting out 2 lines of code make it possible to hunt for errors using the con
 - <a href="http://clickup.com" target="_blank">ClickUp</a> used for project management
 - <a href="https://wakatime.com" target="_blank">WakaTime</a> used as time tracking tool
 - <a href="https://www.adobe.com/products/photoshop.html" target="_blank">Adobe Photoshop 2021</a> used for the creation of vector graphics
+- <a href="https://www.bfxr.net/" target="_blank">BFXR</a> was used to create the sound effects
 - <a href="https://tinypng.com/" target="_blank">TinyPNG</a> used to optimize JPG and PNG file sizes for this readme
 - <a href="https://lettercounter.github.io/" target="_blank">Lettercounter</a> used to keep commit messages below or at 50 characters
 - <a href="http://ami.responsivedesign.is/" target="_blank">Am I Responsive?</a> used to create responsive preview of the site used at the top of this readme
@@ -306,7 +307,7 @@ As a returning user ...
 
 ## Existing Bugs
 
-TBD
+- The sound effects cause crackling when the game is being played on Firefox. The sounds sound fine in any tested program and browser, except for Firefox. I attempted to fix this using Audacity but was unsuccessful. 
 
 <br>
 
