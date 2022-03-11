@@ -212,12 +212,62 @@ The game is using a few global variables. Access to those through the console wo
 - <a href="http://ami.responsivedesign.is/" target="_blank">Am I Responsive?</a> used to create responsive preview of the site used at the top of this readme
 - <a href="https://coolors.co/" target="_blank">Coolors</a> used to create a color palette for this project
 - <a href="https://balsamiq.com/" target="_blank">Balsamiq</a> used to create the wireframes during the initial design stage
+- <a href="https://gs.statcounter.com/screen-resolution-stats" target="_blank">Statcounter</a> used as resource to optimize website for various commonly used resolutions as a priority
 
 <br>
 
 # **Validation and Testing** ([^](#table-of-contents))
 
+## Validation
+* [W3C Markup Validation Service](#technologies-used-)
+    > Document checking completed. No errors or warnings to show.
+* [W3c CSS Validation Service](#technologies-used-)
+    > Congratulations! No Error Found.
+* [a11y Color Contrast Accessibility Validator](#technologies-used-)
+    > Congratulations! No automated color contrast issues found on the webpage tested
+
+    Given the dynamic nature of the project, the automated check might not have caught any issues. Thus I manually checked all values for contrast issues and was also unable to find any.
+
+* [JSHint](#technologies-used-)
+    ![JSHint Results](assets/images/readme/jshint.png)
+
+<br>
+
+## Testing
+
+The project was extensively tested using Chrome DevTools, in addition to that I've also used the following to verify proper functionality and experienced ***no*** problems:
+- Samsung Galaxy S10E Mobile Phone & Samsung Galaxy Tab S6 Lite Tablet, both were used in Portrait and Landscape mode to test using:
+    - Brave
+    - Google Chrome
+- Windows 10 Desktop Machine
+    - Brave
+    - Google Chrome
+    - Microsoft Edge
+    - Mozilla Firefox
+
+As a surprise to no one the project will not render correctly on Internet Explorer and does not function as a result. According to [statcounter](#technologies-used-) 0.46% of users are still using Internet Explorer, which is why I didn't invest any time in optimizing for it. Similarily it also doesn't work with Samsung Internet, which reaches 2.85%.
+I personally don't have a machine capable of running Safari nor do I know anyone who does, so I couldn't test that.
+
+All internal and external links were tested on functionality.
+
+<br>
+
+## Google DevTools Lighthouse
+For Desktop:
+
+![JSHint Results](assets/images/readme/lighthouse_desktop.jpg)
+
+And Mobile:
+
+![JSHint Results](assets/images/readme/lighthouse_mobile.jpg)
+
+<br>
+
+## User Story Testing
+
 TBD
+
+<br>
 
 # **Bugs** ([^](#table-of-contents))
 
