@@ -114,8 +114,8 @@
         allButtons = document.getElementsByTagName("button");
         initiateSettings();
         updateScoreMultiplierInternal();
-        updateScoreMultiplierExternal();
         setMenuData();
+        updateScoreMultiplierExternal();
 
         for (let button of allButtons) {
             button.addEventListener("click", function () {
@@ -434,20 +434,50 @@
      * Reads globVar and populates HTML with various numbers and multiplier percentages
      */
     function setMenuData() {
+        // help menu
         let button = document.getElementById("points-button");
         let turn = document.getElementById("points-turn");
         let round = document.getElementById("points-round");
         let rampSpeed = document.getElementById("rampup-speed");
         let rampSeq = document.getElementById("rampup-sequence");
-        let buttonMult = document.getElementById("multiplier-buttons");
-        let speedMult = document.getElementById("multiplier-speed");
-        let strictMult = document.getElementById("multiplier-strict");
-        let rampupMult = document.getElementById("multiplier-rampup");
+
         button.innerHTML = settings.values.score.step;
         turn.innerHTML = settings.values.score.turn;
         round.innerHTML = settings.values.score.round;
         rampSpeed.innerHTML = settings.values.rampup.speedIncrease;
         rampSeq.innerHTML = settings.values.rampup.sequenceIncrease;
+
+        let diff = ['easy', 'normal', 'hard', 'custom'];
+        for (let i = 0; i < 4; i++) {
+
+            let btnAmt = settings.difficulty[diff[i]].buttons;
+            let speed = settings.difficulty[diff[i]].speed;
+            let seq = settings.difficulty[diff[i]].sequence;
+            let mult = settings.difficulty[diff[i]].multiplier;
+            let strict = settings.difficulty[diff[i]].strict;
+
+            let li = "diff-" + diff[i];
+            li = document.getElementById(li);
+            let name = diff[i].charAt(0).toUpperCase() + diff[i].slice(1);
+
+            // easy, normal
+            if (i < 2) {
+                li.innerHTML = `<strong>${name}</strong>: <strong>${btnAmt}</strong> buttons, <strong>${speed}</strong> speed, sequence of <strong>${seq}</strong>, multiplier of <strong>${mult*100}%</strong>`;
+                // hard
+            } else if (i === 2) {
+                li.innerHTML = `<strong>${name}</strong>: <strong>${btnAmt}</strong> buttons, <strong>${speed}</strong> speed, strict mode <strong>${strict}</strong>, sequence of <strong>${seq}</strong>, multiplier of <strong>${mult*100}%</strong>`;
+                // custom
+            } else {
+                li.innerHTML = `<strong>${name}</strong>: sequence of <strong>${seq}</strong> & customized through the <i class="fas fa-cog" aria-hidden="true"></i> settings menu, current multiplier of <span id="multiplier-custom">${mult*100}%</span>`;
+            }
+
+        }
+
+        // settings menu
+        let buttonMult = document.getElementById("multiplier-buttons");
+        let speedMult = document.getElementById("multiplier-speed");
+        let strictMult = document.getElementById("multiplier-strict");
+        let rampupMult = document.getElementById("multiplier-rampup");
         buttonMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.buttons));
         speedMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.speed));
         strictMult.innerHTML = prepareMultiplierData(Object.values(settings.values.multiplier.strict));
@@ -570,15 +600,10 @@
      * Updates the multiplier display in help and settings menu
      */
     function updateScoreMultiplierExternal() {
-        let easy = `${Math.round(settings.difficulty.easy.multiplier * 100)}%`;
-        let normal = `${Math.round(settings.difficulty.normal.multiplier * 100)}%`;
-        let hard = `${Math.round(settings.difficulty.hard.multiplier * 100)}%`;
         let custom = `${Math.round(settings.difficulty.custom.multiplier * 100)}%`;
-        document.getElementById("multiplier-easy").innerHTML = easy;
-        document.getElementById("multiplier-normal").innerHTML = normal;
-        document.getElementById("multiplier-hard").innerHTML = hard;
-        document.getElementById("multiplier-custom").innerHTML = custom;
         document.getElementById("score-mp").innerHTML = custom;
+        document.getElementById("multiplier-custom").innerHTML = custom;
+
     }
 
     // STATUS CHANGES
