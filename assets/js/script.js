@@ -26,7 +26,7 @@
                 "speed": "slow",
                 "strict": "off",
                 "rampup": "off",
-                "sequence": 2
+                "sequence": 6
             },
             "normal": {
                 "multiplier": 0,
@@ -34,7 +34,7 @@
                 "speed": "normal",
                 "strict": "off",
                 "rampup": "off",
-                "sequence": 2
+                "sequence": 8
             },
             "hard": {
                 "multiplier": 0,
@@ -42,7 +42,7 @@
                 "speed": "normal",
                 "strict": "on",
                 "rampup": "on",
-                "sequence": 2
+                "sequence": 8
             },
             "custom": {
                 "multiplier": 0,
@@ -50,7 +50,7 @@
                 "speed": "fast",
                 "strict": "on",
                 "rampup": "on",
-                "sequence": 2
+                "sequence": 10
             }
         },
         "values": {
@@ -831,6 +831,9 @@
 
     // HELPER FUNCTIONS
 
+    /**
+     * Plays a sound file listed in the html 
+     */
     function playSound(num) {
         let sound = document.getElementById("beep" + num);
         sound.load();
