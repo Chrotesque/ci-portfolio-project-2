@@ -106,14 +106,6 @@
             }
         }
     };
-    const audio = {
-        one: new Audio("assets/audio/beep1.mp3"),
-        two: new Audio("assets/audio/beep2.mp3"),
-        three: new Audio("assets/audio/beep3.mp3"),
-        four: new Audio("assets/audio/beep4.mp3"),
-        five: new Audio("assets/audio/beep5.mp3"),
-        six: new Audio("assets/audio/beep6.mp3")
-    };
 
     // EVENT LISTENERS
     document.addEventListener("DOMContentLoaded", function () {
@@ -244,7 +236,8 @@
                 if (settings.control.stopRequest === false) {
                     curButton.classList.add(index + "-pressed");
                     if (settings.setting.sound === "on") {
-                        audio[curButton.getAttribute("data-value")].play();
+                        let num = stringToNum(curButton.getAttribute("data-value"));
+                        playSound(num);
                     }
                 } else {
                     stopGame();
@@ -829,7 +822,7 @@
             }
         }
         if (settings.setting.sound === "on") {
-            audio[curButton.getAttribute("data-value")].play();
+            playSound(stringToNum(curButton.getAttribute("data-value")));
         }
         curButton.classList.add(input + "-pressed");
         await sleep(settings.values.sleep.playerButtonPress);
@@ -837,6 +830,12 @@
     }
 
     // HELPER FUNCTIONS
+
+    function playSound(num) {
+        let sound = document.getElementById("beep" + num);
+        sound.load();
+        sound.play();
+    }
 
     /**
      * Converts an integer into a string and returns it
