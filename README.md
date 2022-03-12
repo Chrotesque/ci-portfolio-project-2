@@ -194,7 +194,9 @@ Commenting out 2 lines of code make it possible to hunt for errors using the con
 
 ## Error Handling
 
-- No direct user input is required, instead the user interacts with the project through buttons in the settings menu and in the main screen
+- No direct user input is required, instead the user interacts with the project through buttons in the settings menu and in the main screen. The game buttons create a sound and show an obvious glow effect upon successful press. On mobile it may happen that a button is not pressed but rather interpreted by the device as a long press to scroll / swipe, thus both of these effects don't play and the user may assume the button was pressed and move on to the next before realizing that it wasn't pressed after all. This is more user error and device specific, rather than an error.
+- All available buttons were tested in all possible combinations to make sure that no unexpected results occur. 
+- The project does not create alerts on errors, errors should simply not occur after extensive testing.
 - As shown above in the section [Surface](#surface) the game shows a warning message should Javascript be deactivated, instructing the user what to do
 
 <br>
@@ -310,7 +312,9 @@ As a returning user ...
 
 ## Existing Bugs
 
-- The sound effects cause crackling when the game is being played on Firefox. The sounds sound fine in any tested program and browser, except for Firefox. I attempted to fix this using Audacity but was unsuccessful. 
+- The sound effects cause crackling when the game is being played on Firefox. The sounds sound fine in any tested program and browser, except for Firefox. I attempted to fix this using Audacity without success.
+
+- When I use a simple .play() in Javascript without the currently implemented .load(), then the same sound file will not play unless the previous iteration of it has finished. Using .load() gets around this limitation, however it does introduce sound artifacts on clipping. I have not found a solution to this problem yet, for the computer it takes a while to get to this point for it to become apparent.
 
 <br>
 
