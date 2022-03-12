@@ -92,6 +92,8 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 
     - Note: I believed the game was called Simon Says. I later learned it's generally known as Simon Game instead.
 
+    <br>
+
     <details>
     <summary>Desktop Wireframe: Only including a single wireframe, the only difference being the help menu button moved to a different location</summary>
 
@@ -206,7 +208,7 @@ When a game is running, feedback is provided as such:
 ### Accessibility
 
 The focus of the game is to repeat a sequence of button presses, typically depicted in certain colors. This might prove more challenging with color blindness or sight challenged people in general. I attempted to help in this regard: 
-- the settings offer accessibility options, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default to avoid putting somebody off the game without realizing these options exist
+- the settings offer accessibility options, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default to avoid putting somebody off the game before realizing these options exist
 - the option to remove those markings does exist, should that be preferred
 - while there is no indicator as to what button has been played directly, even without any colors it's still visible that a button "lit up", which should hopefully help players that can sense brightness changes only:
 
@@ -216,7 +218,7 @@ The focus of the game is to repeat a sequence of button presses, typically depic
 
 Generally:
 - the help menu explains the game, how it works, the differences between the difficulty modes, point base values and a few settings that are not necessarily quick to understand on first glance
-- the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, in addition to changes of those settings automatically selecting the difficulty itself
+- the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, additionally changes to those settings automatically selects the difficulty "custom" itself
 
 <br>
 
@@ -311,7 +313,7 @@ And Mobile:
 As a first time user ...
 1. I want to be able to understand what the game is about and how it is played.
 
-    > Depending on the location of the user, the game might already be well known to the user and can be quickly experienced in it's standard setting as the difficulty "normal" is pre-selected. In order to start the game, the commonly known icon to play (typically music) is being used and offered in a visually distinct manner
+    > Depending on the user, the game might already be well known to the user and can be quickly experienced in it's standard setting as the difficulty "normal" is pre-selected. In order to start the game, the commonly known icon to play (typically music) is being used and offered in a visually distinct manner
     
     > For users that don't know the game, the commonly well understood icon of the question mark should allow them to open the help and read up on what the game is and how it's played
 
@@ -389,7 +391,7 @@ Once the project has been accessed on Github:
 ## Content & Media
 - All content was written by the developer
 - Vector graphics contained within the index.html were created by the developer
-- The color palette was created by the developer himself, based off of <a href="https://www.pagecloud.com/blog/best-google-fonts-pairings" target="_blank">this article</a>
+- The color palette was created by the developer himself, <a href="https://www.pagecloud.com/blog/best-google-fonts-pairings" target="_blank">this article</a> was the starting point
 - The font Nunito is being provided by <a href="https://fonts.google.com/" target="_blank">Google Fonts</a>
 - Icons from <a href="https://fontawesome.com/" target="_blank">Font Awesome</a>
 
@@ -397,8 +399,8 @@ Once the project has been accessed on Github:
 - The sleep function used in my javascript file came from <a href="https://www.sitepoint.com/delay-sleep-pause-wait/" target="_blank">this article</a>
 
 ## Readme
-- I copied various portions of my previously created <a href="https://github.com/Chrotesque/ci-portfolio-project-1/blob/main/README.md" target="_blank">my previously created README</a> for my milestone project 1
-- I took inspiration from <a href="https://github.com/code-institute-solutions/samplereadme" target="_blank">the SampleReadme from Code Institute</a>.
+- I copied various portions of <a href="https://github.com/Chrotesque/ci-portfolio-project-1/blob/main/README.md" target="_blank">my previously created README</a> for my milestone project 1
+- I took inspiration from <a href="https://github.com/code-institute-solutions/samplereadme" target="_blank">the SampleReadme</a> from Code Institute.
 
 <br>
 
