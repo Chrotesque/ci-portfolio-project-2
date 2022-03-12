@@ -404,7 +404,7 @@ Once the project has been accessed on Github:
 
 # **Statistics** ([^](#table-of-contents))
 
-According to Wakatime this project took me roughly 93 hours. This does not include research nor graphics creation.
+According to Wakatime this project took me roughly 99 hours. This does not include research nor graphics creation.
 
 <br>
 
