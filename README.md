@@ -57,7 +57,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     - the base game experience that most people are experienced with
     - a help menu to explain all necessary details of the game including the modifications / options I provided
     - a settings menu to customize the experience
-    - an arbitrary score amount chosen me attached to various successful actions within the game and displayed to the user
+    - an arbitrary score amount chosen by the developer attached to various successful actions within the game and displayed to the user
     - a very compact design
 
     <br>
@@ -93,6 +93,11 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     - Note: I believed the game was called Simon Says. I later learned it's generally known as Simon Game instead.
 
     <details>
+    <summary>Desktop Wireframe: Only including a single wireframe, the only difference being the help menu button moved to a different location</summary>
+
+    ![Balsamiq - Desktop](assets/images/readme/wireframe_desktop.jpg)
+    </details>
+    <details>
     <summary>Hand-made Sketches from MS OneNote: Settings Menu & Middle Display</summary>
 
     ![OneNote - Settings Menu](assets/images/readme/sketch_settings.jpg)
@@ -106,6 +111,18 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
 * ## **Surface**
 
     I employed a desktop first approach which later turned out to be a mistake, one I found rather hard to remedy. As such the game went through a variety of styles. While I developed a portion of the Javascript without a real GUI, I later invested a great deal of time towards a main feature of the game, offering multiple button configurations (3, 4, 5 or 6).
+
+    Here are pictures of earlier versions:
+        <details>
+        <summary>Version 1 of the GUI, Desktop only</summary>
+        ![GUI v1](assets/images/readme/gui_v1.jpg)
+        </details>
+        <details>
+        <summary>Version 2 of the GUI, Desktop and Mobile</summary>
+        ![GUI v2](assets/images/readme/gui_v2.jpg)
+        ![GUI v2 Mobile Portrait Orientation](assets/images/readme/gui_v2_mobile_portrait.jpg)
+        ![GUI v2 Mobile Landscape Orientation](assets/images/readme/gui_v2_mobile_landscape.jpg)
+        </details>
 
     The iteration I stuck with uses SVGs for unlimited scaling in theory to also avoid artifacts when using .jpg/.png image files or similar formats and additionally to improve performance on mobile, to avoid the download of big files which would undoubtably be required to make the game look good at bigger resolutions.
 
@@ -149,10 +166,13 @@ The page scales down to roughly 270px width and technically the same amount of h
 ### General
 The project provides feedback in varies ways:
 - the most important button start/stop of the game is being displayed in a unique color when compared to the rest of the UI
+
+    ![Setting Style](assets/images/readme/game_icons.png)
 - hover effects for desktop users
-- buttons / elements that are "active" are highlighted in the main color orange of the project
-- active buttons in the settings menu have a thicker outline due to borders to highlight what's considered on and what is considered off, based off of user experience feedback
-- all warning messages on the project are displayed in red
+- buttons / elements that are "active" are highlighted in the main color orange of the project, also active buttons in the settings menu have a thicker outline due to borders to highlight what's considered on and what is considered off, based off of user experience feedback
+
+    ![Setting Style](assets/images/readme/setting_style.png)
+- all warning messages on the project are displayed in red and red is only ever used for warning messages
 - the settings menu is divided into 2 portions:
     1. Game Settings: controls sound and markings options
     2. Custom Difficulty: upon changing a setting here, the custom difficulty will immediately be selected according to the settings visible there
@@ -176,31 +196,40 @@ It features these options:
 ### The Game
 
 When a game is running, feedback is provided as such:
-- if the sound setting is set to on, the game will play sound effects
+- if the sound setting is set to on, the game will play sound effects on button presses by either play or computer, on longer sequences forming sort of a melody sometimes 
 - the middle of the screen shows the ingame status ("Your Turn", "Computer Turn") as well as game status ("Game Over",  Choose Difficulty") informing the player as to what's going on
+
+    ![Status Text Examples](assets/images/readme/status_texts.png)
 
 <br>
 
 ### Accessibility
-- the settings offer accessibility options to make the game easier to play for those with color blindness, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default
-- the help menu explains the game, how it works, the differences between the difficulty modes, point base values and a few settings that are not necessarily quick to understand on first glance
-- the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, in addition to changes of those settings automatically selecting the difficulty itself
-- while there is no indicator as to what button has been played directly, even without any colors it's still visible that a button "lit up":
+
+The focus of the game is to repeat a sequence of button presses, typically depicted in certain colors. This might prove more challenging with color blindness or sight challenged people in general. I attempted to help in this regard: 
+- the settings offer accessibility options, while not optimized for the various forms of color blindness they offer some variety of marking types to help and markings are on by default to avoid putting somebody off the game without realizing these options exist
+- the option to remove those markings does exist, should that be preferred
+- while there is no indicator as to what button has been played directly, even without any colors it's still visible that a button "lit up", which should hopefully help players that can sense brightness changes only:
 
     ![Greyscale Game](assets/images/readme/greyscale.jpg)
+
+- lastly each button has a unique sound per button configuration, technically speaking those sounds could be learned the game could almost be played through sound alone
+
+Generally:
+- the help menu explains the game, how it works, the differences between the difficulty modes, point base values and a few settings that are not necessarily quick to understand on first glance
+- the custom difficulty has its "O" replaced with the gear icon also being used for settings, based off of user experience feedback it wasn't immediately apparent that this difficulty requires a check of the settings menu and I felt this was an easy way to connect these two, in addition to changes of those settings automatically selecting the difficulty itself
 
 <br>
 
 ## Cheating Prevention
 
 The game is using a few global variables. Access to those through the console would make it rather easy to cheat. During my research I stumbled upon the use of a so-called "Scoping Function", meaning enveloping the entire code base in a function that is being called immediately. Therefore all global variables are within scope and inaccessible to the console.
-Commenting out 2 lines of code make it possible to hunt for errors using the console and removing those comments brings back the cheat prevention.
+Commenting out 2 lines of code make it possible to hunt for errors using the console and removing those comments brings back the cheat prevention for deployment.
 
 <br>
 
 ## Error Handling
 
-- No direct user input is required, instead the user interacts with the project through buttons in the settings menu and in the main screen. The game buttons create a sound and show an obvious glow effect upon successful press. On mobile it may happen that a button is not pressed but rather interpreted by the device as a long press to scroll / swipe, thus both of these effects don't play and the user may assume the button was pressed and move on to the next before realizing that it wasn't pressed after all. This is more user error and device specific, rather than an error.
+- No direct user input is required, instead the user interacts with the project through buttons in the settings menu and in the main screen which have a predefined function. The game buttons create a sound and show an obvious glow effect upon successful press. On mobile it may happen that a button is not pressed but rather interpreted by the device as a long press to scroll / swipe, thus both of these effects don't play and the user may assume the button was pressed and move on to the next before realizing that it wasn't pressed after all. This is more user error and device specific, rather than an error.
 - All available buttons were tested in all possible combinations to make sure that no unexpected results occur. 
 - The project does not create alerts on errors, errors should simply not occur after extensive testing.
 - As shown above in the section [Surface](#surface) the game shows a warning message should Javascript be deactivated, instructing the user what to do

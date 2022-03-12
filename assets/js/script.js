@@ -458,6 +458,7 @@
 
             let li = "diff-" + diff[i];
             li = document.getElementById(li);
+            // capitalize
             let name = diff[i].charAt(0).toUpperCase() + diff[i].slice(1);
 
             // easy, normal
