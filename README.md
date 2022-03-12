@@ -31,6 +31,12 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     This project was made specifically for the Full Stack Development course by Code Institute as 2nd milestone project. 
     This particular game was chosen as basis for the work as it seemed the most complex of the ideas I prepared for the first Mentor meeting, my Mentor also remarked that he hadn't seen this particular game done previously by others. 
 
+    ### **Target Audience**
+    The target audience for this project would be someone who wants to enjoy a quick game that is not too involved nor complex, yet not entirely mindless like idle games either. A game like this is more likely to be enjoyed on a mobile device, as such single-handed use is preferred.
+
+    ### **Project Goals**
+    The goals for this project are in direct correlation with the target audiences likely requirements, as such the design accomodates single-handed use and jumping into the action is at most 1-2 clicks away. 
+
     ### **User Stories**
     As a first time user ...
     1. I want to be able to understand what the game is about and how it is played.
@@ -41,7 +47,7 @@ Simon Game is a simple game about memorizing and replicating a sequence of butto
     As a returning user ...
     1. I want to be able to change up my experience through different difficulty settings. 
     2. I also want to be able to further increase the difficulty later down the line or change the game to my specific needs. 
-    3. I quickly want to understand how the various settings in the custom difficulty section of the settings menu affect my score multiplier 
+    3. I quickly want to understand how the various settings mean and how they affect my experience
 
     <br>
 
@@ -300,9 +306,11 @@ As a returning user ...
 
     > The settings menu allows the customization of the custom difficulty and thus allows a player to make significant changes to the experience.
 
-3. I quickly want to understand how the various settings in the custom difficulty section of the settings menu affect my score multiplier 
+3. I quickly want to understand how the various settings mean and how they affect my experience
 
-    > Technically there's 2 ways of figuring this out, either through going through the options and manually calculating the difference in Multiplier shown at the bottom, however ...
+    > When it comes to the settings themselves and their meaning, this is explained in the help menu
+
+    > In regards to the effects of those settings on the score multiplier then the user can either experiment and see the results in the multiplier shown below, or ...
 
     > The better way is to activate the Multplier % option at the top of the custom difficulty section, which will display the percentages taken from the Javascript file for full transparency
 
