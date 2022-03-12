@@ -679,8 +679,8 @@ fieldset p {
 #menu-help li {
     list-style-type: circle;
     list-style-position: inside;
-    text-indent: -22px;
-    margin-left: 30px;
+    text-indent: -28px;
+    margin-left: 29px;
 }
 
 #menu-help i {
@@ -822,7 +822,7 @@ footer li {
     }
 
     #menu-help li {
-        text-indent: 5px;
+        text-indent: -21px;
         margin: 0 22px 0 3rem;
     }
 }
@@ -905,7 +905,7 @@ footer li {
     }
 
     #menu-help li {
-        text-indent: 5px;
+        text-indent: -21px;
         margin: 0 22px 0 3rem;
     }
 }
