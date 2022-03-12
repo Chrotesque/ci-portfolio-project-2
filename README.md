@@ -273,7 +273,7 @@ Commenting out 2 lines of code make it possible to hunt for errors using the con
     Given the dynamic nature of the project, the automated check might not have caught any issues. Thus I manually checked all values for contrast issues and was also unable to find any.
 
 * [JSHint](#technologies-used-)
-    ![JSHint Results](assets/images/readme/jshint.png)
+    ![JSHint Results](assets/images/readme/jshint.jpg)
 
 <br>
 
@@ -357,7 +357,9 @@ As a returning user ...
 
 ## Fixed Bugs
 
-TBD
+Throughout development I encountered a few bugs that weren't immediately apparent and only discovered later or bugs that I didn't fully understood and thus documented first, for later fixes. I used Githubs Issue System to document these as much as possible, to be found <a href="https://github.com/Chrotesque/ci-portfolio-project-2/issues?q=is%3Aissue+is%3Aclosed" target="_blank">here</a>.
+
+All other bugs that were discovered right after the introduction of a new feature, etc. were not document but instead immediately handled.
 
 <br>
 
