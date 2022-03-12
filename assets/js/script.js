@@ -117,6 +117,7 @@
         setMenuData();
         updateScoreMultiplierExternal();
 
+        // adding event listeners to button elements
         for (let button of allButtons) {
             button.addEventListener("click", function () {
                 if (this.getAttribute("data-cat") === "menu") {
@@ -129,6 +130,7 @@
             });
         }
 
+        // adding event listeners to path (svg) elements
         for (let path of allPaths) {
             path.addEventListener("click", function () {
                 if (!path.classList.contains("game-circle-outer") && !path.classList.contains("game-circle-bg")) {
@@ -216,7 +218,7 @@
      */
     async function computerTurn() {
 
-        // if the previous turn was the last, this round is won
+        // if the previous turn was the last, proceed to next round
         if (currentGame.turn > currentGame.sequence.length) {
             newRound();
             // otherwise proceed to next turn
@@ -228,17 +230,20 @@
             for (let i = 0; i < currentGame.turn; i++) {
                 let index = numToString(currentGame.sequence[i] + 1);
                 let curButton;
+                // find the current button of the sequence
                 for (let button of gameButtons) {
                     if (button.classList.contains(index)) {
                         curButton = button;
                     }
                 }
                 if (settings.control.stopRequest === false) {
+                    // computer presses the button
                     curButton.classList.add(index + "-pressed");
                     if (settings.setting.sound === "on") {
                         let num = stringToNum(curButton.getAttribute("data-value"));
                         playSound(num);
                     }
+                    // stop the game in case the stoprequest has been called
                 } else {
                     stopGame();
                 }
@@ -249,7 +254,9 @@
                 }
             }
             if (settings.control.stopRequest === false) {
+                // proceed to the players turn afterwards
                 playerTurn();
+                // stop the game in case the stoprequest has been called
             } else {
                 stopGame();
             }
@@ -270,6 +277,7 @@
         if (settings.control.stopRequest === false) {
             setTurnStatus("Your Turn");
         }
+        // comparing user input to computer sequence
         while (validity === true && counter > 0) {
             if (settings.control.stopRequest === false) {
                 if (playerInput.length > 0) {
@@ -285,15 +293,19 @@
             } else {
                 break;
             }
-            await sleep(settings.values.sleep.playerTurnLoop); // browser tab freezes without sleep
+            // browser tab freezes without sleep
+            await sleep(settings.values.sleep.playerTurnLoop);
         }
+        // sequence has been repeated successfully, proceed to computerturn
         if (validity === true && counter <= 0) {
             ++currentGame.turn;
             turnScore += settings.values.score.turn;
             addScore(turnScore);
             computerTurn();
+            // sequence mistake found, proceed with either game over or repeat sequence
         } else if (validity === false) {
             failCheck();
+            // stop the game in case the stoprequest has been called
         } else {
             stopGame();
         }
@@ -302,7 +314,8 @@
     // GAME STATUS
 
     /**
-     * Ends the game after making a mistake
+     * Ends the game after making a mistake and deals with the toggle of all involved elements,
+     * resets of global variables, etc.
      */
     function gameOver() {
         let statusBtn = document.getElementById("btn-status");
@@ -321,7 +334,8 @@
     }
 
     /**
-     * Ends the game after stop has been pressed
+     * Ends the game after stop has been pressed and deals with the toggle of all involved 
+     * elements, resets of global variables, etc.
      */
     function stopGame() {
         if (settings.control.stopRequest === false) {
@@ -343,7 +357,8 @@
     }
 
     /**
-     * Initiates a new round after the last one was won
+     * Initiates a new round after the last one was won and deals with changes for rampup,
+     * if necessary and various element toggles
      */
     async function newRound() {
         currentGame.round++;
@@ -365,7 +380,7 @@
     }
 
     /**
-     * Increases difficulty when option ramp up is active
+     * Increases difficulty when option ramp up is active and returns changed values
      */
     function rampUpDifficulty(length, speed, delay) {
         let result = {};
@@ -386,7 +401,8 @@
     }
 
     /**
-     * Part of the strict mode, checks whether to repeat a sequence or end the game
+     * Part of the strict mode, checks whether to repeat a sequence or end the game and
+     * initiates appropriate action
      */
     function failCheck() {
         let strict = currentGame.strict;
@@ -398,7 +414,7 @@
     }
 
     /**
-     * Part of the strict mode, repeats a sequence
+     * Part of the strict mode, repeats a sequence and deals with status display changes
      */
     async function repeatSequence() {
         setTurnStatus("");
@@ -544,7 +560,6 @@
                 }
             }
             updateGameButtons();
-            // update score multipliers
             updateScoreMultiplierInternal();
             updateScoreMultiplierExternal();
         }
@@ -598,7 +613,7 @@
     }
 
     /**
-     * Updates the multiplier display in help and settings menu
+     * Updates the multiplier display in help and settings menu for custom difficulty
      */
     function updateScoreMultiplierExternal() {
         let custom = `${Math.round(settings.difficulty.custom.multiplier * 100)}%`;
@@ -659,22 +674,13 @@
     }
 
     /**
-     * Toggles advanced game info through settings menu, ie: multiplier percentages & 
-     * in-game stats during a game
+     * Toggles advanced game info through settings menu, ie: multiplier percentages
      */
     function toggleAdvancedInfo() {
-        let setting = settings.setting["stats-display"];
-        if (setting === "off") {
-            document.getElementById("multiplier-buttons").classList.add("hide-element");
-            document.getElementById("multiplier-speed").classList.add("hide-element");
-            document.getElementById("multiplier-strict").classList.add("hide-element");
-            document.getElementById("multiplier-rampup").classList.add("hide-element");
-        } else {
-            document.getElementById("multiplier-buttons").classList.remove("hide-element");
-            document.getElementById("multiplier-speed").classList.remove("hide-element");
-            document.getElementById("multiplier-strict").classList.remove("hide-element");
-            document.getElementById("multiplier-rampup").classList.remove("hide-element");
-        }
+        toggleElement(document.getElementById("multiplier-buttons"));
+        toggleElement(document.getElementById("multiplier-speed"));
+        toggleElement(document.getElementById("multiplier-strict"));
+        toggleElement(document.getElementById("multiplier-rampup"));
     }
 
     /**
@@ -685,13 +691,13 @@
         let identifier = numToString(newButtonAmt);
         let allButtonSets = document.getElementsByClassName("svg-btn");
         for (let button of allButtonSets) {
-            // firstly hide them all
+            // first hide them all
             if (!button.classList.contains("hide-element")) {
                 toggleElement(button);
             }
         }
         let newSetToShow = document.getElementById("btn-set-" + identifier);
-        // secondly show the correct one
+        // second show the correct one
         toggleElement(newSetToShow);
     }
 
@@ -726,18 +732,18 @@
             let btnSet = document.getElementById("btn-set-" + number);
             let parent = btnSet.childNodes[1].querySelectorAll('p');
 
+            // choose either numbers or symbols depending on setting
             if (settings.setting['markings-type'] === "sym") {
                 array = [...markings[1]];
             } else {
                 array = [...markings[0]];
             }
-            // removing unnecessary elements from array
 
             // creating button element array
             for (let j = 0; j < parent.length; j++) {
                 buttons.push(parent[j]);
             }
-            // reverse actions
+            // reverse actions if required
             if (settings.setting['markings-order'] === "ccw") {
                 array.splice(i, 6 - i);
                 buttons.splice(i, 6 - i);
@@ -767,9 +773,8 @@
                 markings.push(parent[j].innerHTML);
                 buttons.push(parent[j]);
             }
-            // reverse array
             markings.reverse();
-            // making sure that the 1 stays at the same spot on the screen, yet the rest reversed
+            // making sure that the 1 stays at the same spot on the screen, the rest reversed
             let last = markings.pop();
             markings.unshift(last);
             for (let k = 0; k < buttons.length; k++) {
@@ -802,6 +807,7 @@
      * Saves all available game buttons in global array for convenient access
      */
     function collectGameButtons() {
+        // globVar reset
         gameButtons = [];
         let curBtnAmt = settings.difficulty[settings.setting.difficulty].buttons;
         let index = numToString(curBtnAmt);

@@ -251,7 +251,6 @@ Commenting out 2 lines of code make it possible to hunt for errors using the con
 - <a href="https://wakatime.com" target="_blank">WakaTime</a> used as time tracking tool
 - <a href="https://www.adobe.com/products/photoshop.html" target="_blank">Adobe Photoshop 2021</a> used for the creation of vector graphics
 - <a href="https://www.bfxr.net/" target="_blank">BFXR</a> was used to create the sound effects
-- <a href="https://tinypng.com/" target="_blank">TinyPNG</a> used to optimize JPG and PNG file sizes for this readme
 - <a href="https://lettercounter.github.io/" target="_blank">Lettercounter</a> used to keep commit messages below or at 50 characters
 - <a href="http://ami.responsivedesign.is/" target="_blank">Am I Responsive?</a> used to create responsive preview of the site used at the top of this readme
 - <a href="https://coolors.co/" target="_blank">Coolors</a> used to create a color palette for this project
@@ -406,6 +405,8 @@ Once the project has been accessed on Github:
 # **Statistics** ([^](#table-of-contents))
 
 According to Wakatime this project took me roughly 93 hours. This does not include research nor graphics creation.
+
+<br>
 
 # **Acknowledgements** ([^](#table-of-contents))
 I'd like to thank:
