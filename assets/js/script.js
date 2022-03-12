@@ -243,8 +243,10 @@
                     stopGame();
                 }
                 await sleep(currentGame.speed[0]);
-                curButton.classList.remove(index + "-pressed");
-                await sleep(currentGame.speed[1]);
+                if (settings.control.stopRequest === false) {
+                    curButton.classList.remove(index + "-pressed");
+                    await sleep(currentGame.speed[1]);
+                }
             }
             if (settings.control.stopRequest === false) {
                 playerTurn();
